@@ -4,3 +4,5 @@
 
 Issue : Bug report, Feature request
 Project : 5rd Week of December 21st
+
+Branch protection rules : Not applicable
