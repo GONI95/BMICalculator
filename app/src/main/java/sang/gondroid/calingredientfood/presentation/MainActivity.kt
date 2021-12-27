@@ -1,7 +1,8 @@
-package sang.gondroid.bmicalculator
+package sang.gondroid.calingredientfood.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import sang.gondroid.calingredientfood.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

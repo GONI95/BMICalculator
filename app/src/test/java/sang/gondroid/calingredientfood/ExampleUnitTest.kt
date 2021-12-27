@@ -1,4 +1,4 @@
-package sang.gondroid.bmicalculator
+package sang.gondroid.calingredientfood
 
 import org.junit.Test
 
