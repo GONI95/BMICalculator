@@ -1,4 +1,4 @@
-package sang.gondroid.bmicalculator
+package sang.gondroid.calingredientfood
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
