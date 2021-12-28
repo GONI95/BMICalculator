@@ -9,7 +9,5 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorVie
 
     override fun getDataBinding(): FragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
 
-    override fun observeData() {
-        TODO("Not yet implemented")
-    }
+    override fun observeData() { }
 }

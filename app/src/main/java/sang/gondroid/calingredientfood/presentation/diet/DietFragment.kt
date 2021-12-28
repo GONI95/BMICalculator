@@ -9,7 +9,5 @@ class DietFragment : BaseFragment<FragmentDietBinding, DietViewModel>() {
 
     override fun getDataBinding(): FragmentDietBinding = FragmentDietBinding.inflate(layoutInflater)
 
-    override fun observeData() {
-        TODO("Not yet implemented")
-    }
+    override fun observeData() { }
 }

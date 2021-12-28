@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.CalIngredientFood.CircleIndicator3" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="ci_margin">6dp</item>
+        <item name="ci_width">8dp</item>
+        <item name="ci_height">8dp</item>
+        <item name="android:padding">3dp</item>
+    </style>
+</resources>

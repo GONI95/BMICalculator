@@ -41,6 +41,7 @@ dependencies {
     def coroutine_version = "1.4.3"
     def neumorphism_version = "0.3.0"
     def koin_version = "2.1.5"
+    def circleindicator_version = "2.1.6"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.7.0'
@@ -55,6 +56,9 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$ktx_version"
     //implementation "androidx.fragment:fragment-ktx:$androidx_version"
+
+    // Circleindicator [ ViewPager 상태 표시줄 ]
+    implementation "me.relex:circleindicator:$circleindicator_version"
 
     // Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"

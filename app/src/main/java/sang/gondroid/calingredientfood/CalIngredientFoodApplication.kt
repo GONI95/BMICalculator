@@ -7,6 +7,7 @@ import android.content.pm.ApplicationInfo
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import sang.gondroid.calingredientfood.di.appModule
 
 class CalIngredientFoodApplication : Application() {
@@ -15,7 +16,7 @@ class CalIngredientFoodApplication : Application() {
         DEBUG = isDebuggable(this)
 
         startKoin {
-            androidLogger()
+            androidLogger(Level.ERROR)
             androidContext(this@CalIngredientFoodApplication)
             modules(appModule)
         }
