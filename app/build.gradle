@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'    // databinding [you should apply the kotlin-kapt plugin. / bindingAdapter]
 }
 
 android {
@@ -65,7 +66,7 @@ dependencies {
 
     // koin DI
     implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-scope:$koin_version"
+    //implementation "org.koin:koin-android-scope:$koin_version"
     implementation "org.koin:koin-android-viewmodel:$koin_version"
-    implementation "org.koin:koin-android-ext:$koin_version"
+    //implementation "org.koin:koin-android-ext:$koin_version"
 }

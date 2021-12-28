@@ -4,11 +4,21 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.ApplicationInfo
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import sang.gondroid.calingredientfood.di.appModule
 
 class CalIngredientFoodApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         DEBUG = isDebuggable(this)
+
+        startKoin {
+            androidLogger()
+            androidContext(this@CalIngredientFoodApplication)
+            modules(appModule)
+        }
     }
 
     /**
@@ -29,5 +39,6 @@ class CalIngredientFoodApplication : Application() {
 
     companion object {
         var DEBUG = false
+            private set
     }
 }
