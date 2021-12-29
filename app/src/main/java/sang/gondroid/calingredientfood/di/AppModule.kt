@@ -11,5 +11,5 @@ val appModule = module {
     viewModel { CalculatorViewModel() }
     viewModel { DietViewModel() }
 
-    single { MainViewPagerAdapter(it[0], it[1]) }
+    factory { MainViewPagerAdapter(it[0], it[1]) }
 }
