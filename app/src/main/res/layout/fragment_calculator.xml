@@ -2,18 +2,118 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/calculator_search_neumorphCardView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            style="@style/Theme.CalIngredientFood.Neumorphism"
+            app:layout_constraintBottom_toTopOf="@+id/calculator_response_neumorphCardView"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
+            app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_top_guideline">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <EditText
+                    android:id="@+id/calculator_search_editText"
+                    style="@style/Theme.CalIngredientFood.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:hint="@string/please_word" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </soup.neumorphism.NeumorphCardView>
+
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/calculator_response_neumorphCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            style="@style/Theme.CalIngredientFood.Neumorphism"
+            app:layout_constraintBottom_toTopOf="@+id/calculator_plan_neumorphCardView"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
+            app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
+            app:layout_constraintTop_toBottomOf="@+id/calculator_search_neumorphCardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </soup.neumorphism.NeumorphCardView>
+
+
+        <soup.neumorphism.NeumorphCardView
+            android:id="@+id/calculator_plan_neumorphCardView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            style="@style/Theme.CalIngredientFood.Neumorphism"
+            app:layout_constraintBottom_toTopOf="@+id/horizontal_bottom_guideline"
+            app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
+            app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
+            app:layout_constraintTop_toTopOf="@+id/horizontal_center_guideline"
+            app:neumorph_shapeType="pressed">
+
+
+        </soup.neumorphism.NeumorphCardView>
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_left_guideline"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintGuide_percent="0.05"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/vertical_right_guideline"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_percent="0.95"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_top_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.05"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_center_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/horizontal_bottom_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintGuide_percent="0.95"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

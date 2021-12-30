@@ -1,10 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <!--
+    ci_margin : ViewPager 하단 표시줄 각 칸당 margin
+    ci_width : ViewPager 하단 표시줄 각 칸의 width
+    ci_height : ViewPager 하단 표시줄 각 칸의 height
+    -->
     <style name="Theme.CalIngredientFood.CircleIndicator3" parent="Widget.MaterialComponents.CircularProgressIndicator">
         <item name="ci_margin">6dp</item>
         <item name="ci_width">8dp</item>
         <item name="ci_height">8dp</item>
         <item name="android:padding">3dp</item>
+    </style>
+
+    <!--
+    neumorph_shadowColorLight : 밝은 그림자 색상
+    neumorph_shadowColorDark : 어두운 그림자 색상
+    neumorph_backgroundColor : 배경 색상
+    -->
+    <style name="Theme.CalIngredientFood.Neumorphism">
+        <item name="neumorph_shadowColorLight">@color/color_shadow_light</item>
+        <item name="neumorph_shadowColorDark">@color/color_shadow_dark</item>
+        <item name="neumorph_backgroundColor">@color/color_primary</item>
+    </style>
+
+    <!--
+    textColorHighlight : text 범위 선택 시 색상
+    singleLine : EditText Line을 1줄로 설정
+    maxLength : EditText 작성 가능한 최대 길이 설정
+    imeOptions : EditText 활성화 시 키보드의 완료 버튼을 지정
+    -->
+    <style name="Theme.CalIngredientFood.EditText" parent="Widget.AppCompat.EditText">
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/color_on_secondary</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:maxLength">30</item>
+        <item name="android:imeOptions">actionSearch</item>
     </style>
 </resources>

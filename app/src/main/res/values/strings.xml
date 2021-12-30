@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CalIngredientFood</string>
+
+    <string name="please_word">식품명 입력</string>
 </resources>
