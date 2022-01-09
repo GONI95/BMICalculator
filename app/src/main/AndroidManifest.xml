@@ -10,7 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CalIngredientFood">
-        <activity android:name="sang.gondroid.calingredientfood.presentation.MainActivity">
+
+        <!--
+        windowSoftInputMode : 키보드 활성화 시 모드
+                              adjustPan : 키보드 활성화 시 UI 화면이 조정되는 것을 막음
+        -->
+        <activity android:name="sang.gondroid.calingredientfood.presentation.MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

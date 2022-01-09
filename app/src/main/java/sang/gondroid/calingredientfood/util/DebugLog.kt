@@ -26,7 +26,6 @@ object DebugLog {
 
     /** Log Level Debug  */
     fun d(message: String?) {
-        print("========= ${CalIngredientFoodApplication.DEBUG}")
         if (CalIngredientFoodApplication.DEBUG) Log.d(TAG, buildMessage(message))
     }
 
@@ -46,9 +45,4 @@ object DebugLog {
         sb.append(message)
         return sb.toString()
     }
-
-    /*
-
-
-     */
 }
