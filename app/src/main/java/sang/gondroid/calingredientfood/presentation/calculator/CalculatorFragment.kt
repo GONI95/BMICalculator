@@ -9,5 +9,9 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorVie
 
     override fun getDataBinding(): FragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
 
+    override fun initViews() {
+        binding.calculatorViewModel = viewModel
+    }
+
     override fun observeData() { }
 }

@@ -10,6 +10,8 @@
     <color name="color_shadow_light">#FFF</color>
     <color name="color_shadow_dark">#D1CDC7</color>
 
+    <color name="color_secondary_pale">#89C8F3</color>
+
     <color name="color_secondary">#36A6F1</color>
     <color name="color_secondary_variant">#3197DC</color>
     <color name="color_on_secondary">#4C4C4C</color>

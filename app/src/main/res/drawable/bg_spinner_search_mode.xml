@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item>
+                <shape>
+                    <solid android:color="@color/color_primary" />
+                    <corners
+                        android:topLeftRadius="50dp"
+                        android:bottomLeftRadius="50dp" />
+                    <padding android:right="5dp" />
+                </shape>
+            </item>
+            <item
+                android:drawable="@drawable/ic_arrow_down"
+                android:gravity="center|end"
+                android:width="18dp"
+                android:height="18dp" />
+        </layer-list>
+    </item>
+</selector>

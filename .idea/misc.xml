@@ -4,21 +4,27 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable-night/aa.xml" value="0.3277777777777778" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_spinner_search_mode.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/blue.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/circle_indicator.xml" value="0.3687179487179487" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/edit_text_focus.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/edt_bg_focus.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/edt_bg_no_selected.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/edt_bg_selected.xml" value="0.215625" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_arrow_down.xml" value="0.215625" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_food_bank.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/indicator_blue.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/indicator_night.xml" value="0.3277777777777778" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/indicator_shape.xml" value="0.3687179487179487" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_calculator.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_diet.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/item_search_mode.xml" value="0.5" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.19947916666666668" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
