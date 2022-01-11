@@ -8,8 +8,22 @@ import sang.gondroid.calingredientfood.presentation.widget.MainViewPagerAdapter
 
 val appModule = module {
 
+    /**
+     * viewModel
+     */
     viewModel { CalculatorViewModel() }
     viewModel { DietViewModel() }
 
+    /**
+     * Adapter
+     */
     factory { MainViewPagerAdapter(it[0], it[1]) }
+
+    /**
+     * Network : ProvideAPI.kt
+     */
+    single { provideGsonConverterFactory() }
+    single { buildOkHttpClient() }
+    single { provideFoodNtrIrdntRetrofit(get(), get()) }
+    single { provideFoodNtrIrdntService(get()) }
 }
