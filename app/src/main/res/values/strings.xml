@@ -2,4 +2,5 @@
     <string name="app_name">CalIngredientFood</string>
 
     <string name="please_word">식품명 입력</string>
+    <string name="please_enter_a_search_term">검색어를 입력해주세요.</string>
 </resources>
