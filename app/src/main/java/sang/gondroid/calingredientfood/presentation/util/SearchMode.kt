@@ -1,4 +1,4 @@
-package sang.gondroid.calingredientfood.domain.util
+package sang.gondroid.calingredientfood.presentation.util
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

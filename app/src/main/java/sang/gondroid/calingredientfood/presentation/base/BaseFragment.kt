@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import sang.gondroid.calingredientfood.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
 abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 

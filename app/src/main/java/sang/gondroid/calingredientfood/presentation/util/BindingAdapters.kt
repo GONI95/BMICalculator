@@ -1,8 +1,6 @@
-package sang.gondroid.calingredientfood.util
+package sang.gondroid.calingredientfood.presentation.util
 
 import android.content.Context
-import android.hardware.input.InputManager
-import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -10,10 +8,7 @@ import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
 import android.widget.Spinner
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getSystemService
 import sang.gondroid.calingredientfood.R
-import sang.gondroid.calingredientfood.domain.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.widget.*
 
 

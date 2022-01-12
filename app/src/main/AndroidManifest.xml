@@ -11,8 +11,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CalIngredientFood">
-
+        android:theme="@style/Theme.CalIngredientFood"
+        android:usesCleartextTraffic="true">
         <!--
         windowSoftInputMode : 키보드 활성화 시 모드
                               adjustPan : 키보드 활성화 시 UI 화면이 조정되는 것을 막음
