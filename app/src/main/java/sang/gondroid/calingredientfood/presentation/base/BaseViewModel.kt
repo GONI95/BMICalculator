@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import sang.gondroid.calingredientfood.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
 
 open class BaseViewModel : ViewModel() {

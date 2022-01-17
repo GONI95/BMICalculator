@@ -38,6 +38,7 @@
 
                 <EditText
                     android:id="@+id/calculator_search_editText"
+                    onEditorEnterAction="@{calculatorViewModel.searchFunc}"
                     style="@style/Theme.CalIngredientFood.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"

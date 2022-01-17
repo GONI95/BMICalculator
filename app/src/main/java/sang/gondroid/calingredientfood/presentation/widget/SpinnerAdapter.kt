@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import org.jetbrains.annotations.NotNull
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.ItemSearchModeBinding
-import sang.gondroid.calingredientfood.domain.util.SearchMode
+import sang.gondroid.calingredientfood.presentation.util.SearchMode
 
 /**
  * Gon [22.01.10] : 데이터 목록을 받아, AdapterView에 출력할 수 있는 형태의 Data를 제공하기 위한 Adapter class

@@ -11,7 +11,7 @@ import sang.gondroid.calingredientfood.databinding.ActivityMainBinding
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
 import sang.gondroid.calingredientfood.presentation.diet.DietFragment
 import sang.gondroid.calingredientfood.presentation.widget.MainViewPagerAdapter
-import sang.gondroid.calingredientfood.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding

@@ -1,4 +1,4 @@
-package sang.gondroid.calingredientfood.util
+package sang.gondroid.calingredientfood.presentation.util
 
 import android.util.Log
 import sang.gondroid.calingredientfood.CalIngredientFoodApplication
