@@ -76,6 +76,6 @@ fun buildOkHttpClient(): OkHttpClient {
     return OkHttpClient.Builder()
         .connectTimeout(5, TimeUnit.SECONDS)
         .addInterceptor(interceptor)
-        //.addInterceptor(httpLoggingInterceptor)
+        .addInterceptor(httpLoggingInterceptor)
         .build()
 }

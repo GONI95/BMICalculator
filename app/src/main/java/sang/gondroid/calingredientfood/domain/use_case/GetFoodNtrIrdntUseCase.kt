@@ -1,9 +1,6 @@
 package sang.gondroid.calingredientfood.domain.use_case
 
-import com.google.gson.JsonElement
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.withContext
-import retrofit2.Response
+import sang.gondroid.calingredientfood.data.util.TaskResult
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 
 /**
@@ -11,11 +8,8 @@ import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
  *                  FoodNtrIrdntRepository를 받아 개별 비즈니스 로직을 담당하는 UseCase
  */
 class GetFoodNtrIrdntUseCase(
-    private val foodNtrIrdntRepository: FoodNtrIrdntRepository,
-    private val ioDispatcher: CoroutineDispatcher
+    private val foodNtrIrdntRepository: FoodNtrIrdntRepository
 ) {
-    suspend operator fun invoke(value: String): Response<JsonElement> = withContext(ioDispatcher) {
+    suspend fun invoke(value: String): TaskResult<*> =
         foodNtrIrdntRepository.getFoodNtrIrdnt(value)
-    }
-    //매퍼
 }

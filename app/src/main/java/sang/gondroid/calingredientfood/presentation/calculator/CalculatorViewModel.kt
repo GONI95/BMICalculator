@@ -5,11 +5,11 @@ import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import android.widget.AdapterView
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.jetbrains.annotations.NotNull
+import sang.gondroid.calingredientfood.data.util.TaskResult
+import sang.gondroid.calingredientfood.domain.model.ItemModel
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
-import java.lang.Exception
 
 class CalculatorViewModel(
     private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntUseCase
@@ -40,23 +40,23 @@ class CalculatorViewModel(
      *
      *                  GetFoodNtrIrdntUseCase() : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
      */
-    private fun search(@NotNull value: String) {
+    private fun search(value: String) {
         when(selectSearchMode()) {
             SearchMode.FOOD -> {
                 viewModelScope.launch {
-                    try {
-                        getFoodNtrIrdntUseCase.invoke(value).also {
-                            if (it.isSuccessful)
-                                DebugLog.d("반환값: ${it.body()}")
-                            else {
-                                DebugLog.d("반환값: ${it.code()}")
-                                DebugLog.d("반환값: ${it.message()}")
-                                DebugLog.d("반환값: ${it.errorBody()?.string()}")
+                    val result = getFoodNtrIrdntUseCase.invoke(value)
+                    when(result) {
+                        is TaskResult.Success<*> -> {
+                            (result.data as List<ItemModel>).forEach {
+                                DebugLog.i(it.descriptionKOR)
                             }
                         }
-                    } catch (e : Exception) {
-                        DebugLog.d("반환값: ${e.message}")
-                        DebugLog.d("반환값: ${e.cause}")
+                        is TaskResult.Fail -> {
+                            DebugLog.d("실패")
+                        }
+                        is TaskResult.Exception -> {
+                            DebugLog.d(result.throwable.message)
+                        }
                     }
                 }
             }

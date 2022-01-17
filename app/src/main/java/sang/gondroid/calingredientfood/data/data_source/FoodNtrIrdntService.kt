@@ -1,9 +1,9 @@
 package sang.gondroid.calingredientfood.data.data_source
 
-import com.google.gson.JsonElement
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
+import sang.gondroid.calingredientfood.data.dto.network.NetworkFoodNtrIrdnt
 import sang.gondroid.calingredientfood.data.util.API
 
 /**
@@ -11,7 +11,7 @@ import sang.gondroid.calingredientfood.data.util.API
  */
 interface FoodNtrIrdntService {
     @GET(API.GET_FNI_LIST)
-    suspend fun getFoodNtrItdntList(
+    suspend fun getFoodNtrItdnt(
         @Query("desc_kor") descKor : String
-    ) : Response<JsonElement>
+    ) : Response<NetworkFoodNtrIrdnt>
 }

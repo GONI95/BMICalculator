@@ -53,15 +53,15 @@ object BindingAdapters {
                 .hideSoftInputFromWindow(v.windowToken, 0)
 
             with(v.editableText) {
-
+                val replaceText = this.toString().replace(" ","")
                 val imeAction = actionId == EditorInfo.IME_ACTION_SEARCH
-                val imeText = this.isNotBlank() or this.isNotEmpty()
+                val imeText = replaceText.isNotBlank() or replaceText.isNotEmpty()
 
                 /* Gon [22.01.11] : 입력값이 존재하고, 작업 식별자가 IME_ACTION_SEARCH를 만족하면, 입력값에서 공백을 제거하고
                                     CalculatorViewModel search() 고차함수 호출
                  */
                 if (imeText && imeAction) {
-                    true.also { searchFunc(this.toString().replace(" ","")) }
+                    true.also { searchFunc(replaceText) }
                 }
                 // Gon [22.01.11] : 입력값이 비어있는 경우 EditText에 Error message 표시
                 else false.also { error = resources.getString(R.string.please_enter_a_search_term) }
