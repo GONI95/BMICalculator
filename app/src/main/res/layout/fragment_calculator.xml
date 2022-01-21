@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -52,19 +51,24 @@
 
         <soup.neumorphism.NeumorphCardView
             android:id="@+id/calculator_response_neumorphCardView"
+            style="@style/Theme.CalIngredientFood.Neumorphism"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            style="@style/Theme.CalIngredientFood.Neumorphism"
             app:layout_constraintBottom_toTopOf="@+id/calculator_plan_neumorphCardView"
             app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
             app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
             app:layout_constraintTop_toBottomOf="@+id/calculator_search_neumorphCardView">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/calculator_foodNtrIrdnt_recyclerView"
+                submitList="@{calculatorViewModel.foodNtrIrdntModelListLiveData}"
+                addBtnClick="@{calculatorViewModel.addBtnClickFunc}"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
         </soup.neumorphism.NeumorphCardView>
 
 

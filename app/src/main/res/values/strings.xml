@@ -3,4 +3,10 @@
 
     <string name="please_word">식품명 입력</string>
     <string name="please_enter_a_search_term">검색어를 입력해주세요.</string>
+
+    <string name="add">추가</string>
+    <string name="calorie_desc_info">칼로리 : %s(kcal)</string>
+    <string name="three_major_ntr_desc_info">탄, 단, 지 : %s / %s / %s(g)</string>
+    <string name="serving_weight_desc_info">1회 제공량 : %s(g)</string>
+    <string name="begin_year_desc_info">구축년도 : %s년</string>
 </resources>

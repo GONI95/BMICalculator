@@ -5,8 +5,8 @@ import kotlinx.coroutines.withContext
 import sang.gondroid.calingredientfood.data.data_source.FoodNtrIrdntService
 import sang.gondroid.calingredientfood.data.dto.network.NetworkItem
 import sang.gondroid.calingredientfood.data.util.*
-import sang.gondroid.calingredientfood.domain.mapper.ToItemModelMapper
-import sang.gondroid.calingredientfood.domain.model.ItemModel
+import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
+import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import java.lang.Exception
 
@@ -16,7 +16,7 @@ import java.lang.Exception
 class FoodNtrIrdntRepositoryImpl(
     private val foodNtrIrdntService: FoodNtrIrdntService,
     private val ioDispatcher: CoroutineDispatcher,
-    private val mapper: ToItemModelMapper
+    private val mapper: ToFoodNtrIrdntModelMapper
 ) : FoodNtrIrdntRepository {
 
     /**
@@ -31,8 +31,8 @@ class FoodNtrIrdntRepositoryImpl(
     }
 
     /**
-     * Gon [22.01.17] : DTO(Item) -> Domain Model(ItemModel)
+     * Gon [22.01.17] : DTO(Item) -> Domain Model(FoodNtrIrdntModel)
      */
-    private fun toDomainModelList(networkItemList: List<NetworkItem>?) : List<ItemModel>
+    private fun toDomainModelList(networkItemList: List<NetworkItem>?) : List<FoodNtrIrdntModel>
         = networkItemList?.map { mapper.map(it) } ?: emptyList()
 }

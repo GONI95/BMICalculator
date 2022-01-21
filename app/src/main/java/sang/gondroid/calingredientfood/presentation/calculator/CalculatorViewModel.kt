@@ -3,10 +3,13 @@ package sang.gondroid.calingredientfood.presentation.calculator
 import android.view.View
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import android.widget.AdapterView
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.data.util.TaskResult
-import sang.gondroid.calingredientfood.domain.model.ItemModel
+import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
+import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
@@ -14,11 +17,49 @@ import sang.gondroid.calingredientfood.presentation.util.DebugLog
 class CalculatorViewModel(
     private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntUseCase
 ) : BaseViewModel() {
+
+    /**
+     * Gon [22.01.20] : LiveData를 이용해 값이 변경되면 BindingAdapter.submitList() 메서드가 호출됨
+     *                  Boilerplate code를 줄이기 위해 Model 타입으로 정의, BindingAdapter.checkType() 메서드가 Type을 검증
+     */
+    private var _foodNtrIrdntModelListLiveData = MutableLiveData<List<Model>>()
+    val foodNtrIrdntModelListLiveData: LiveData<List<Model>>
+        get() = _foodNtrIrdntModelListLiveData
+
     /**
      * Gon [22.01.11] : onEditorEnterAction() bindingAdapter 메서드의 매개변수로 전달되는
      *                  반환값이 없는 하나의 인자를 갖는 고차함수
      */
     val searchFunc: (String) -> Unit = this::search
+
+    /**
+     * Gon [22.01.12] : onEditorEnterAction() bindingAdapter 메서드에서 호출되는 메서드
+     *                  매개변수 : EditText에 입력한 값
+     *
+     *                  GetFoodNtrIrdntUseCase() : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
+     */
+    @Suppress("UNCHECKED_CAST")
+    private fun search(value: String) {
+        when(selectSearchMode()) {
+            SearchMode.FOOD -> {
+                viewModelScope.launch {
+                    when(val result = getFoodNtrIrdntUseCase.invoke(value)) {
+                        is TaskResult.Success<*> ->
+                            _foodNtrIrdntModelListLiveData.value = result.data as List<FoodNtrIrdntModel>
+
+                        is TaskResult.Fail ->
+                            DebugLog.d("실패")
+
+                        is TaskResult.Exception ->
+                            DebugLog.d(result.throwable.message)
+                    }
+                }
+            }
+            SearchMode.DATE -> {
+
+            }
+        }
+    }
 
     /**
      * Gon [22.01.11] : 반환값을 가지는 인자를 갖지않는 고차함수
@@ -35,34 +76,15 @@ class CalculatorViewModel(
     }
 
     /**
-     * Gon [22.01.12] : onEditorEnterAction() bindingAdapter 메서드에서 호출되는 메서드
-     *                  매개변수 : EditText에 입력한 값
-     *
-     *                  GetFoodNtrIrdntUseCase() : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
+     * Gon [22.01.20] : setAdapterAndClickEvent() bindingAdapter 메서드의 매개변수로 전달되는
+     *                  반환값이 없는 하나의 FoodNtrIrdntModel 인자를 갖는 고차함수
      */
-    private fun search(value: String) {
-        when(selectSearchMode()) {
-            SearchMode.FOOD -> {
-                viewModelScope.launch {
-                    val result = getFoodNtrIrdntUseCase.invoke(value)
-                    when(result) {
-                        is TaskResult.Success<*> -> {
-                            (result.data as List<ItemModel>).forEach {
-                                DebugLog.i(it.descriptionKOR)
-                            }
-                        }
-                        is TaskResult.Fail -> {
-                            DebugLog.d("실패")
-                        }
-                        is TaskResult.Exception -> {
-                            DebugLog.d(result.throwable.message)
-                        }
-                    }
-                }
-            }
-            SearchMode.DATE -> {
+    val addBtnClickFunc: (FoodNtrIrdntModel) -> Unit = this::addBtnClickFunc
 
-            }
-        }
+    /**
+     * Gon [22.01.20] : RecyclerView ItemView Button 클릭 시 setAdapterAndClickEvent() bindingAdapter 메서드의해 호출되는 메서드
+     */
+    private fun addBtnClickFunc(model: FoodNtrIrdntModel) {
+        DebugLog.d("$model")
     }
 }

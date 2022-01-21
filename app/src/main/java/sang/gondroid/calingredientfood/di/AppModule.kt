@@ -5,7 +5,7 @@ import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
-import sang.gondroid.calingredientfood.domain.mapper.ToItemModelMapper
+import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
@@ -33,7 +33,7 @@ val appModule = module {
     /**
      * Mapper : Model <-> Dto
      */
-    single(named("toItemModelMapper")) { ToItemModelMapper() }
+    single(named("toItemModelMapper")) { ToFoodNtrIrdntModelMapper() }
 
     /**
      * Adapter

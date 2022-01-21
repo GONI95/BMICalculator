@@ -58,7 +58,7 @@ fun buildOkHttpClient(): OkHttpClient {
             /** Gon [22.01.12] : inctercept()의 응답으로 온 chain 객체를 이용해 공통 파라미터 추가 */
             val addClientIdUrl = url.newBuilder()
                 .addQueryParameter("serviceKey", URLDecoder.decode(API.FNI_KEY, "UTF-8"))
-                .addQueryParameter("desc_kor", API.FNI_DESC_KOR)
+                .addQueryParameter("bgn_year", API.FNI_BGN_YEAR)
                 .addQueryParameter("type", API.FNI_TYPE)
                 .build()
 

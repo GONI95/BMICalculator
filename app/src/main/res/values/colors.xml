@@ -14,15 +14,16 @@
 
     <color name="color_secondary">#36A6F1</color>
     <color name="color_secondary_variant">#3197DC</color>
-    <color name="color_on_secondary">#4C4C4C</color>
+    <color name="color_on_secondary">#585858</color>
+    <color name="color_on_light_secondary">#787878</color>
 </resources>
 
-<!--
-    <color name="color_primary">#EFEEEE</color>
-    <color name="color_shadow_light">#FFF</color>
-    <color name="color_shadow_dark">#D1CDC7</color>
+    <!--
+        <color name="color_primary">#EFEEEE</color>
+        <color name="color_shadow_light">#FFF</color>
+        <color name="color_shadow_dark">#D1CDC7</color>
 
-    <color name="color_primary">#ECF0F3</color>
-    <color name="color_shadow_light">#FFF</color>
-    <color name="color_shadow_dark">#D1D9E6</color>
--->
+        <color name="color_primary">#ECF0F3</color>
+        <color name="color_shadow_light">#FFF</color>
+        <color name="color_shadow_dark">#D1D9E6</color>
+    -->

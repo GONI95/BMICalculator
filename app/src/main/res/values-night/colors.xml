@@ -15,4 +15,5 @@
     <color name="color_secondary">#FAE36E</color>
     <color name="color_secondary_variant">#CFB461</color>
     <color name="color_on_secondary">#F8F7EF</color>
+    <color name="color_on_light_secondary">#E6E6DF</color>
 </resources>

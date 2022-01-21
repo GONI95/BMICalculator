@@ -1,6 +1,10 @@
 package sang.gondroid.calingredientfood.domain.model
 
-data class ItemModel(
+import sang.gondroid.calingredientfood.domain.util.ViewType
+
+data class FoodNtrIrdntModel(
+    override val id: Long,
+    override val type: ViewType,
     val company: String,
     val beginYear: String,
     val descriptionKOR: String,
@@ -13,5 +17,5 @@ data class ItemModel(
     val cholesterol: String,
     val saturatedFattyAcid: String,
     val transFat: String,
-    val sERVINGWT: String
-)
+    val servingWeight: String
+) : Model(id, type)

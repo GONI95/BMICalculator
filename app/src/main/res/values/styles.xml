@@ -37,4 +37,20 @@
         <item name="android:maxLength">30</item>
         <item name="android:imeOptions">actionSearch</item>
     </style>
+
+    <!--
+    minHeight, minWidth : 각 세로, 가로의 최소 길이를 설정(0으로 할 시 View의 기본여백을 줄임)
+    neumorph_shadowColorLight : 밝은 그림자 색상
+    neumorph_shadowColorDark : 어두운 그림자 색상
+    neumorph_backgroundColor : 배경 색상
+      -->
+    <style name="Theme.CalIngredientFood.Neumorphism.Small.Button" parent="Widget.Neumorph.Button">
+        <item name="android:textColor">@color/color_on_light_secondary</item>
+        <item name="android:minHeight">50dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="neumorph_shadowColorLight">@color/color_shadow_light</item>
+        <item name="neumorph_shadowColorDark">@color/color_shadow_dark</item>
+        <item name="neumorph_backgroundColor">@color/color_primary</item>
+    </style>
 </resources>
