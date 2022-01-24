@@ -37,4 +37,65 @@
         <item name="android:maxLength">30</item>
         <item name="android:imeOptions">actionSearch</item>
     </style>
+
+    <!--
+    minHeight, minWidth : 각 세로, 가로의 최소 길이를 설정(0으로 할 시 View의 기본여백을 줄임)
+    neumorph_shadowColorLight : 밝은 그림자 색상
+    neumorph_shadowColorDark : 어두운 그림자 색상
+    neumorph_backgroundColor : 배경 색상
+      -->
+    <style name="Theme.CalIngredientFood.Neumorphism.Small.Button" parent="Widget.Neumorph.Button">
+        <item name="android:textColor">@color/color_on_light_secondary</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="neumorph_shadowColorLight">@color/color_shadow_light</item>
+        <item name="neumorph_shadowColorDark">@color/color_shadow_dark</item>
+        <item name="neumorph_backgroundColor">@color/color_primary</item>
+        <item name="neumorph_shadowElevation">4dp</item>
+    </style>
+
+    <!--
+    식품 영양정보 상제 페이지(bottomSheet)에 쓰이는 TextView style
+    -->
+    <style name="Theme.CalIngredientFood.Dome.Top.TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@drawable/bg_dome_top_design</item>
+        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">3dp</item>
+    </style>
+
+    <!--
+    식품 영양정보 상제 페이지(bottomSheet)에 쓰이는 TextView style
+    -->
+    <style name="Theme.CalIngredientFood.Dome.Bottom.TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:background">@drawable/bg_dome_bottom_design</item>
+        <item name="android:textColor">@color/color_on_light_secondary</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">3dp</item>
+    </style>
+
+    <!--
+   식품 영양정보 상제 페이지(bottomSheet)의 Rounded corners / NavigationBarColor 설정
+   bottomSheetStyle : custom design을 적용
+   windowIsFloating : true - dialog가 자식 사이즈만큼 사용 / false : dialog가 전체 화면을 사용
+                      false인 경우 navigationBarColor 속성이 적용됨
+   navigationBarColor : navigationBar 색상을 설정
+   -->
+    <style name="Theme.CalIngredientFood.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Theme.CalIngredientFood.BottomSheet.Modal</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:navigationBarColor">@color/color_primary</item>
+    </style>
+
+    <!--
+    BottomSheet에는 Persistent, Modal 두 종류 존재
+    Persistent : 특정 화면의 Layout에 속하도록 하며, Behavior 속성을 설정해야함
+    Modal : 안드로이드의 Toast처럼 어디에서나 표시할 수 있고, BottomSheetDialogFragment 사용
+    -->
+    <style name="Theme.CalIngredientFood.BottomSheet.Modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bg_bottom_sheet_design</item>
+    </style>
 </resources>

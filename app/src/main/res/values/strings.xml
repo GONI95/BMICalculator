@@ -3,4 +3,31 @@
 
     <string name="please_word">식품명 입력</string>
     <string name="please_enter_a_search_term">검색어를 입력해주세요.</string>
+
+    <string name="add">추가</string>
+    <string name="calorie_desc_info">칼로리 : %s(kcal)</string>
+    <string name="three_major_ntr_desc_info">탄, 단, 지 : %s / %s / %s(g)</string>
+    <string name="serving_weight_desc_info">1회 제공량 : %s(g)</string>
+    <string name="begin_year_desc_info">구축년도 : %s년</string>
+
+
+    <string name="calorie">칼로리</string>
+    <string name="carbohydrate">탄수화물</string>
+    <string name="protein">단백질</string>
+    <string name="fat">지방</string>
+    <string name="sugar">당류</string>
+    <string name="salt">나트륨</string>
+    <string name="cholesterol">콜레스테롤</string>
+    <string name="saturated_fatty_acid">포화지방산</string>
+    <string name="trans_fat">트랜스지방산</string>
+
+    <string name="calorie_info">%s(kcal)</string>
+    <string name="carbohydrate_info">%s(g)</string>
+    <string name="protein_info">%s(g)</string>
+    <string name="fat_info">%s(g)</string>
+    <string name="sugar_info">%s(g)</string>
+    <string name="salt_info">%s(mg)</string>
+    <string name="cholesterol_info">%s(mg)</string>
+    <string name="saturated_fatty_acid_info">%s(g)</string>
+    <string name="trans_fat_info">%s(g)</string>
 </resources>
