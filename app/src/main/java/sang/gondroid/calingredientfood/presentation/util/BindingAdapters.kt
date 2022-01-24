@@ -9,14 +9,15 @@ import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
 import android.widget.Spinner
 import androidx.lifecycle.LiveData
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
+import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
 import sang.gondroid.calingredientfood.presentation.util.Extensions.checkType
 import sang.gondroid.calingredientfood.presentation.widget.*
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
+import sang.gondroid.calingredientfood.presentation.widget.bottom_sheet.DetailFoodNtrIrdntBottomSheet
 import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
 
 
@@ -98,9 +99,10 @@ object BindingAdapters {
      * Gon [22.01.20] : RecyclerView의 Adapter에 설정되지 않은 경우 Adapter를 설정
      *                  Listener를 통해 Click 메서드가 호출되면 CalculatorViewModel의 고차함수를 호출
      */
-    @BindingAdapter("addBtnClick")
+    @BindingAdapter("handler","addBtnClick")
     @JvmStatic
     fun RecyclerView.setAdapterAndClickEvent(
+        handler: CalculatorFragment,
         addBtnClickFunc: Function1<FoodNtrIrdntModel, Unit>) {
 
         if(adapter == null) {
@@ -111,12 +113,13 @@ object BindingAdapters {
                     }
 
                     override fun onClickItem(model: FoodNtrIrdntModel) {
-
+                        DetailFoodNtrIrdntBottomSheet.newInstance(model)
+                            .show(handler.requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
                     }
                 })
             }
 
-            layoutManager = LinearLayoutManager(context)
+            addItemDecoration(LinearDividerDecoration(context, R.drawable.bg_divider_design))
             adapter  = foodNtrIrdntAdapter
         }
     }

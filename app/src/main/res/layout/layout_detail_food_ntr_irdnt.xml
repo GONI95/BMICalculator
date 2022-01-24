@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_beginYear_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:text="@{@string/begin_year_desc_info(model.beginYear)}"
+            android:textColor="@color/color_on_secondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_fat_textView"
+            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_serving_weight_textView"
+            tools:text="구축년도" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_description_kor_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="10dp"
+            android:maxLines="2"
+            android:text="@{model.descriptionKOR}"
+            android:textColor="@color/color_on_secondary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="식품 명" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_company_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:maxLines="1"
+            android:text="@{model.company}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_description_kor_textView"
+            tools:text="업체 명" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_serving_weight_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="10dp"
+            android:text="@{@string/serving_weight_desc_info(model.servingWeight)}"
+            android:textColor="@color/color_on_secondary"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_beginYear_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_company_textView"
+            tools:text="1회 제공량" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_carbohydrate_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/carbohydrate"
+            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_protein_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_serving_weight_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_carbohydrate_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/carbohydrate_info(model.carbohydrate)}"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_carbohydrate_textView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_carbohydrate_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_carbohydrate_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_protein_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/protein"
+            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_fat_textView"
+            app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_carbohydrate_textView"
+            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_carbohydrate_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_protein_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/protein_info(model.protein)}"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_protein_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_protein_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_protein_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_fat_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/fat"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_protein_textView"
+            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_carbohydrate_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_fat_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/fat_info(model.fat)}"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_fat_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_fat_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_fat_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_sugar_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/sugar"
+            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_salt_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_carbohydrate_info_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_sugar_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/sugar_info(model.sugar)}"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_sugar_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_sugar_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_sugar_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_salt_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/salt"
+            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_cholesterol_textView"
+            app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_sugar_textView"
+            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_sugar_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_salt_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/salt_info(model.salt)}"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_salt_textView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_salt_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_salt_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_cholesterol_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/cholesterol"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_fat_textView"
+            app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_salt_textView"
+            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_sugar_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_cholesterol_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/cholesterol_info(model.cholesterol)}"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_cholesterol_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_cholesterol_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_cholesterol_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_saturatedFattyAcid_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/saturated_fatty_acid"
+            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_transFat_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_sugar_info_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_saturatedFattyAcid_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/saturated_fatty_acid_info(model.saturatedFattyAcid)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_saturatedFattyAcid_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_saturatedFattyAcid_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_saturatedFattyAcid_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_transFat_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/trans_fat"
+            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_calorie_textView"
+            app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_saturatedFattyAcid_textView"
+            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_saturatedFattyAcid_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_transFat_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/trans_fat_info(model.transFat)}"
+            app:layout_constraintBottom_toBottomOf="@+id/foodNtrIrdnt_saturatedFattyAcid_info_textView"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_transFat_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_transFat_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_transFat_textView" />
+
+        <!-- ==================================================== 구분선 ==================================================== -->
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_calorie_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Top.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/color_on_secondary"
+            android:text="@string/calorie"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_fat_textView"
+            app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_transFat_textView"
+            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_saturatedFattyAcid_textView" />
+
+        <TextView
+            android:id="@+id/foodNtrIrdnt_calorie_info_textView"
+            style="@style/Theme.CalIngredientFood.Dome.Bottom.TextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_on_light_secondary"
+            android:text="@{@string/calorie_info(model.calorie)}"
+            app:layout_constraintBottom_toBottomOf="@+id/foodNtrIrdnt_saturatedFattyAcid_info_textView"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_calorie_textView"
+            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_calorie_textView"
+            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_calorie_textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

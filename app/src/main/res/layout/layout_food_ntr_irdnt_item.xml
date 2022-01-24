@@ -12,6 +12,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp">
 
         <soup.neumorphism.NeumorphButton
@@ -19,34 +21,23 @@
             style="@style/Theme.CalIngredientFood.Neumorphism.Small.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="@string/add"
-            app:neumorph_shapeType="flat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_description_kor_textView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/foodNtrIrdnt_beginYear_textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:text="@{@string/begin_year_desc_info(item.beginYear)}"
-            android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/foodNtrIrdnt_serving_weight_textView"
-            tools:text="구축년도" />
-
-        <TextView
             android:id="@+id/foodNtrIrdnt_description_kor_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:maxLines="2"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@{item.descriptionKOR}"
             android:textColor="@color/color_on_secondary"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_add_button"
             app:layout_constraintStart_toStartOf="parent"
@@ -69,22 +60,22 @@
             android:id="@+id/foodNtrIrdnt_serving_weight_textView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
             android:text="@{@string/serving_weight_desc_info(item.servingWeight)}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_beginYear_textView"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
             app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_company_textView"
             tools:text="1회 제공량" />
 
         <TextView
             android:id="@+id/foodNtrIrdnt_calorie_textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{@string/calorie_desc_info(item.calorie)}"
             android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_serving_weight_textView"
             app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
             app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_serving_weight_textView"
             tools:text="칼로리" />
@@ -94,10 +85,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
             android:text="@{@string/three_major_ntr_desc_info(item.carbohydrate, item.protein, item.fat)}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_serving_weight_textView"
             app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
             app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_calorie_textView"
             tools:text="탄.단.지" />
