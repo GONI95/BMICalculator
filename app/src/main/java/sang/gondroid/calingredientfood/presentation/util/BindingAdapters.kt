@@ -35,17 +35,17 @@ object BindingAdapters {
     }
 
     /**
-     * Gon [22.01.10] : Spinner와 관련된 설정을 해주는 메서드
+     * Gon [22.01.25] : Spinner와 관련된 설정을 해주는 메서드
      *                  SpinnerAdapter : Data 목록을 AdapterView에 출력할 수 있는 형태로 반환하는 Adapter 객체
      *                  Spinner.setAdapter() : AdapterView에 Adapter를 설정
-     *                  Spinner.setSelection() : Spinner에서 기본값으로 선택될 항목을 설정
+     *                  Spinner.setSelection(int, boolean) : Spinner에서 기본값으로 선택될 항목을 설정하되, onItemSelected()를 호출하지 않음
      */
     @JvmStatic
     @BindingAdapter("setSpinner")
-    fun Spinner.setAdapterAndSelection(position: Int) {
+    fun Spinner.setAdapterAndSelection(searchMode : SearchMode) {
         val arrayAdapter = SpinnerAdapter(context, R.layout.item_search_mode, SearchMode.values())
         adapter = arrayAdapter
-        setSelection(position)
+        setSelection(searchMode.ordinal, false)
     }
 
     /**
@@ -71,7 +71,7 @@ object BindingAdapters {
                                     CalculatorViewModel search() 고차함수 호출
                  */
                 if (imeText && imeAction) {
-                    true.also { searchFunc(replaceText) }
+                    true.also { val a = searchFunc(replaceText) }
                 }
                 // Gon [22.01.11] : 입력값이 비어있는 경우 EditText에 Error message 표시
                 else false.also { error = resources.getString(R.string.please_enter_a_search_term) }
@@ -80,30 +80,19 @@ object BindingAdapters {
     }
 
     /**
-     * Gon [22.01.20] : LiveData의 List 타입에 따라 대응하는 RecyclerViewAdapter의 리스트 데이터를 교체하는 메서드
-     */
-    @Suppress("UNCHECKED_CAST")
-    @BindingAdapter("submitList")
-    @JvmStatic
-    fun RecyclerView.submitList(items: LiveData<List<Model>>) {
-        items.value?.let {
-            with(it) {
-                if (this.checkType<FoodNtrIrdntModel>()) {
-                    (adapter as BaseRecyclerViewAdapter<FoodNtrIrdntModel>).submitList(items.value)
-                }
-            }
-        }
-    }
-
-    /**
      * Gon [22.01.20] : RecyclerView의 Adapter에 설정되지 않은 경우 Adapter를 설정
      *                  Listener를 통해 Click 메서드가 호출되면 CalculatorViewModel의 고차함수를 호출
+     *                  LiveData의 List 타입에 따라 대응하는 RecyclerViewAdapter의 리스트 데이터를 교체하는 메서드
+     *
+     * Gon [22.01.25] : BindingAdapter 메서드의 보장된 실행 순서를 설정할 수 없어서, submitList() 메서드와 병합
      */
-    @BindingAdapter("handler","addBtnClick")
+    @Suppress("UNCHECKED_CAST")
+    @BindingAdapter("handler","addBtnClick","submitList")
     @JvmStatic
-    fun RecyclerView.setAdapterAndClickEvent(
+    fun RecyclerView.setAdapter(
         handler: CalculatorFragment,
-        addBtnClickFunc: Function1<FoodNtrIrdntModel, Unit>) {
+        addBtnClickFunc: Function1<FoodNtrIrdntModel, Unit>,
+        items: LiveData<List<Model>>) {
 
         if(adapter == null) {
             val foodNtrIrdntAdapter by lazy {
@@ -121,6 +110,14 @@ object BindingAdapters {
 
             addItemDecoration(LinearDividerDecoration(context, R.drawable.bg_divider_design))
             adapter  = foodNtrIrdntAdapter
+        }
+
+        items.value?.let {
+            with(it) {
+                if (this.checkType<FoodNtrIrdntModel>()) {
+                    (adapter as BaseRecyclerViewAdapter<FoodNtrIrdntModel>).submitList(items.value)
+                }
+            }
         }
     }
 }

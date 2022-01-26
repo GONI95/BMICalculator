@@ -7,7 +7,6 @@
             name="calculatorViewModel"
             type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
 
-
         <variable
             name="handler"
             type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment" />
@@ -34,7 +33,7 @@
 
                 <Spinner
                     android:id="@+id/calculator_search_mode_spinner"
-                    setSpinner="@{0}"
+                    setSpinner="@{calculatorViewModel.currentSearchMode}"
                     android:onItemSelected="@{calculatorViewModel::onSelectItem}"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
@@ -48,7 +47,7 @@
                     android:layout_height="48dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
-                    android:hint="@string/please_word" />
+                    android:hint="@{calculatorViewModel.currentSearchModeLiveData.modelDescription}" />
 
             </LinearLayout>
         </soup.neumorphism.NeumorphCardView>
