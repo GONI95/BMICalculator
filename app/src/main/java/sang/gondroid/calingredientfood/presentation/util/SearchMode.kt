@@ -9,8 +9,9 @@ import sang.gondroid.calingredientfood.R
  */
 enum class SearchMode(
     @DrawableRes val modelImage: Int,
-    @StringRes val modelName: Int
+    @StringRes val modelName: Int,
+    @StringRes val modelDescription: Int
 ) {
-    FOOD(R.drawable.ic_food_bank, R.string.food),
-    DATE(R.drawable.ic_calendar_month, R.string.date);
+    FOOD(R.drawable.ic_food_bank, R.string.food, R.string.please_word),
+    DATE(R.drawable.ic_calendar_month, R.string.date, R.string.please_date);
 }

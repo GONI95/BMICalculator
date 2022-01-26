@@ -1,7 +1,8 @@
 package sang.gondroid.calingredientfood.di
 
+import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.Dispatchers
-import org.koin.android.viewmodel.dsl.viewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
@@ -15,9 +16,9 @@ import sang.gondroid.calingredientfood.presentation.widget.MainViewPagerAdapter
 val appModule = module {
 
     /**
-     * viewModel
+     * viewModel : SavedStateHandle 인스턴스를 받는 ViewModel 설정
      */
-    viewModel { CalculatorViewModel(get()) }
+    viewModel { (state : SavedStateHandle) -> CalculatorViewModel(state, get()) }
     viewModel { DietViewModel() }
 
     /**
