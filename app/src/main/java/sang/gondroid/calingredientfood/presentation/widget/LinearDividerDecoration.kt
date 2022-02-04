@@ -41,7 +41,12 @@ class LinearDividerDecoration internal constructor(context: Context, @DrawableRe
         var bottom = top + dividerHeight
         val parentBottom = parent.height - parent.paddingBottom
 
-        while (bottom < parentBottom) {
+        /*
+        Gon [22.02.04] : state.itemCount를 통해 Item 갯수만큼 반복하며, Item의 bottom 값이 recyclerView의 크기를 넘어선 경우 리턴
+                         즉, Item 갯수만큼 그리면서 부모 View의 크기를 넘어서면 그리지 않음
+         */
+        repeat(state.itemCount) {
+            if (bottom > parentBottom) return
             divider?.setBounds(left, top, right, bottom)
             divider?.draw(c)
             top += child.height + params.bottomMargin

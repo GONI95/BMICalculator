@@ -8,8 +8,12 @@
             type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
 
         <variable
-            name="handler"
-            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment" />
+            name="foodNtrIrdntAdapter"
+            type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
+
+        <variable
+            name="calculatorAdapter"
+            type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
     </data>
 
 
@@ -66,8 +70,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/calculator_foodNtrIrdnt_recyclerView"
-                addBtnClick="@{calculatorViewModel.addBtnClickFunc}"
-                handler="@{handler}"
+                adapter="@{foodNtrIrdntAdapter}"
                 submitList="@{calculatorViewModel.foodNtrIrdntModelListLiveData}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -87,6 +90,17 @@
             app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
             app:layout_constraintTop_toBottomOf="@+id/calculator_response_neumorphCardView"
             app:neumorph_shapeType="pressed">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/calculator_recyclerView"
+                adapter="@{calculatorAdapter}"
+                submitList="@{calculatorViewModel.calculatorModelListLiveData}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
         </soup.neumorphism.NeumorphCardView>
 
 

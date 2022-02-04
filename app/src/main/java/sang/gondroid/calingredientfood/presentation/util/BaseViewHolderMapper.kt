@@ -2,10 +2,12 @@ package sang.gondroid.calingredientfood.presentation.util
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import sang.gondroid.calingredientfood.databinding.LayoutCalculatorItemBinding
 import sang.gondroid.calingredientfood.databinding.LayoutFoodNtrIrdntItemBinding
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.widget.viewholder.BaseViewHolder
+import sang.gondroid.calingredientfood.presentation.widget.viewholder.CalculatorViewHolder
 import sang.gondroid.calingredientfood.presentation.widget.viewholder.FoodNtrIrdntViewHolder
 
 object BaseViewHolderMapper {
@@ -20,6 +22,11 @@ object BaseViewHolderMapper {
             ViewType.FOOD_NTR_IRDNT -> {
                 FoodNtrIrdntViewHolder(
                     LayoutFoodNtrIrdntItemBinding.inflate(inflater, parent, false)
+                )
+            }
+            ViewType.CALCULATOR -> {
+                CalculatorViewHolder(
+                    LayoutCalculatorItemBinding.inflate(inflater, parent, false)
                 )
             }
         } as BaseViewHolder<T>

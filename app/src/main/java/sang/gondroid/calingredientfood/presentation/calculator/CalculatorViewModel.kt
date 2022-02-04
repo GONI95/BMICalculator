@@ -12,6 +12,7 @@ import sang.gondroid.calingredientfood.data.util.TaskResult
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntUseCase
+import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.util.Constants
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
@@ -46,8 +47,7 @@ class CalculatorViewModel(
     }
 
     /**
-     * Gon [22.01.25] : LiveData를 이용해 값이 변경되면 BindingAdapter.submitList() 메서드가 호출됨
-     *                  Boilerplate code를 줄이기 위해 Model 타입으로 정의, BindingAdapter.checkType() 메서드가 Type을 검증
+     * Gon [22.02.04] : LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
      */
     val foodNtrIrdntModelListLiveData: LiveData<List<Model>> = state.getLiveData(Constants.FOOD_NTR_IRDNT_LIST_KEY)
 
@@ -91,16 +91,30 @@ class CalculatorViewModel(
         }
     }
 
+    private var calculatorList = listOf<Model>()
+
     /**
-     * Gon [22.01.20] : setAdapterAndClickEvent() bindingAdapter 메서드의 매개변수로 전달되는
+     * Gon [22.02.04] : LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
+     */
+    val calculatorModelListLiveData: LiveData<List<Model>> = state.getLiveData(Constants.CALCULATOR_LIST_KEY)
+
+    private fun setCalculatorListSavedStateHandle(list: List<Model>) {
+        state.set(Constants.CALCULATOR_LIST_KEY, list)
+    }
+
+    /**
+     * Gon [22.02.04] : CalculatorFragment의 BaseRecyclerViewAdapter<FoodNtrIrdntModel> 구현부에서 호출하는
      *                  반환값이 없는 하나의 FoodNtrIrdntModel 인자를 갖는 고차함수
      */
     val addBtnClickFunc: (FoodNtrIrdntModel) -> Unit = this::addBtnClickFunc
 
     /**
-     * Gon [22.01.20] : RecyclerView ItemView Button 클릭 시 setAdapterAndClickEvent() bindingAdapter 메서드의해 호출되는 메서드
+     * Gon [22.02.04] : RecyclerView ItemView Button 클릭 시 setAdapterAndClickEvent() bindingAdapter 메서드의해 호출되는 메서드
      */
+    @Suppress("UNCHECKED_CAST")
     private fun addBtnClickFunc(model: FoodNtrIrdntModel) {
-        DebugLog.d("$model")
+        val newModel = model.copy(type = ViewType.CALCULATOR)
+        calculatorList += newModel
+        setCalculatorListSavedStateHandle(calculatorList as List<FoodNtrIrdntModel>)
     }
 }

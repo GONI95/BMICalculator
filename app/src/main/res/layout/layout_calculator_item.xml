@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/calculator_description_kor_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{item.descriptionKOR}"
+            android:textColor="@color/color_on_secondary"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="식품 명" />
+
+        <TextView
+            android:id="@+id/calculator_company_textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@{item.company}"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@+id/calculator_description_kor_textView"
+            app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"
+            app:layout_constraintTop_toBottomOf="@+id/calculator_description_kor_textView"
+            tools:text="업체 명" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

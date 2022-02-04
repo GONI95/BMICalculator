@@ -2,16 +2,55 @@ package sang.gondroid.calingredientfood.presentation.calculator
 
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import sang.gondroid.calingredientfood.databinding.FragmentCalculatorBinding
+import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
+import sang.gondroid.calingredientfood.presentation.util.Constants
+import sang.gondroid.calingredientfood.presentation.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
+import sang.gondroid.calingredientfood.presentation.widget.bottom_sheet.DetailFoodNtrIrdntBottomSheet
+import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
+import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
 
 class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorViewModel>() {
     override val viewModel: CalculatorViewModel by stateViewModel()
 
-    override fun getDataBinding(): FragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
+    override fun getDataBinding(): FragmentCalculatorBinding =
+        FragmentCalculatorBinding.inflate(layoutInflater)
+
+    /**
+     * Gon [22.02.04] : BaseRecyclerViewAdapter 구현부
+     */
+    private val foodNtrIrdntAdapter by lazy {
+        BaseRecyclerViewAdapter<FoodNtrIrdntModel>(listOf(), object : FoodNtrIrdntListener {
+            override fun onClickAddButton(model: FoodNtrIrdntModel) {
+                viewModel.addBtnClickFunc(model)
+            }
+
+            override fun onClickItem(model: FoodNtrIrdntModel) {
+                DetailFoodNtrIrdntBottomSheet.newInstance(model)
+                    .show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
+            }
+        })
+    }
+
+    /**
+     * Gon [22.02.04] : BaseRecyclerViewAdapter 구현부
+     */
+    private val calculatorAdapter by lazy {
+        BaseRecyclerViewAdapter<FoodNtrIrdntModel>(listOf(), object : CalculatorListener {
+            override fun onClickItem(model: FoodNtrIrdntModel) {
+
+                DetailFoodNtrIrdntBottomSheet.newInstance(model)
+                    .show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
+            }
+        })
+    }
 
     override fun initViews() = with(binding) {
         calculatorViewModel = viewModel
-        handler = this@CalculatorFragment
+
+        foodNtrIrdntAdapter = this@CalculatorFragment.foodNtrIrdntAdapter
+        calculatorAdapter = this@CalculatorFragment.calculatorAdapter
     }
 
     override fun observeData() { }
