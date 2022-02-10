@@ -18,6 +18,9 @@ class CalculatorViewHolder(
             binding.root.setOnClickListener {
                 adapterListener.onClickItem(model)
             }
+            binding.calculatorDeleteButton.setOnClickListener {
+                adapterListener.onClickRemoveButton(model)
+            }
         }
     }
 }

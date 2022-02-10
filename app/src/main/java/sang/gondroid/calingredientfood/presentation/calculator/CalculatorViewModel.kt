@@ -4,7 +4,6 @@ import android.view.View
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import android.widget.AdapterView
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
@@ -91,7 +90,7 @@ class CalculatorViewModel(
         }
     }
 
-    private var calculatorList = listOf<Model>()
+    private val calculatorList = ArrayList<Model>()
 
     /**
      * Gon [22.02.04] : LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
@@ -114,7 +113,22 @@ class CalculatorViewModel(
     @Suppress("UNCHECKED_CAST")
     private fun addBtnClickFunc(model: FoodNtrIrdntModel) {
         val newModel = model.copy(type = ViewType.CALCULATOR)
-        calculatorList += newModel
-        setCalculatorListSavedStateHandle(calculatorList as List<FoodNtrIrdntModel>)
+        calculatorList.add(newModel)
+        setCalculatorListSavedStateHandle(calculatorList.toList())
+    }
+
+    /**
+     * Gon [22.02.10] : CalculatorFragment의 BaseRecyclerViewAdapter<FoodNtrIrdntModel> 구현부에서 호출하는
+     *                  반환값이 없는 하나의 FoodNtrIrdntModel 인자를 갖는 고차함수
+     */
+    val removeCalculatorItem: (FoodNtrIrdntModel) -> Unit = this::removeCalculatorItem
+
+    /**
+     * Gon [22.02.10] : 매개변수로 넘어온 model과 동일한 Model을 calculatorList에서 제거
+     *                  LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
+     */
+    private fun removeCalculatorItem(model: Model) {
+        calculatorList.remove(model)
+        setCalculatorListSavedStateHandle(calculatorList.toList())
     }
 }

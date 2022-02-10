@@ -3,9 +3,9 @@ package sang.gondroid.calingredientfood.presentation.calculator
 import org.koin.androidx.viewmodel.ext.android.stateViewModel
 import sang.gondroid.calingredientfood.databinding.FragmentCalculatorBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
+import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.util.Constants
-import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.bottom_sheet.DetailFoodNtrIrdntBottomSheet
 import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
@@ -34,14 +34,18 @@ class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorVie
     }
 
     /**
-     * Gon [22.02.04] : BaseRecyclerViewAdapter 구현부
+     * Gon [22.02.10] : BaseRecyclerViewAdapter 객체, CalculatorViewHolder의 Event가 발생되면 호출되는 CalculatorListener 구현체
+     *                  by lazy : 사용되는 시점에서  객체 생성과 동시에 값을 초기화
      */
     private val calculatorAdapter by lazy {
         BaseRecyclerViewAdapter<FoodNtrIrdntModel>(listOf(), object : CalculatorListener {
-            override fun onClickItem(model: FoodNtrIrdntModel) {
 
-                DetailFoodNtrIrdntBottomSheet.newInstance(model)
-                    .show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
+            override fun onClickItem(model: FoodNtrIrdntModel) {
+                DetailFoodNtrIrdntBottomSheet.newInstance(model).show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
+            }
+
+            override fun onClickRemoveButton(model: FoodNtrIrdntModel) {
+                viewModel.removeCalculatorItem(model)
             }
         })
     }
