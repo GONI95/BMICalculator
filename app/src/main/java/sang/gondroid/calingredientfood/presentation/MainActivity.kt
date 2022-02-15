@@ -5,12 +5,11 @@ import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.ActivityMainBinding
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
 import sang.gondroid.calingredientfood.presentation.diet.DietFragment
-import sang.gondroid.calingredientfood.presentation.widget.MainViewPagerAdapter
+import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
 class MainActivity : AppCompatActivity() {

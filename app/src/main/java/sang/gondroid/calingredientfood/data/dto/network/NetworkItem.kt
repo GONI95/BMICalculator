@@ -29,5 +29,5 @@ data class NetworkItem(
     @SerializedName("NUTR_CONT9")
     val transFat: String,
     @SerializedName("SERVING_WT")
-    val sERVINGWT: String
+    val servingWeight: String
 )

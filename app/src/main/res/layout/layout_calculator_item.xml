@@ -5,6 +5,14 @@
 
     <data>
         <variable
+            name="viewModel"
+            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
             name="item"
             type="sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel" />
     </data>
@@ -62,7 +70,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{@string/serving_weight_desc_info(item.servingWeight)}"
+            android:text="@{@string/serving_weight_desc_info(item.servingCount, item.servingWeight * item.servingCount)}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"
@@ -74,7 +82,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@{@string/calorie_desc_info(item.calorie)}"
+            android:text="@{@string/calorie_desc_info(item.calorie * item.servingCount)}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/calculator_serving_weight_textView"
             app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"
@@ -86,7 +94,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@{@string/three_major_ntr_desc_info(item.carbohydrate, item.protein, item.fat)}"
+            android:text="@{@string/three_major_ntr_desc_info(item.carbohydrate * item.servingCount, item.protein * item.servingCount, item.fat * item.servingCount)}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/calculator_serving_weight_textView"
             app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"

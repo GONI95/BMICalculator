@@ -11,15 +11,11 @@ import android.widget.Spinner
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import sang.gondroid.calingredientfood.R
-import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
-import sang.gondroid.calingredientfood.presentation.util.Extensions.checkType
 import sang.gondroid.calingredientfood.presentation.widget.*
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
-import sang.gondroid.calingredientfood.presentation.widget.bottom_sheet.DetailFoodNtrIrdntBottomSheet
-import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
-import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
+import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
+import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
 
 
 object BindingAdapters {
@@ -44,7 +40,7 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setSpinner")
     fun Spinner.setAdapterAndSelection(searchMode : SearchMode) {
-        val arrayAdapter = SpinnerAdapter(context, R.layout.item_search_mode, SearchMode.values())
+        val arrayAdapter = SearchModeSpinnerAdapter(context, R.layout.layout_search_mode_item, SearchMode.values())
         adapter = arrayAdapter
         setSelection(searchMode.ordinal, false)
     }
@@ -102,7 +98,7 @@ object BindingAdapters {
         }
 
         items.value?.let {
-            (adapter as BaseRecyclerViewAdapter<T>).submitList(items.value as List<FoodNtrIrdntModel>)
+            (adapter as BaseRecyclerViewAdapter<T>).submitList(items.value)
         }
     }
 }

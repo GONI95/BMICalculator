@@ -12,12 +12,12 @@
         android:paddingBottom="5dp">
 
         <ImageView
-            android:id="@+id/item_search_mode_imageView"
+            android:id="@+id/search_mode_imageView"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginStart="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_search_mode_textView"
+            app:layout_constraintEnd_toStartOf="@+id/search_mode_textView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
@@ -25,14 +25,14 @@
             tools:src="@drawable/indicator_shape" />
 
         <TextView
-            android:id="@+id/item_search_mode_textView"
+            android:id="@+id/search_mode_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/item_search_mode_imageView"
+            app:layout_constraintStart_toEndOf="@+id/search_mode_imageView"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/app_name" />
 
