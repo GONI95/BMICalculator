@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+     Gon [22.02.22] : 사용자 지정 속성을 설정하여 기본 제공 속성처럼 레이아웃 XML 파일에서 사용하기위한 attrs.xml
+                      <declare-styleable> : 리소스 요소에서 뷰에 대한 사용자 지정 속성과 해당 값을 지정하는 방법을 정의 가능
+                      nameSpace : 사용자 지정 속성은 "http://schemas.android.com/apk/res/[package name]"에 속하지만,
+                                  gragle 빌드 시스템에 따르면 빌드 또는 apk로 추출 시 오류가 발생할 수 있어
+                                  "http://schemas.android.com/apk/res-auto"를 사용하는 것을 권장한다고 함
+     -->
+    <declare-styleable name="NumberCounter">
+        <attr name="nc_textSize" format="dimension"/>
+        <attr name="nc_textColor" format="reference|integer|color"/>
+        <attr name="nc_maxValue" format="reference|integer"/>
+        <attr name="nc_minValue" format="reference|integer"/>
+        <attr name="default_text" format="reference|string"/>
+    </declare-styleable>
+</resources>

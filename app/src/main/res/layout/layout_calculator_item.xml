@@ -101,5 +101,18 @@
             app:layout_constraintTop_toBottomOf="@+id/calculator_calorie_textView"
             tools:text="탄.단.지" />
 
+        <sang.gondroid.calingredientfood.presentation.widget.custom.HorizontalNumberCounter
+            android:id="@+id/calculator_number_counter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@+id/calculator_delete_button"
+            app:layout_constraintTop_toBottomOf="@+id/calculator_three_major_ntr_textView"
+            app:default_text="1"
+            app:nc_maxValue="99"
+            app:nc_minValue="1"
+            app:nc_textColor="@color/color_on_secondary"
+            app:nc_textSize="16sp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
