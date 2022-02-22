@@ -4,57 +4,48 @@ import android.view.View
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import android.widget.AdapterView
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import sang.gondroid.calingredientfood.data.util.TaskResult
+import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
-import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntUseCase
+import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.util.ViewType
-import sang.gondroid.calingredientfood.presentation.util.Constants
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
-import sang.gondroid.calingredientfood.presentation.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.util.UIState
 
 class CalculatorViewModel(
-    private val state: SavedStateHandle,
-    private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntUseCase
+    private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntListUseCase
 ) : BaseViewModel() {
 
     private val calculatorList = ArrayList<Model>()
 
     /**
-     * Gon [22.01.25] : 1. Spinner 선택된 아이템(SearchMode)을 이용해 set / get
-     *                  key값을 이용해 개체를 저장/검색 가능한 Map인 SavedStateHandle을 이용해 상태(state) 관리
+     * Gon [22.02.22] : 1. Spinner 선택된 아이템(SearchMode)을 이용해 관리되는 LiveData
+     *                     fragment_calculator.xml calculator_search_editText Hint 변경에 사용
      *
-     * Gon [22.01.25] : 2. LiveData를 이용해 값이 변경되면 BindingAdapter.submitList() 메서드가 호출됨
-     *                  fragment_calculator.xml calculator_search_editText Hint 변경에 사용
-     *
-     * Gon [22.02.04] : 3, 4. LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
+     * Gon [22.02.22] : 2, 3. LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 UI 상태 변경
+     *                        UIState.Success 인 경우 BindingAdapter.submitList() 메서드가 호출됨
      */
-    private var currentSearchMode = state.get<SearchMode>(Constants.SEARCH_MODE_KEY) ?: SearchMode.FOOD
-        private set(value) {
-            state.set(Constants.SEARCH_MODE_KEY, value)
-            field = value
-        }
-    val currentSearchModeLiveData: LiveData<SearchMode> = state.getLiveData(Constants.SEARCH_MODE_KEY, SearchMode.FOOD)
-    val foodNtrIrdntModelListLiveData: LiveData<List<Model>> = state.getLiveData(Constants.FOOD_NTR_IRDNT_LIST_KEY)
-    val calculatorModelListLiveData: LiveData<List<Model>> = state.getLiveData(Constants.CALCULATOR_LIST_KEY)
+    private val _currentSearchModeLiveData: MutableLiveData<SearchMode> = MutableLiveData(SearchMode.FOOD)
+    val currentSearchModeLiveData: LiveData<SearchMode>
+        get() = _currentSearchModeLiveData
 
-    private fun setFoodNtrIrdntListSavedStateHandle(list: List<Model>) {
-        state.set(Constants.FOOD_NTR_IRDNT_LIST_KEY, list)
-    }
+    private val _foodNtrIrdnrUIStateLiveData: MutableLiveData<UIState> = MutableLiveData(UIState.Init)
+    val foodNtrIrdnrUIStateLiveData: LiveData<UIState>
+        get() = _foodNtrIrdnrUIStateLiveData
 
-    private fun setCalculatorListSavedStateHandle(list: List<Model>) {
-        state.set(Constants.CALCULATOR_LIST_KEY, list)
-    }
+    private val _calculatorUIStateLiveData: MutableLiveData<UIState> = MutableLiveData(UIState.Init)
+    val calculatorUIStateLiveData: LiveData<UIState>
+        get() = _calculatorUIStateLiveData
 
     /**
      * Gon [22.01.25] : 검색모드(SearchMode)를 담당하는 Spinner에서 Item 선택 시 호출
      *                  parent.getSelectedItem() : 선택한 Item
      */
     fun onSelectItem(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-        currentSearchMode = parent.selectedItem as SearchMode
+        _currentSearchModeLiveData.value = parent.selectedItem as SearchMode
     }
 
     /**
@@ -64,33 +55,41 @@ class CalculatorViewModel(
     val searchFunc: (String) -> Unit = this::searchFunc
 
     /**
-     * Gon [22.01.12] : onEditorEnterAction() bindingAdapter 메서드에서 호출되는 메서드
+     * Gon [22.02.22] : onEditorEnterAction() bindingAdapter 메서드에서 호출되는 메서드
+     *                  currentSearchModeLiveData 값에 따라 검색 메서드를 호출
+     */
+    private fun searchFunc(value: String) {
+        val currentSearchMode = currentSearchModeLiveData.value
+
+        if (currentSearchMode == SearchMode.FOOD) {
+            searchFood(value)
+        } else {
+            searchDate(value)
+        }
+    }
+
+    /**
+     * Gon [22.02.22] : GetFoodNtrIrdntUseCase로 부터 반환받은 결과를 통해 UIState 업데이트
      *                  매개변수 : EditText에 입력한 값
      *
-     *                  GetFoodNtrIrdntUseCase() : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
+     *                  GetFoodNtrIrdntUseCase : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
      */
-    @Suppress("UNCHECKED_CAST")
-    private fun searchFunc(value: String) {
-        when(currentSearchMode) {
-            SearchMode.FOOD -> {
-                viewModelScope.launch {
-                    when(val result = getFoodNtrIrdntUseCase.invoke(value)) {
-                        is TaskResult.Success<*> -> {
-                            setFoodNtrIrdntListSavedStateHandle(result.data as List<FoodNtrIrdntModel>)
-                        }
+    private fun searchFood(value : String) = viewModelScope.launch {
+        _foodNtrIrdnrUIStateLiveData.postValue(UIState.Loading)
 
-                        is TaskResult.Fail ->
-                            DebugLog.d("실패")
-
-                        is TaskResult.Exception ->
-                            DebugLog.d(result.throwable.message)
-                    }
-                }
+        val uiState = getFoodNtrIrdntUseCase.invoke(value)?.let {
+            if (it.isNotEmpty()) {
+                UIState.Success(it)
+            } else {
+                UIState.Empty(R.string.ui_state_empty, value)
             }
-            SearchMode.DATE -> {
+        } ?: UIState.Error(R.string.ui_state_exception)
 
-            }
-        }
+        _foodNtrIrdnrUIStateLiveData.postValue(uiState)
+    }
+
+    private fun searchDate(value : String) = viewModelScope.launch {
+
     }
 
     /**
@@ -100,7 +99,7 @@ class CalculatorViewModel(
     fun addCalculatorItem(model: FoodNtrIrdntModel) {
         val newModel = model.copy(type = ViewType.CALCULATOR)
         calculatorList.add(newModel)
-        setCalculatorListSavedStateHandle(calculatorList.toList())
+        _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
     }
 
     /**
@@ -109,6 +108,6 @@ class CalculatorViewModel(
      */
     fun removeCalculatorItem(model: Model) {
         calculatorList.remove(model)
-        setCalculatorListSavedStateHandle(calculatorList.toList())
+        _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
     }
 }

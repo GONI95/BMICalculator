@@ -71,12 +71,30 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/foodNtrIrdnt_recyclerView"
                 adapter="@{foodNtrIrdntAdapter}"
-                submitList="@{calculatorViewModel.foodNtrIrdntModelListLiveData}"
+                submitList="@{calculatorViewModel.foodNtrIrdnrUIStateLiveData}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/foodNtrIrdnt_progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                showLoading="@{calculatorViewModel.foodNtrIrdnrUIStateLiveData}"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/horizontal_progress_bar" />
+
+            <TextView
+                android:id="@+id/foodNtrIrdnt_ui_state_textView"
+                showMessage="@{calculatorViewModel.foodNtrIrdnrUIStateLiveData}"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
         </soup.neumorphism.NeumorphCardView>
 
 
@@ -92,15 +110,24 @@
             app:neumorph_shapeType="pressed">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/calculator_recyclerView"
                 adapter="@{calculatorAdapter}"
-                submitList="@{calculatorViewModel.calculatorModelListLiveData}"
+                submitList="@{calculatorViewModel.calculatorUIStateLiveData}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingTop="3dp"
                 android:paddingBottom="3dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/calculator_progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                showLoading="@{calculatorViewModel.calculatorUIStateLiveData}"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/horizontal_progress_bar" />
         </soup.neumorphism.NeumorphCardView>
 
 
