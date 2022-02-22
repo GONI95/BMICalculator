@@ -8,3 +8,9 @@ import retrofit2.Response
 fun <T, R> Response<T>.toTaskResult(getData: (T) -> R) : TaskResult<R> {
     return body()?.let { TaskResult.Success(getData(it)) } ?: TaskResult.Fail
 }
+
+fun String.toDoubleOrZero() : Double {
+    val value = this.toDoubleOrNull()
+
+    return value ?: 0.0
+}

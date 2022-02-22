@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="@{@string/serving_weight_desc_info(item.servingWeight)}"
+            android:text="@{@string/serving_weight_desc_info(item.servingCount, item.servingWeight)}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"

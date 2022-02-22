@@ -6,6 +6,7 @@ package sang.gondroid.calingredientfood.data.util
  *                  generic : Data Type에 의존하지 않고, 하나의 값이 여러 다른 Data Type을 가질 수 있게하는 방법
  */
 sealed class TaskResult<out T> {
+    object Loading : TaskResult<Nothing>()
     data class Success<T>(val data : T) : TaskResult<T>()
     object Fail : TaskResult<Nothing>()
     data class Exception(val throwable: Throwable) : TaskResult<Nothing>()

@@ -1,4 +1,4 @@
-package sang.gondroid.calingredientfood.presentation.widget
+package sang.gondroid.calingredientfood.presentation.widget.adapter
 
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -12,7 +12,7 @@ import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
  */
 class MainViewPagerAdapter(
     fragmentActivity : FragmentActivity,
-   private val fragmentList : List<BaseFragment<out ViewDataBinding, out BaseViewModel>>
+    private val fragmentList : List<BaseFragment<out ViewDataBinding, out BaseViewModel>>
 ) : FragmentStateAdapter(fragmentActivity) {
 
     // Gon [21.12.29] : ViewPager2에서 노출시키려는 Fragment의 갯수를 정의

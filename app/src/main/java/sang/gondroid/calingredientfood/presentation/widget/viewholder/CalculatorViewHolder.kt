@@ -1,12 +1,12 @@
 package sang.gondroid.calingredientfood.presentation.widget.viewholder
 
-import sang.gondroid.calingredientfood.databinding.LayoutFoodNtrIrdntItemBinding
+import sang.gondroid.calingredientfood.databinding.LayoutCalculatorItemBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.widget.listener.AdapterListener
-import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
+import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
 
-class FoodNtrIrdntViewHolder(
-    private val binding: LayoutFoodNtrIrdntItemBinding
+class CalculatorViewHolder(
+    private val binding: LayoutCalculatorItemBinding
 ) : BaseViewHolder<FoodNtrIrdntModel>(binding) {
 
     override fun bindData(model: FoodNtrIrdntModel) {
@@ -14,12 +14,12 @@ class FoodNtrIrdntViewHolder(
     }
 
     override fun bindViews(model: FoodNtrIrdntModel, adapterListener: AdapterListener) {
-        if (adapterListener is FoodNtrIrdntListener) {
+        if (adapterListener is CalculatorListener) {
             binding.root.setOnClickListener {
                 adapterListener.onClickItem(model)
             }
-            binding.foodNtrIrdntAddButton.setOnClickListener {
-                adapterListener.onClickAddButton(model)
+            binding.calculatorDeleteButton.setOnClickListener {
+                adapterListener.onClickRemoveButton(model)
             }
         }
     }

@@ -11,7 +11,7 @@ import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
 import sang.gondroid.calingredientfood.presentation.diet.DietViewModel
-import sang.gondroid.calingredientfood.presentation.widget.MainViewPagerAdapter
+import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 
 val appModule = module {
 

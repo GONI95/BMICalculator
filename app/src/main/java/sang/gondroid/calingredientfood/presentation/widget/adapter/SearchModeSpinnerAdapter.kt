@@ -1,4 +1,4 @@
-package sang.gondroid.calingredientfood.presentation.widget
+package sang.gondroid.calingredientfood.presentation.widget.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -10,7 +10,7 @@ import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 import org.jetbrains.annotations.NotNull
 import sang.gondroid.calingredientfood.R
-import sang.gondroid.calingredientfood.databinding.ItemSearchModeBinding
+import sang.gondroid.calingredientfood.databinding.LayoutSearchModeItemBinding
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
 
 /**
@@ -20,15 +20,15 @@ import sang.gondroid.calingredientfood.presentation.util.SearchMode
  *                  getView() : Data 목록에서 지정된 위치의 Data를 표시하는 View를 반환
  *                  getDropDownView() : DropDown 팝업에 표시할 View를 반환
  */
-class SpinnerAdapter(
+class SearchModeSpinnerAdapter(
     context: Context,
     @NotNull @LayoutRes private val resId: Int,
     @NotNull private val values: Array<SearchMode>
 ) : ArrayAdapter<SearchMode>(context, resId, values) {
 
-    // ItemSearchModeBinding을 반환하는 함수(고차함수 람다식)
+    // LayoutSearchModeItemBinding을 반환하는 함수(고차함수 람다식)
     private val binding = { parent: ViewGroup ->
-        ItemSearchModeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        LayoutSearchModeItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
     override fun getCount() = values.size
@@ -41,9 +41,9 @@ class SpinnerAdapter(
             val model = values[position]
 
             try {
-                itemSearchModeImageView.contentDescription = context.getString(model.modelName)
-                itemSearchModeImageView.setImageResource(model.modelImage)
-                itemSearchModeImageView.setColorFilter(ContextCompat.getColor(context,
+                searchModeImageView.contentDescription = context.getString(model.modelName)
+                searchModeImageView.setImageResource(model.modelImage)
+                searchModeImageView.setColorFilter(ContextCompat.getColor(context,
                     R.color.color_on_secondary
                 ))
             } catch (e: Exception) {
@@ -57,8 +57,8 @@ class SpinnerAdapter(
         with(binding(parent)) {
             val model = values[position]
             try {
-                itemSearchModeImageView.setImageResource(model.modelImage)
-                itemSearchModeTextView.text = context.getString(model.modelName)
+                searchModeImageView.setImageResource(model.modelImage)
+                searchModeTextView.text = context.getString(model.modelName)
 
             } catch (e: Exception) {
                 e.printStackTrace()

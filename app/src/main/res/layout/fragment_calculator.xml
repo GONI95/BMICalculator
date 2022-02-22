@@ -8,8 +8,12 @@
             type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
 
         <variable
-            name="handler"
-            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment" />
+            name="foodNtrIrdntAdapter"
+            type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
+
+        <variable
+            name="calculatorAdapter"
+            type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
     </data>
 
 
@@ -18,11 +22,11 @@
         android:layout_height="match_parent">
 
         <soup.neumorphism.NeumorphCardView
-            android:id="@+id/calculator_search_neumorphCardView"
+            android:id="@+id/search_neumorphCardView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             style="@style/Theme.CalIngredientFood.Neumorphism"
-            app:layout_constraintBottom_toTopOf="@+id/calculator_response_neumorphCardView"
+            app:layout_constraintBottom_toTopOf="@+id/response_neumorphCardView"
             app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
             app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
             app:layout_constraintTop_toTopOf="@+id/horizontal_top_guideline">
@@ -32,15 +36,15 @@
                 android:layout_height="match_parent">
 
                 <Spinner
-                    android:id="@+id/calculator_search_mode_spinner"
-                    setSpinner="@{calculatorViewModel.currentSearchMode}"
+                    android:id="@+id/search_mode_spinner"
+                    setSpinner="@{calculatorViewModel.currentSearchModeLiveData}"
                     android:onItemSelected="@{calculatorViewModel::onSelectItem}"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:background="@drawable/bg_spinner_search_mode" />
 
                 <EditText
-                    android:id="@+id/calculator_search_editText"
+                    android:id="@+id/search_editText"
                     onEditorEnterAction="@{calculatorViewModel.searchFunc}"
                     style="@style/Theme.CalIngredientFood.EditText"
                     android:layout_width="match_parent"
@@ -54,20 +58,19 @@
 
 
         <soup.neumorphism.NeumorphCardView
-            android:id="@+id/calculator_response_neumorphCardView"
+            android:id="@+id/response_neumorphCardView"
             style="@style/Theme.CalIngredientFood.Neumorphism"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/calculator_plan_neumorphCardView"
+            app:layout_constraintBottom_toTopOf="@+id/plan_neumorphCardView"
             app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
             app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/calculator_search_neumorphCardView">
+            app:layout_constraintTop_toBottomOf="@+id/search_neumorphCardView">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/calculator_foodNtrIrdnt_recyclerView"
-                addBtnClick="@{calculatorViewModel.addBtnClickFunc}"
-                handler="@{handler}"
+                android:id="@+id/foodNtrIrdnt_recyclerView"
+                adapter="@{foodNtrIrdntAdapter}"
                 submitList="@{calculatorViewModel.foodNtrIrdntModelListLiveData}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -78,15 +81,26 @@
 
 
         <soup.neumorphism.NeumorphCardView
-            android:id="@+id/calculator_plan_neumorphCardView"
+            android:id="@+id/plan_neumorphCardView"
             style="@style/Theme.CalIngredientFood.Neumorphism"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/horizontal_bottom_guideline"
             app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
             app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/calculator_response_neumorphCardView"
+            app:layout_constraintTop_toBottomOf="@+id/response_neumorphCardView"
             app:neumorph_shapeType="pressed">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                adapter="@{calculatorAdapter}"
+                submitList="@{calculatorViewModel.calculatorModelListLiveData}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
         </soup.neumorphism.NeumorphCardView>
 
 

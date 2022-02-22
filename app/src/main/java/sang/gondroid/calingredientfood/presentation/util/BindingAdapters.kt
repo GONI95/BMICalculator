@@ -11,14 +11,11 @@ import android.widget.Spinner
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import sang.gondroid.calingredientfood.R
-import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
-import sang.gondroid.calingredientfood.presentation.util.Extensions.checkType
 import sang.gondroid.calingredientfood.presentation.widget.*
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
-import sang.gondroid.calingredientfood.presentation.widget.bottom_sheet.DetailFoodNtrIrdntBottomSheet
-import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
+import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
+import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
 
 
 object BindingAdapters {
@@ -43,7 +40,7 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("setSpinner")
     fun Spinner.setAdapterAndSelection(searchMode : SearchMode) {
-        val arrayAdapter = SpinnerAdapter(context, R.layout.item_search_mode, SearchMode.values())
+        val arrayAdapter = SearchModeSpinnerAdapter(context, R.layout.layout_search_mode_item, SearchMode.values())
         adapter = arrayAdapter
         setSelection(searchMode.ordinal, false)
     }
@@ -71,7 +68,7 @@ object BindingAdapters {
                                     CalculatorViewModel search() 고차함수 호출
                  */
                 if (imeText && imeAction) {
-                    true.also { val a = searchFunc(replaceText) }
+                    true.also { searchFunc(replaceText) }
                 }
                 // Gon [22.01.11] : 입력값이 비어있는 경우 EditText에 Error message 표시
                 else false.also { error = resources.getString(R.string.please_enter_a_search_term) }
@@ -79,45 +76,29 @@ object BindingAdapters {
         }
     }
 
+
     /**
+     * Gon [22.02.04] : Adapter 구현부를 Fragment로 변경, Generics Fun 정의 (out 키워드를 통해 슈퍼클래스에 서브클래스를 대입할 수 있게 허용)
+     *
+     * Gon [22.01.25] : BindingAdapter 메서드의 보장된 실행 순서를 설정할 수 없어서, submitList() 메서드와 병합
+     *
      * Gon [22.01.20] : RecyclerView의 Adapter에 설정되지 않은 경우 Adapter를 설정
      *                  Listener를 통해 Click 메서드가 호출되면 CalculatorViewModel의 고차함수를 호출
      *                  LiveData의 List 타입에 따라 대응하는 RecyclerViewAdapter의 리스트 데이터를 교체하는 메서드
-     *
-     * Gon [22.01.25] : BindingAdapter 메서드의 보장된 실행 순서를 설정할 수 없어서, submitList() 메서드와 병합
      */
     @Suppress("UNCHECKED_CAST")
-    @BindingAdapter("handler","addBtnClick","submitList")
+    @BindingAdapter("adapter", "submitList")
     @JvmStatic
-    fun RecyclerView.setAdapter(
-        handler: CalculatorFragment,
-        addBtnClickFunc: Function1<FoodNtrIrdntModel, Unit>,
-        items: LiveData<List<Model>>) {
-
+    fun <T: Model> RecyclerView.setAdapter(
+        foodNtrIrdntAdapter: BaseRecyclerViewAdapter<out T>, items: LiveData<List<T>>
+    ) {
         if(adapter == null) {
-            val foodNtrIrdntAdapter by lazy {
-                BaseRecyclerViewAdapter<FoodNtrIrdntModel>(listOf(), object : FoodNtrIrdntListener {
-                    override fun onClickAddButton(model: FoodNtrIrdntModel) {
-                        addBtnClickFunc(model)
-                    }
-
-                    override fun onClickItem(model: FoodNtrIrdntModel) {
-                        DetailFoodNtrIrdntBottomSheet.newInstance(model)
-                            .show(handler.requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
-                    }
-                })
-            }
-
             addItemDecoration(LinearDividerDecoration(context, R.drawable.bg_divider_design))
             adapter  = foodNtrIrdntAdapter
         }
 
         items.value?.let {
-            with(it) {
-                if (this.checkType<FoodNtrIrdntModel>()) {
-                    (adapter as BaseRecyclerViewAdapter<FoodNtrIrdntModel>).submitList(items.value)
-                }
-            }
+            (adapter as BaseRecyclerViewAdapter<T>).submitList(items.value)
         }
     }
 }
