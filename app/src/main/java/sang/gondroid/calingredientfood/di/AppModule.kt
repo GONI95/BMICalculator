@@ -1,30 +1,29 @@
 package sang.gondroid.calingredientfood.di
 
-import androidx.lifecycle.SavedStateHandle
 import kotlinx.coroutines.Dispatchers
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
 import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
-import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntUseCase
+import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
 import sang.gondroid.calingredientfood.presentation.diet.DietViewModel
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 
-val appModule = module {
+internal val appModule = module {
 
     /**
-     * viewModel : SavedStateHandle 인스턴스를 받는 ViewModel 설정
+     * viewModel
      */
-    viewModel { (state : SavedStateHandle) -> CalculatorViewModel(state, get()) }
+    viewModel { CalculatorViewModel(get()) }
     viewModel { DietViewModel() }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체
      */
-    single { GetFoodNtrIrdntUseCase(get()) }
+    single { GetFoodNtrIrdntListUseCase(get()) }
 
     /**
      * Repository : Domain과 Data Layer 사이를 중재해주는 객체

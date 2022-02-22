@@ -31,4 +31,8 @@
     <string name="cholesterol_info">%1$.2f(mg)</string>
     <string name="saturated_fatty_acid_info">%1$.2f(g)</string>
     <string name="trans_fat_info">%1$.2f(g)</string>
+
+    <string name="ui_state_empty">%s와(과)\n 일치하는 검색결과가 없습니다.</string>
+    <string name="ui_state_fail">다시 시도 해주세요.</string>
+    <string name="ui_state_exception">서비스 이용에 불편을 드려 죄송합니다.</string>
 </resources>

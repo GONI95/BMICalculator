@@ -10,7 +10,7 @@ import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 /**
  * Gon [21.12.29] : Fragment를 이용해 각 page를 관리하는 Adapter 구현
  */
-class MainViewPagerAdapter(
+internal class MainViewPagerAdapter(
     fragmentActivity : FragmentActivity,
     private val fragmentList : List<BaseFragment<out ViewDataBinding, out BaseViewModel>>
 ) : FragmentStateAdapter(fragmentActivity) {

@@ -1,6 +1,7 @@
 package sang.gondroid.calingredientfood.presentation.util
 
 import android.content.Context
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
@@ -8,8 +9,10 @@ import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
 import android.widget.Spinner
+import android.widget.TextView
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.widget.*
@@ -18,7 +21,7 @@ import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPager
 import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
 
 
-object BindingAdapters {
+internal object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("setAdapter","setViewPager")
@@ -76,29 +79,60 @@ object BindingAdapters {
         }
     }
 
-
     /**
-     * Gon [22.02.04] : Adapter 구현부를 Fragment로 변경, Generics Fun 정의 (out 키워드를 통해 슈퍼클래스에 서브클래스를 대입할 수 있게 허용)
-     *
-     * Gon [22.01.25] : BindingAdapter 메서드의 보장된 실행 순서를 설정할 수 없어서, submitList() 메서드와 병합
-     *
-     * Gon [22.01.20] : RecyclerView의 Adapter에 설정되지 않은 경우 Adapter를 설정
-     *                  Listener를 통해 Click 메서드가 호출되면 CalculatorViewModel의 고차함수를 호출
-     *                  LiveData의 List 타입에 따라 대응하는 RecyclerViewAdapter의 리스트 데이터를 교체하는 메서드
+     * Gon [22.02.22] : Generics Fun 정의 (out 키워드를 통해 슈퍼클래스에 서브클래스를 대입할 수 있게 허용)
+     *                 UIState가 Success인 경우 submitList 호출과 View VISIBLE 아닌 경우 View INVISIBLE
      */
     @Suppress("UNCHECKED_CAST")
     @BindingAdapter("adapter", "submitList")
     @JvmStatic
-    fun <T: Model> RecyclerView.setAdapter(
-        foodNtrIrdntAdapter: BaseRecyclerViewAdapter<out T>, items: LiveData<List<T>>
+    fun <T: Model> RecyclerView.setAdapterAndSubmitList(
+        foodNtrIrdntAdapter: BaseRecyclerViewAdapter<out T>, uiState: UIState
     ) {
         if(adapter == null) {
             addItemDecoration(LinearDividerDecoration(context, R.drawable.bg_divider_design))
             adapter  = foodNtrIrdntAdapter
         }
 
-        items.value?.let {
-            (adapter as BaseRecyclerViewAdapter<T>).submitList(items.value)
+        visibility = when(uiState) {
+            is UIState.Success<*> -> {
+
+                val items = (uiState as UIState.Success<List<T>>).data
+                DebugLog.d(items.toString())
+                (adapter as BaseRecyclerViewAdapter<T>).submitList(items)
+
+                View.VISIBLE
+            }
+            else -> {
+                View.INVISIBLE
+            }
+        }
+    }
+
+    @BindingAdapter("showLoading")
+    @JvmStatic
+    fun LottieAnimationView.showLoading(uiState: UIState) {
+        visibility = if (uiState is UIState.Loading)
+            View.VISIBLE
+        else
+            View.INVISIBLE
+    }
+
+    @BindingAdapter("showMessage")
+    @JvmStatic
+    fun TextView.showMessage(uiState: UIState) {
+        visibility = when(uiState) {
+            is UIState.Empty -> {
+                text = resources.getString(uiState.message, uiState.value)
+                View.VISIBLE
+            }
+            is UIState.Error -> {
+                text = resources.getString(uiState.message)
+                View.VISIBLE
+            }
+            else -> {
+                View.INVISIBLE
+            }
         }
     }
 }

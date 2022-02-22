@@ -8,7 +8,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
-abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
+internal abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> : Fragment() {
 
     /**
      * Gon [21.12.27] : viewModel을 외부에서 받는 Generic 타입으로 선언했습니다.
