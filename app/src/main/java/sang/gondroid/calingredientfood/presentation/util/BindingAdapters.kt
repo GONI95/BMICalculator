@@ -21,7 +21,7 @@ import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPager
 import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
 
 
-object BindingAdapters {
+internal object BindingAdapters {
 
     @JvmStatic
     @BindingAdapter("setAdapter","setViewPager")

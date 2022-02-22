@@ -15,7 +15,7 @@ import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.util.UIState
 
-class CalculatorViewModel(
+internal class CalculatorViewModel(
     private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntListUseCase
 ) : BaseViewModel() {
 
@@ -25,7 +25,7 @@ class CalculatorViewModel(
      * Gon [22.02.22] : 1. Spinner 선택된 아이템(SearchMode)을 이용해 관리되는 LiveData
      *                     fragment_calculator.xml calculator_search_editText Hint 변경에 사용
      *
-     * Gon [22.02.22] : 2, 3. LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 UI 상태 변경
+     * Gon [22.02.22] : 2, 3. LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter 호출
      *                        UIState.Success 인 경우 BindingAdapter.submitList() 메서드가 호출됨
      */
     private val _currentSearchModeLiveData: MutableLiveData<SearchMode> = MutableLiveData(SearchMode.FOOD)

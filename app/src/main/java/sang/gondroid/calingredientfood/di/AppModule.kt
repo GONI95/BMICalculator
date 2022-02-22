@@ -1,7 +1,7 @@
 package sang.gondroid.calingredientfood.di
 
 import kotlinx.coroutines.Dispatchers
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
@@ -12,10 +12,10 @@ import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewMod
 import sang.gondroid.calingredientfood.presentation.diet.DietViewModel
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 
-val appModule = module {
+internal val appModule = module {
 
     /**
-     * viewModel : SavedStateHandle 인스턴스를 받는 ViewModel 설정
+     * viewModel
      */
     viewModel { CalculatorViewModel(get()) }
     viewModel { DietViewModel() }

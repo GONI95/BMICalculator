@@ -1,6 +1,6 @@
 package sang.gondroid.calingredientfood.presentation.calculator
 
-import org.koin.androidx.viewmodel.ext.android.stateViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 import sang.gondroid.calingredientfood.databinding.FragmentCalculatorBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
@@ -10,8 +10,8 @@ import sang.gondroid.calingredientfood.presentation.widget.custom.FoodNtrIrdntBo
 import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
 import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
 
-class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorViewModel>() {
-    override val viewModel: CalculatorViewModel by stateViewModel()
+internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorViewModel>() {
+    override val viewModel: CalculatorViewModel by viewModel()
 
     override fun getDataBinding(): FragmentCalculatorBinding =
         FragmentCalculatorBinding.inflate(layoutInflater)
