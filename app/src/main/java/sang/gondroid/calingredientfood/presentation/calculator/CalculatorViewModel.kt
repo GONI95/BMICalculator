@@ -12,14 +12,13 @@ import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.util.ViewType
+import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.util.UIState
 
 internal class CalculatorViewModel(
     private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntListUseCase
 ) : BaseViewModel() {
-
-    private val calculatorList = ArrayList<Model>()
 
     /**
      * Gon [22.02.22] : 1. Spinner 선택된 아이템(SearchMode)을 이용해 관리되는 LiveData
@@ -36,6 +35,7 @@ internal class CalculatorViewModel(
     val foodNtrIrdnrUIStateLiveData: LiveData<UIState>
         get() = _foodNtrIrdnrUIStateLiveData
 
+    private val calculatorList = ArrayList<FoodNtrIrdntModel>()
     private val _calculatorUIStateLiveData: MutableLiveData<UIState> = MutableLiveData(UIState.Init)
     val calculatorUIStateLiveData: LiveData<UIState>
         get() = _calculatorUIStateLiveData
@@ -108,6 +108,15 @@ internal class CalculatorViewModel(
      */
     fun removeCalculatorItem(model: Model) {
         calculatorList.remove(model)
+        _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
+    }
+
+    /**
+     * Gon [22.02.26] : 매개변수로 넘어온 servingCount, position을 이용해 calculatorList의 servingCount 값을 변경
+     *                  LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
+     */
+    fun countUpdateCalculatorItem(servingCount: Int, position: Int) {
+        calculatorList[position] = calculatorList[position].copy(servingCount= servingCount)
         _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
     }
 }

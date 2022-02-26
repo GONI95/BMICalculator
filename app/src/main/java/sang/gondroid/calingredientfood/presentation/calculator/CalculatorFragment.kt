@@ -48,6 +48,10 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
             override fun onClickRemoveButton(model: FoodNtrIrdntModel) {
                 viewModel.removeCalculatorItem(model)
             }
+
+            override fun onClickCountUpdateButton(servingCount: Int, position: Int) {
+                viewModel.countUpdateCalculatorItem(servingCount, position)
+            }
         })
     }
 
