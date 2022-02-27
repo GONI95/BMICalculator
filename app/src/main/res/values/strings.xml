@@ -10,8 +10,7 @@
     <string name="three_major_ntr_desc_info">탄, 단, 지 : %1$.2f / %2$.2f / %3$.2f (g)</string>
     <string name="serving_weight_desc_info">%s회 제공량 : %s(g)</string>
     <string name="begin_year_desc_info">구축년도 : %s년</string>
-
-
+    
     <string name="calorie">칼로리</string>
     <string name="carbohydrate">탄수화물</string>
     <string name="protein">단백질</string>
@@ -35,4 +34,7 @@
     <string name="ui_state_empty">%s와(과)\n 일치하는 검색결과가 없습니다.</string>
     <string name="ui_state_fail">다시 시도 해주세요.</string>
     <string name="ui_state_exception">서비스 이용에 불편을 드려 죄송합니다.</string>
+
+    <string name="okay">확인</string>
+    <string name="same_value_exists">동일한 식품 정보가 존재합니다.</string>
 </resources>

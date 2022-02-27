@@ -98,4 +98,15 @@
     <style name="Theme.CalIngredientFood.BottomSheet.Modal" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bg_bottom_sheet_design</item>
     </style>
+
+    <!--
+    cardBackgroundColor : CardView 배경색 설정
+    cardCornerRadius : CardView Corner 반경을 설정
+    cardElevation : CardView 고도 설정
+     -->
+    <style name="Theme.CalIngredientFood.NotificationSnackBar.CardView" parent="CardView">
+        <item name="cardBackgroundColor">@color/dark_gray</item>
+        <item name="cardCornerRadius">5dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
 </resources>

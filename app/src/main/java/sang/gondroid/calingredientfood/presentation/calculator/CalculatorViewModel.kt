@@ -93,13 +93,21 @@ internal class CalculatorViewModel(
     }
 
     /**
-     * Gon [22.02.04] : 매개변수로 넘어온 model과 동일한 Model을 calculatorList에 추가
+     * Gon [22.02.26] : 매개변수로 넘어온 model과 동일한 FoodNtrIrdntModel을 calculatorList에 추가
+     *                  동일한 descriptionKOR을 가진 FoodNtrIrdntModel이 존재하는 경우 false를 반환
      *                  LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
      */
-    fun addCalculatorItem(model: FoodNtrIrdntModel) {
+    fun addCalculatorItem(model: FoodNtrIrdntModel): Boolean {
         val newModel = model.copy(type = ViewType.CALCULATOR)
+
+        calculatorList.forEach {
+            if (it.descriptionKOR == model.descriptionKOR)
+                return false
+        }
+
         calculatorList.add(newModel)
         _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
+        return true
     }
 
     /**
