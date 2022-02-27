@@ -1,12 +1,15 @@
 package sang.gondroid.calingredientfood.presentation.calculator
 
+import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
+import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.FragmentCalculatorBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.util.Constants
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.custom.FoodNtrIrdntBottomSheet
+import sang.gondroid.calingredientfood.presentation.widget.custom.NotificationSnackBar
 import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
 import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
 
@@ -29,7 +32,10 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
             }
 
             override fun onClickAddButton(model: FoodNtrIrdntModel) {
-                viewModel.addCalculatorItem(model)
+                viewModel.addCalculatorItem(model).let {
+                    if (!it)
+                        NotificationSnackBar.make(requireView(), resources.getString(R.string.same_value_exists)).show()
+                }
             }
         })
     }
