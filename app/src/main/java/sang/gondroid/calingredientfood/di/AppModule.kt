@@ -9,7 +9,7 @@ import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
-import sang.gondroid.calingredientfood.presentation.diet.DietViewModel
+import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 
 internal val appModule = module {
@@ -18,7 +18,7 @@ internal val appModule = module {
      * viewModel
      */
     viewModel { SearchViewModel(get()) }
-    viewModel { DietViewModel() }
+    viewModel { CalculatorViewModel() }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체
