@@ -8,7 +8,7 @@ import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImp
 import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
+import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 import sang.gondroid.calingredientfood.presentation.diet.DietViewModel
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 
@@ -17,7 +17,7 @@ internal val appModule = module {
     /**
      * viewModel
      */
-    viewModel { CalculatorViewModel(get()) }
+    viewModel { SearchViewModel(get()) }
     viewModel { DietViewModel() }
 
     /**

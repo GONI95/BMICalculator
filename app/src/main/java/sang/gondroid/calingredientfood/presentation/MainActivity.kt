@@ -7,7 +7,7 @@ import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.ActivityMainBinding
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
+import sang.gondroid.calingredientfood.presentation.search.SearchFragment
 import sang.gondroid.calingredientfood.presentation.diet.DietFragment
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
      * Gon [21.12.29] : MainViewPagerAdapter을 주입 받으며, 파라미터로 MainActivity, Fragment를 담은 List를 전달
      */
     private val mainViewPagerAdapter : MainViewPagerAdapter by inject() {
-        parametersOf(this@MainActivity, listOf(CalculatorFragment(), DietFragment()))
+        parametersOf(this@MainActivity, listOf(SearchFragment(), DietFragment()))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

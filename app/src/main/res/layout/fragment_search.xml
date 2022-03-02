@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="calculatorViewModel"
-            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
+            name="searchViewModel"
+            type="sang.gondroid.calingredientfood.presentation.search.SearchViewModel" />
 
         <variable
             name="foodNtrIrdntAdapter"
@@ -95,8 +95,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:background="@drawable/bg_spinner_search_mode"
-                        setSpinner="@{calculatorViewModel.currentSearchModeLiveData}"
-                        android:onItemSelected="@{calculatorViewModel::onSelectItem}"/>
+                        setSpinner="@{searchViewModel.currentSearchModeLiveData}"
+                        android:onItemSelected="@{searchViewModel::onSelectItem}"/>
 
                     <EditText
                         android:id="@+id/search_editText"
@@ -104,8 +104,8 @@
                         android:layout_height="48dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="20dp"
-                        android:hint="@{calculatorViewModel.currentSearchModeLiveData.modelDescription}"
-                        onEditorEnterAction="@{calculatorViewModel.searchFunc}"
+                        android:hint="@{searchViewModel.currentSearchModeLiveData.modelDescription}"
+                        onEditorEnterAction="@{searchViewModel.searchFunc}"
                         targetMotionLayout="@{responseMotionLayout}"
                         style="@style/Theme.CalIngredientFood.EditText"/>
 
@@ -138,32 +138,32 @@
                         android:layout_height="match_parent">
 
                         <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/foodNtrIrdnt_recyclerView"
+                            android:id="@+id/response_recyclerView"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:paddingTop="3dp"
                             android:paddingBottom="3dp"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                             adapter="@{foodNtrIrdntAdapter}"
-                            submitList="@{calculatorViewModel.foodNtrIrdnrUIStateLiveData}"/>
+                            submitList="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"/>
 
                         <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/foodNtrIrdnt_progressBar"
+                            android:id="@+id/response_progressBar"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             app:lottie_autoPlay="true"
                             app:lottie_loop="true"
                             app:lottie_rawRes="@raw/horizontal_progress_bar"
-                            showLoading="@{calculatorViewModel.foodNtrIrdnrUIStateLiveData}"/>
+                            showLoading="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"/>
 
                         <TextView
-                            android:id="@+id/foodNtrIrdnt_ui_state_textView"
+                            android:id="@+id/response_ui_state_textView"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:gravity="center"
-                            showMessage="@{calculatorViewModel.foodNtrIrdnrUIStateLiveData}"/>
+                            showMessage="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"/>
                     </FrameLayout>
                 </soup.neumorphism.NeumorphCardView>
             </androidx.constraintlayout.motion.widget.MotionLayout>

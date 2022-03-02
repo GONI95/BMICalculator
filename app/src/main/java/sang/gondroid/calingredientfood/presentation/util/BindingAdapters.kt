@@ -87,7 +87,7 @@ internal object BindingAdapters {
 
                 /* Gon [22.03.02] : 입력값이 존재하고, 작업 식별자가 IME_ACTION_SEARCH를 만족하면,
                                     motionLayout의 TransitionToEnd() 호출로 애니메이션 실행
-                                    입력값에서 공백을 제거하고 CalculatorViewModel search() 고차함수 호출
+                                    입력값에서 공백을 제거하고 SearchViewModel search() 고차함수 호출
                  */
                 if (imeText && imeAction) {
                     true.also {

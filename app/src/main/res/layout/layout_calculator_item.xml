@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
+            type="sang.gondroid.calingredientfood.presentation.search.SearchViewModel" />
 
         <variable
             name="position"

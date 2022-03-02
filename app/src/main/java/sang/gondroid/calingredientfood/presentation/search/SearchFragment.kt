@@ -1,9 +1,8 @@
-package sang.gondroid.calingredientfood.presentation.calculator
+package sang.gondroid.calingredientfood.presentation.search
 
-import com.google.android.material.snackbar.Snackbar
 import org.koin.android.viewmodel.ext.android.viewModel
 import sang.gondroid.calingredientfood.R
-import sang.gondroid.calingredientfood.databinding.FragmentCalculatorBinding
+import sang.gondroid.calingredientfood.databinding.FragmentSearchBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.util.Constants
@@ -13,11 +12,11 @@ import sang.gondroid.calingredientfood.presentation.widget.custom.NotificationSn
 import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
 import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
 
-internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorViewModel>() {
-    override val viewModel: CalculatorViewModel by viewModel()
+internal class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
+    override val viewModel: SearchViewModel by viewModel()
 
-    override fun getDataBinding(): FragmentCalculatorBinding =
-        FragmentCalculatorBinding.inflate(layoutInflater)
+    override fun getDataBinding(): FragmentSearchBinding =
+        FragmentSearchBinding.inflate(layoutInflater)
 
 
     /**
@@ -62,10 +61,10 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
     }
 
     override fun initViews() = with(binding) {
-        calculatorViewModel = viewModel
+        searchViewModel = viewModel
 
-        foodNtrIrdntAdapter = this@CalculatorFragment.foodNtrIrdntAdapter
-        calculatorAdapter = this@CalculatorFragment.calculatorAdapter
+        foodNtrIrdntAdapter = this@SearchFragment.foodNtrIrdntAdapter
+        calculatorAdapter = this@SearchFragment.calculatorAdapter
     }
 
     override fun observeData() { }
