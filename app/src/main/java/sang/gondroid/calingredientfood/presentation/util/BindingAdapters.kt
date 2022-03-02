@@ -67,12 +67,12 @@ internal object BindingAdapters {
     }
 
     /**
-     * Gon [22.01.11] : Soft Keyboard 완료 버튼 클릭 시 호출되는 메서드
-     *                  매개변수 : CalculatorViewModel의 고차함수 search
+     * Gon [22.03.02] : Generics Fun 정의 (out 키워드를 통해 슈퍼클래스에 서브클래스를 대입할 수 있게 허용)
+     *                  UIState가 Success인 경우 submitList 호출과 View VISIBLE 아닌 경우 View INVISIBLE
      */
     @JvmStatic
-    @BindingAdapter("onEditorEnterAction")
-    fun EditText.onEditorEnterAction(searchFunc: Function1<String, Unit>) {
+    @BindingAdapter("onEditorEnterAction", "targetMotionLayout")
+    fun EditText.onEditorEnterAction(searchFunc: Function1<String, Unit>, motionLayout: MotionLayout) {
 
         setOnEditorActionListener { v, actionId, _ ->
 
@@ -85,14 +85,20 @@ internal object BindingAdapters {
                 val imeAction = actionId == EditorInfo.IME_ACTION_SEARCH
                 val imeText = replaceText.isNotBlank() or replaceText.isNotEmpty()
 
-                /* Gon [22.01.11] : 입력값이 존재하고, 작업 식별자가 IME_ACTION_SEARCH를 만족하면, 입력값에서 공백을 제거하고
-                                    CalculatorViewModel search() 고차함수 호출
+                /* Gon [22.03.02] : 입력값이 존재하고, 작업 식별자가 IME_ACTION_SEARCH를 만족하면,
+                                    motionLayout의 TransitionToEnd() 호출로 애니메이션 실행
+                                    입력값에서 공백을 제거하고 CalculatorViewModel search() 고차함수 호출
                  */
                 if (imeText && imeAction) {
-                    true.also { searchFunc(replaceText) }
+                    true.also {
+                        motionLayout.transitionToEnd()
+                        searchFunc(replaceText)
+                    }
                 }
                 // Gon [22.01.11] : 입력값이 비어있는 경우 EditText에 Error message 표시
-                else false.also { error = resources.getString(R.string.please_enter_a_search_term) }
+                else false.also {
+                    error = resources.getString(R.string.please_enter_a_search_term)
+                }
             }
         }
     }

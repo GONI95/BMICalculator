@@ -31,7 +31,7 @@
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/bottom_sheet_food_ntr_irdnt.xml" value="0.140625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/dialog_layout_food_ntr_irdnt.xml" value="0.5" />
-        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_calculator.xml" value="0.22" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_calculator.xml" value="0.22731439046746105" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_diet.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/item_food_nutrition_ingredient.xml" value="0.33" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/item_search_mode.xml" value="0.5" />
@@ -47,6 +47,7 @@
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/snack_bar_notification.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/xml/app_bar_scene.xml" value="0.2296195652173913" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/xml/food_ntr_irdnt_scene.xml" value="0.2140625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/xml/fragment_calculator_scene.xml" value="0.11875" />
       </map>
     </option>
