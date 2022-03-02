@@ -23,7 +23,7 @@ internal class SearchViewModel(
      * Gon [22.02.22] : 1. Spinner 선택된 아이템(SearchMode)을 이용해 관리되는 LiveData
      *                     fragment_search.xml search_editText Hint 변경에 사용
      *
-     * Gon [22.02.22] : 2, 3. LiveData를 이용해 값이 변경되면 fragment_search.xml의 표현식을 통해 BindingAdapter 호출
+     * Gon [22.02.22] : 2. LiveData를 이용해 값이 변경되면 fragment_search.xml의 표현식을 통해 BindingAdapter 호출
      *                        UIState.Success 인 경우 BindingAdapter.submitList() 메서드가 호출됨
      */
     private val _currentSearchModeLiveData: MutableLiveData<SearchMode> = MutableLiveData(SearchMode.FOOD)
@@ -33,11 +33,6 @@ internal class SearchViewModel(
     private val _foodNtrIrdnrUIStateLiveData: MutableLiveData<UIState> = MutableLiveData(UIState.Init)
     val foodNtrIrdnrUIStateLiveData: LiveData<UIState>
         get() = _foodNtrIrdnrUIStateLiveData
-
-    private val calculatorList = ArrayList<FoodNtrIrdntModel>()
-    private val _calculatorUIStateLiveData: MutableLiveData<UIState> = MutableLiveData(UIState.Init)
-    val calculatorUIStateLiveData: LiveData<UIState>
-        get() = _calculatorUIStateLiveData
 
     /**
      * Gon [22.01.25] : 검색모드(SearchMode)를 담당하는 Spinner에서 Item 선택 시 호출
@@ -89,41 +84,5 @@ internal class SearchViewModel(
 
     private fun searchDate(value : String) = viewModelScope.launch {
 
-    }
-
-    /**
-     * Gon [22.02.26] : 매개변수로 넘어온 model과 동일한 FoodNtrIrdntModel을 calculatorList에 추가
-     *                  동일한 descriptionKOR을 가진 FoodNtrIrdntModel이 존재하는 경우 false를 반환
-     *                  LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
-     */
-    fun addCalculatorItem(model: FoodNtrIrdntModel): Boolean {
-        val newModel = model.copy(type = ViewType.CALCULATOR)
-
-        calculatorList.forEach {
-            if (it.descriptionKOR == model.descriptionKOR)
-                return false
-        }
-
-        calculatorList.add(newModel)
-        _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
-        return true
-    }
-
-    /**
-     * Gon [22.02.10] : 매개변수로 넘어온 model과 동일한 Model을 calculatorList에서 제거
-     *                  LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
-     */
-    fun removeCalculatorItem(model: Model) {
-        calculatorList.remove(model)
-        _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
-    }
-
-    /**
-     * Gon [22.02.26] : 매개변수로 넘어온 servingCount, position을 이용해 calculatorList의 servingCount 값을 변경
-     *                  LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
-     */
-    fun countUpdateCalculatorItem(servingCount: Int, position: Int) {
-        calculatorList[position] = calculatorList[position].copy(servingCount= servingCount)
-        _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
     }
 }
