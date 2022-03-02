@@ -23,7 +23,7 @@ class LinearDividerDecoration internal constructor(context: Context, @DrawableRe
 
     /**
      * Gon [22.01.24] : 각 예상 ItemView 간격에 구분선을 그립니다.
-     *                  parent : fragment_calculator.xml의 recyclerView를 의미
+     *                  parent : fragment_search.xml의 recyclerView를 의미
      *                  parent.getChildAt(0) : 첫 ItemView
      *                  child.layoutParams : ItemView의 layout에 대한 추가적인 정보를 가짐
      */
