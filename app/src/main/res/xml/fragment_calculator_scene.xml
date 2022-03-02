@@ -2,6 +2,9 @@
 <MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <!--
+    Gon [22.03.02] : neumorph 특성 상 12dp의 기본 패딩 값이 포함되어 있어 12dp 이하로 설정할 시 강제 종료
+    -->
     <ConstraintSet android:id="@+id/start">
         <Constraint
             android:id="@+id/response_neumorphCardView"
