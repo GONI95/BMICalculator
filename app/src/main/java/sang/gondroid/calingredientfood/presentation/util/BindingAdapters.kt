@@ -10,9 +10,11 @@ import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.appbar.AppBarLayout
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.widget.*
@@ -46,6 +48,22 @@ internal object BindingAdapters {
         val arrayAdapter = SearchModeSpinnerAdapter(context, R.layout.layout_search_mode_item, SearchMode.values())
         adapter = arrayAdapter
         setSelection(searchMode.ordinal, false)
+    }
+
+    /**
+     * Gon [22.03.02] : AppBarLayout의 verticalOffset이 변경될 때 호출되는 OnOffsetChangedListener를 사용
+     *                  전체 범위의 값으로 해당 범위 내의 변경된 값을 나누어 0부터 1까지의 실수를 통해 setProgress()로 전환 위치 설정
+     *
+     *                  verticalOffset : 상위 AppBarLayout에 대한 띄어져있는 수직 간격(px) | 펼쳐진 0부터 위로 가려진 위치의 음수값 반환
+     *                  totalScrollRange : 하위 항목의 스크롤 범위를 반환
+     */
+    @JvmStatic
+    @BindingAdapter("onOffsetChanged")
+    fun AppBarLayout.onOffsetChanged(toolbarMotionLayout: MotionLayout) {
+        addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+            toolbarMotionLayout.progress = seekPosition
+        })
     }
 
     /**
