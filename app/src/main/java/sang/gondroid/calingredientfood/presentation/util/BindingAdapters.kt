@@ -10,9 +10,11 @@ import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.appbar.AppBarLayout
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.widget.*
@@ -49,12 +51,28 @@ internal object BindingAdapters {
     }
 
     /**
-     * Gon [22.01.11] : Soft Keyboard 완료 버튼 클릭 시 호출되는 메서드
-     *                  매개변수 : CalculatorViewModel의 고차함수 search
+     * Gon [22.03.02] : AppBarLayout의 verticalOffset이 변경될 때 호출되는 OnOffsetChangedListener를 사용
+     *                  전체 범위의 값으로 해당 범위 내의 변경된 값을 나누어 0부터 1까지의 실수를 통해 setProgress()로 전환 위치 설정
+     *
+     *                  verticalOffset : 상위 AppBarLayout에 대한 띄어져있는 수직 간격(px) | 펼쳐진 0부터 위로 가려진 위치의 음수값 반환
+     *                  totalScrollRange : 하위 항목의 스크롤 범위를 반환
      */
     @JvmStatic
-    @BindingAdapter("onEditorEnterAction")
-    fun EditText.onEditorEnterAction(searchFunc: Function1<String, Unit>) {
+    @BindingAdapter("onOffsetChanged")
+    fun AppBarLayout.onOffsetChanged(toolbarMotionLayout: MotionLayout) {
+        addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+            toolbarMotionLayout.progress = seekPosition
+        })
+    }
+
+    /**
+     * Gon [22.03.02] : Generics Fun 정의 (out 키워드를 통해 슈퍼클래스에 서브클래스를 대입할 수 있게 허용)
+     *                  UIState가 Success인 경우 submitList 호출과 View VISIBLE 아닌 경우 View INVISIBLE
+     */
+    @JvmStatic
+    @BindingAdapter("onEditorEnterAction", "targetMotionLayout")
+    fun EditText.onEditorEnterAction(searchFunc: Function1<String, Unit>, motionLayout: MotionLayout) {
 
         setOnEditorActionListener { v, actionId, _ ->
 
@@ -67,14 +85,20 @@ internal object BindingAdapters {
                 val imeAction = actionId == EditorInfo.IME_ACTION_SEARCH
                 val imeText = replaceText.isNotBlank() or replaceText.isNotEmpty()
 
-                /* Gon [22.01.11] : 입력값이 존재하고, 작업 식별자가 IME_ACTION_SEARCH를 만족하면, 입력값에서 공백을 제거하고
-                                    CalculatorViewModel search() 고차함수 호출
+                /* Gon [22.03.02] : 입력값이 존재하고, 작업 식별자가 IME_ACTION_SEARCH를 만족하면,
+                                    motionLayout의 TransitionToEnd() 호출로 애니메이션 실행
+                                    입력값에서 공백을 제거하고 CalculatorViewModel search() 고차함수 호출
                  */
                 if (imeText && imeAction) {
-                    true.also { searchFunc(replaceText) }
+                    true.also {
+                        motionLayout.transitionToEnd()
+                        searchFunc(replaceText)
+                    }
                 }
                 // Gon [22.01.11] : 입력값이 비어있는 경우 EditText에 Error message 표시
-                else false.also { error = resources.getString(R.string.please_enter_a_search_term) }
+                else false.also {
+                    error = resources.getString(R.string.please_enter_a_search_term)
+                }
             }
         }
     }
