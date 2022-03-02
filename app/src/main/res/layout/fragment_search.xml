@@ -11,10 +11,6 @@
         <variable
             name="foodNtrIrdntAdapter"
             type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
-
-        <variable
-            name="calculatorAdapter"
-            type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
     </data>
 
 
