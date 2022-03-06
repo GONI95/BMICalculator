@@ -18,7 +18,8 @@
                               adjustPan : 키보드 활성화 시 UI 화면이 조정되는 것을 막음
         -->
         <activity android:name="sang.gondroid.calingredientfood.presentation.MainActivity"
-            android:windowSoftInputMode="adjustPan">
+            android:windowSoftInputMode="adjustPan"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
