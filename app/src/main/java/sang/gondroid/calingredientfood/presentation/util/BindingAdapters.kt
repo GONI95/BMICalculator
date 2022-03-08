@@ -4,23 +4,26 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
+import android.widget.*
 import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
-import android.widget.Spinner
-import android.widget.TextView
 import androidx.constraintlayout.motion.widget.MotionLayout
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.appbar.AppBarLayout
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.CalendarMode
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
-import sang.gondroid.calingredientfood.presentation.widget.*
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
+import sang.gondroid.calingredientfood.presentation.widget.decorator.CalendarMinMaxDateDecorator
+import sang.gondroid.calingredientfood.presentation.widget.decorator.LinearDividerDecoration
+import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateDecorator
+import java.util.*
 
 
 internal object BindingAdapters {
@@ -157,6 +160,35 @@ internal object BindingAdapters {
             else -> {
                 View.INVISIBLE
             }
+        }
+    }
+
+    @BindingAdapter("setCalendarView")
+    @JvmStatic
+    fun MaterialCalendarView.setCalendarView(selectDateFunc: Function1<CalendarDay, Unit>) {
+
+        val maxDay = CalendarDay.today()
+        val minDay = CalendarDay.from(maxDay.year, maxDay.month, maxDay.day - 6)
+
+        val stCalendarDay = CalendarDay.from(minDay.year, if (maxDay.day > 6) minDay.month else minDay.month - 1, 1)
+        val enCalendarDay = CalendarDay.from(maxDay.year, maxDay.month, 31)
+
+        this.state().edit()
+            .setMinimumDate(stCalendarDay)
+            .setMaximumDate(enCalendarDay)
+            .commit()
+
+        val calendarMinMaxDateDecorator = CalendarMinMaxDateDecorator(minDay, maxDay, context)
+        val selectDateDecorator = SelectDateDecorator(context, maxDay)
+        addDecorators(calendarMinMaxDateDecorator, selectDateDecorator)
+
+        selectedDate = maxDay
+        selectDateFunc(maxDay)
+
+        setOnDateChangedListener { _, date, _ ->
+            addDecorator(SelectDateDecorator(context, date))
+
+            selectDateFunc(date)
         }
     }
 }

@@ -33,13 +33,23 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:contentScrim="@color/color_primary"
+
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <CalendarView
-                    android:id="@+id/calendarView"
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                    setCalendarView="@{calculatorViewModel.selectDateFunc}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp" />
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginEnd="20dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/color_shadow_dark"/>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -63,7 +73,7 @@
                 android:id="@+id/frameLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_margin="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 

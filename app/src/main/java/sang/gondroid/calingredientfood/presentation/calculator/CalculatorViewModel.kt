@@ -1,12 +1,22 @@
 package sang.gondroid.calingredientfood.presentation.calculator
 
+import android.view.View
+import android.widget.AdapterView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.prolificinteractive.materialcalendarview.CalendarDay
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
+import sang.gondroid.calingredientfood.presentation.util.BindingAdapters.setCalendarView
+import sang.gondroid.calingredientfood.presentation.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.util.UIState
+import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateDecorator
+import java.util.*
+import kotlin.collections.ArrayList
 
 internal class CalculatorViewModel : BaseViewModel() {
 
@@ -53,5 +63,11 @@ internal class CalculatorViewModel : BaseViewModel() {
     fun countUpdateCalculatorItem(servingCount: Int, position: Int) {
         calculatorList[position] = calculatorList[position].copy(servingCount= servingCount)
         _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
+    }
+
+    val selectDateFunc: (CalendarDay) -> Unit = this::selectDateFunc
+
+    private fun selectDateFunc(day: CalendarDay) {
+        DebugLog.d(day.toString())
     }
 }
