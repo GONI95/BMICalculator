@@ -1,0 +1,16 @@
+<paths>
+    <!--
+    FileProvider : 외부 앱과 공유할 수 있는 경로 정의
+                   미리 설정한 폴더에 있는 file 들에 대해서만 URI를 생성할 수 있음
+                   폴더 설정 : Storage Area / path를 명시해 설정
+                   private file 영역(context.getFilesDir()의 image/ 디렉토리)
+
+    <files-path …> : Context.getFilesDir() 에 해당되는 영역
+    <cache-path …> : Context.getCacheDir() 에 해당되는 영역
+    <external-path …> : Environment.getExternalStorageDirectory() 에 해당되는 영역
+    <external-files-path …> : Context.getExternalFilesDir(String) 에 해당되는 영역
+    <external-cache-path …> : Context.getExternalCacheDir() 에 해당되는 영역
+    <external-media-path …> : Context.getExternalMediaDirs() 에 해당되는 영역이다. 이건 API 21+ 단말에만 유효
+    -->
+    <root-path name="root" path="./"/>
+</paths>

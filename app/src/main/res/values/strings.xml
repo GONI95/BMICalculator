@@ -40,4 +40,6 @@
     <string name="okay">확인</string>
     <string name="same_value_exists">동일한 식품 정보가 존재합니다.</string>
     <string name="custom_food_ntr_irdnt">사용자 정의 식품</string>
+
+    <string name="please_set_permissions">저장공간 권한이 필요합니다.</string>
 </resources>
