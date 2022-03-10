@@ -9,8 +9,10 @@ import android.content.Intent.ACTION_GET_CONTENT
 import android.graphics.ImageDecoder
 import android.net.Uri
 import android.os.Build
+import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Lifecycle
@@ -29,6 +31,10 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import sang.gondroid.calingredientfood.presentation.MainActivity
+
+
+
 
 
 internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorViewModel>() {
@@ -145,6 +151,19 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
         calculatorAdapter = this@CalculatorFragment.calculatorAdapter
 
         currentExternalStorageState()
+
+        binding.toolbar.setOnMenuItemClickListener {
+            when(it.itemId) {
+                R.id.save_menu_item -> {
+                    DebugLog.d("저장하기")
+                    true
+                }
+                else -> {
+                    DebugLog.d("부족")
+                    false
+                }
+            }
+        }
     }
 
     // Gon [22.03.10] : 외부 저장소는 항상 접근이 보장되어 있지 않음(이동식 SD 카드 제거 등)

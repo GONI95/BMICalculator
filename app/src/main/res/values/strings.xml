@@ -42,4 +42,6 @@
     <string name="custom_food_ntr_irdnt">사용자 정의 식품</string>
 
     <string name="please_set_permissions">저장공간 권한이 필요합니다.</string>
+
+    <string name="save">저장하기</string>
 </resources>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="10dp">
 
     <data>
+
         <variable
             name="calculatorViewModel"
             type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
@@ -11,6 +13,8 @@
         <variable
             name="calculatorAdapter"
             type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
+
+        <import type="java.util.Map"/>
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -49,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_gravity="bottom"
-                    android:background="@color/color_shadow_dark"/>
+                    android:background="@color/color_shadow_dark" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -57,7 +61,8 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="25dp"
                     android:layout_marginRight="25dp"
-                    app:layout_collapseMode="pin"/>
+                    app:menu="@menu/calculator_toolbar_menu"
+                    app:layout_collapseMode="pin" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -104,7 +109,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/total_neumorphCardView"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frameLayout">
@@ -174,19 +179,6 @@
                         app:lottie_rawRes="@raw/horizontal_progress_bar" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-            </soup.neumorphism.NeumorphCardView>
-
-            <soup.neumorphism.NeumorphCardView
-                android:id="@+id/total_neumorphCardView"
-                style="@style/Theme.CalIngredientFood.Neumorphism"
-                android:layout_width="0dp"
-                android:layout_height="75dp"
-                android:layout_margin="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/calculator_neumorphCardView">
-
             </soup.neumorphism.NeumorphCardView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
