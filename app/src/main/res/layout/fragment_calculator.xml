@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="handler"
+            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment" />
 
         <variable
             name="calculatorViewModel"
@@ -14,7 +15,16 @@
             name="calculatorAdapter"
             type="sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter" />
 
-        <import type="java.util.Map"/>
+        <variable
+            name="pictureDawable"
+            type="android.graphics.drawable.BitmapDrawable" />
+
+        <import type="android.view.View"/>
+        <variable
+            name="externalStorageState"
+            type="Boolean" />
+
+        <import type="com.prolificinteractive.materialcalendarview.CalendarDay"/>
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -38,11 +48,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentScrim="@color/color_primary"
-
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                    setCalendarView="@{calculatorViewModel.selectDateFunc}"
+                    setCalendarView="@{CalendarDay.today()}"
+                    setCalendarDay="@={calculatorViewModel.selectCalendarDay}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -57,12 +67,13 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
+                    onMenuItemClick="@{calculatorViewModel.onMenuItemClick}"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
-                    app:menu="@menu/calculator_toolbar_menu"
-                    app:layout_collapseMode="pin" />
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    app:layout_collapseMode="pin"
+                    app:menu="@menu/calculator_toolbar_menu" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
@@ -89,7 +100,10 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/bg_round_design"
-                    android:src="@drawable/ic_icon_image" />
+                    android:visibility="@{externalStorageState ? View.VISIBLE : View.GONE}"
+                    android:onClick="@{() -> handler.findPicture()}"
+                    imageDrawable="@{pictureDawable}"
+                    clipToOutline="@{Boolean.TRUE}" />
 
                 <ImageButton
                     android:id="@+id/take_picture_imageButton"
@@ -98,7 +112,9 @@
                     android:layout_gravity="bottom|end"
                     android:background="@drawable/bg_cicle_design"
                     android:padding="5dp"
-                    android:src="@drawable/ic_camera" />
+                    android:visibility="@{externalStorageState ? View.VISIBLE : View.GONE}"
+                    android:src="@drawable/ic_camera"
+                    android:onClick="@{() -> handler.takePicture()}" />
             </FrameLayout>
 
             <soup.neumorphism.NeumorphCardView

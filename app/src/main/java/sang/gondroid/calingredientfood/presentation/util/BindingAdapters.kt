@@ -1,10 +1,21 @@
 package sang.gondroid.calingredientfood.presentation.util
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.graphics.drawable.BitmapDrawable
+import android.os.Build
+import android.provider.MediaStore
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
@@ -13,10 +24,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.appbar.AppBarLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.prolificinteractive.materialcalendarview.CalendarMode
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
+import androidx.databinding.InverseBindingAdapter
+import androidx.databinding.InverseBindingListener
+import androidx.lifecycle.Lifecycle
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
+import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
@@ -165,30 +181,65 @@ internal object BindingAdapters {
 
     @BindingAdapter("setCalendarView")
     @JvmStatic
-    fun MaterialCalendarView.setCalendarView(selectDateFunc: Function1<CalendarDay, Unit>) {
+    fun MaterialCalendarView.setCalendarView(todayCalendarDay: CalendarDay) {
+        val minDay = CalendarDay.from(todayCalendarDay.year, todayCalendarDay.month, todayCalendarDay.day - 6)
 
-        val maxDay = CalendarDay.today()
-        val minDay = CalendarDay.from(maxDay.year, maxDay.month, maxDay.day - 6)
-
-        val stCalendarDay = CalendarDay.from(minDay.year, if (maxDay.day > 6) minDay.month else minDay.month - 1, 1)
-        val enCalendarDay = CalendarDay.from(maxDay.year, maxDay.month, 31)
+        val stCalendarDay = CalendarDay.from(minDay.year, if (todayCalendarDay.day > 6) minDay.month else minDay.month - 1, 1)
+        val enCalendarDay = CalendarDay.from(todayCalendarDay.year, todayCalendarDay.month, 31)
 
         this.state().edit()
             .setMinimumDate(stCalendarDay)
             .setMaximumDate(enCalendarDay)
             .commit()
 
-        val calendarMinMaxDateDecorator = CalendarMinMaxDateDecorator(minDay, maxDay, context)
-        val selectDateDecorator = SelectDateDecorator(context, maxDay)
+        val calendarMinMaxDateDecorator = CalendarMinMaxDateDecorator(minDay, todayCalendarDay, context)
+        val selectDateDecorator = SelectDateDecorator(context, todayCalendarDay)
         addDecorators(calendarMinMaxDateDecorator, selectDateDecorator)
+    }
 
-        selectedDate = maxDay
-        selectDateFunc(maxDay)
+    @BindingAdapter("setCalendarDay")
+    @JvmStatic
+    fun MaterialCalendarView.setCalendarDay(currentCalendarDay: CalendarDay) {
 
-        setOnDateChangedListener { _, date, _ ->
-            addDecorator(SelectDateDecorator(context, date))
+        val selectDateDecorator = SelectDateDecorator(context, currentCalendarDay)
+        addDecorator(selectDateDecorator)
 
-            selectDateFunc(date)
+        selectedDate = currentCalendarDay
+    }
+
+    @InverseBindingAdapter(attribute = "setCalendarDay", event = "onDateChanged")
+    @JvmStatic
+    fun MaterialCalendarView.getCalendarDay(): CalendarDay {
+        return selectedDate
+    }
+
+    @BindingAdapter("onDateChanged")
+    @JvmStatic
+    fun MaterialCalendarView.setOnDateChangedListener(listener: InverseBindingListener?) {
+        setOnDateChangedListener { _, _, _ ->
+            listener?.onChange()
         }
+    }
+
+    @BindingAdapter("onMenuItemClick")
+    @JvmStatic
+    fun Toolbar.onMenuItemClick(onMenuItemClick: Function1<Int, Boolean>) {
+        setOnMenuItemClickListener {
+            onMenuItemClick(it.itemId)
+        }
+    }
+
+    @BindingAdapter("imageDrawable")
+    @JvmStatic
+    fun ImageView.imageDrawable(value: BitmapDrawable?) {
+        setImageDrawable(
+            value ?: ContextCompat.getDrawable(context, R.drawable.ic_icon_image)
+        )
+    }
+
+    @BindingAdapter("clipToOutline")
+    @JvmStatic
+    fun ImageView.clipToOutline(value: Boolean) {
+        clipToOutline = value
     }
 }

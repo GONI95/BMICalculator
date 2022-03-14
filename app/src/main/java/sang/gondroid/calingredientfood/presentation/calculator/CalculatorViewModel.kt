@@ -1,11 +1,19 @@
 package sang.gondroid.calingredientfood.presentation.calculator
 
+import android.app.usage.UsageEvents
+import android.content.Intent
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
+import android.os.Debug
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
+import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.util.ViewType
@@ -28,6 +36,9 @@ internal class CalculatorViewModel : BaseViewModel() {
     private val _calculatorUIStateLiveData: MutableLiveData<UIState> = MutableLiveData(UIState.Init)
     val calculatorUIStateLiveData: LiveData<UIState>
         get() = _calculatorUIStateLiveData
+
+    val selectCalendarDay: MutableLiveData<CalendarDay> = MutableLiveData(CalendarDay.today())
+    val selectPictureUri: MutableLiveData<Uri> = MutableLiveData()
 
     /**
      * Gon [22.02.26] : 매개변수로 넘어온 model과 동일한 FoodNtrIrdntModel을 calculatorList에 추가
@@ -65,9 +76,20 @@ internal class CalculatorViewModel : BaseViewModel() {
         _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
     }
 
-    val selectDateFunc: (CalendarDay) -> Unit = this::selectDateFunc
+    val onMenuItemClick: (Int) -> Boolean = this::onMenuItemClick
+    private fun onMenuItemClick(itemId: Int) : Boolean =
+        when(itemId) {
+            R.id.save_menu_item -> {
+                insertCalculator()
+                true
+            }
+            else -> false
+        }
 
-    private fun selectDateFunc(day: CalendarDay) {
-        DebugLog.d(day.toString())
+    private fun insertCalculator() {
+        DebugLog.d("called")
+
+        DebugLog.i("pictureUri : ${selectPictureUri.value}")
+        DebugLog.i("currentCalendarDay : ${selectCalendarDay.value}")
     }
 }
