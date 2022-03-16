@@ -15,17 +15,15 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
 import android.view.*
-import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
-import androidx.databinding.BindingMethod
-import androidx.databinding.BindingMethods
 import androidx.lifecycle.Lifecycle
 import org.koin.android.viewmodel.ext.android.viewModel
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.FragmentCalculatorBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
+import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntActivity
 import sang.gondroid.calingredientfood.presentation.util.Constants
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
@@ -35,8 +33,6 @@ import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorLi
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
-import sang.gondroid.calingredientfood.presentation.MainActivity
 
 
 internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorViewModel>() {
@@ -80,6 +76,13 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
                 viewModel.countUpdateCalculatorItem(servingCount, position)
             }
         })
+    }
+
+    // Gon [22.03.16] : InsertFoodNtrIrdntActivity 실행 후 FoodNtrIrdntModel 반환받음
+    private val insertFoodNtrIrdntActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+        if (it.resultCode == RESULT_OK) {
+            DebugLog.d(it.data?.getParcelableExtra<FoodNtrIrdntModel>(Constants.FOOD_NTR_IRDNT_MODEL_KEY).toString())
+        }
     }
 
     // Gon [22.03.14] : Android 6.0(API 23) 마시멜로우 이상 버젼에선 Manifest에 Permission 추가와 위험 권한에 대해 승인을 받도록 구현이 필요
@@ -140,6 +143,12 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
 
         // Gon [22.03.14] : 외부 저장소는 항상 접근이 보장되어 있지 않음(이동식 SD 카드 제거 등)
         externalStorageState = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
+    }
+
+    // Gon [22.03.16] : InsertFoodNtrIrdntActivity 실행
+    fun startinsertFoodNtrIrdntActivity() {
+        val intent = Intent(requireContext(), InsertFoodNtrIrdntActivity::class.java)
+        insertFoodNtrIrdntActivityResultLauncher.launch(intent)
     }
 
     /**

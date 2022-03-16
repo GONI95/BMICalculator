@@ -1,7 +1,10 @@
 package sang.gondroid.calingredientfood.domain.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import sang.gondroid.calingredientfood.domain.util.ViewType
 
+@Parcelize
 data class FoodNtrIrdntModel(
     override val id: Long,
     override val type: ViewType,
@@ -19,4 +22,4 @@ data class FoodNtrIrdntModel(
     val transFat: Double,
     val servingWeight: Int,
     val servingCount: Int
-) : Model(id, type)
+) : Model(id, type), Parcelable

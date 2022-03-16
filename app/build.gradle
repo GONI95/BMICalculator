@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'    // databinding [you should apply the kotlin-kapt plugin. / bindingAdapter]
+    id 'kotlin-parcelize'   // Percelize
 }
 
 /**
