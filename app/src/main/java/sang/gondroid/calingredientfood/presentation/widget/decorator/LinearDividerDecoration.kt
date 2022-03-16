@@ -1,4 +1,4 @@
-package sang.gondroid.calingredientfood.presentation.widget
+package sang.gondroid.calingredientfood.presentation.widget.decorator
 
 import android.content.Context
 import android.graphics.Canvas

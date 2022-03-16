@@ -14,7 +14,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <!--
+    fitsSystemWindows : view가 차지하는 영역을 statusBar 또는 softKey 영역을 제외하여 확장
+    windowTranslucentStatus : statusBar 투명 설정
+    -->
     <style name="AppTheme.AppBarOverlay" parent="Theme.CalIngredientFood">
         <item name="elevation">0dp</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 </resources>

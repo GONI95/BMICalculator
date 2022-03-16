@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="sang.gondroid.calingredientfood">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-feature android:name="android..hardware.camera"
+        android:required="true"/>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".CalIngredientFoodApplication"
@@ -13,11 +20,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalIngredientFood"
         android:usesCleartextTraffic="true">
+
+        <!--
+      FileProvider : file에 대해 content URI를 생성
+                     authorities : 시스템에서 다른 Provider와 구별되기 위한 유니크 값
+                     grantUriPermissions : FLAG를 통해 파일에 대한 임시접근을 허용할 것인지 여부
+                     exported : 외부 앱에서 다른 권한없이 접근이 가능한지 여부
+
+      meta-data : Provider의 공유 경로 설명
+                  정의한 xml 파일을 FileProvider의 meta-data에 넣어 연결
+      -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="sang.gondroid.calingredientfood.fileprovider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
         <!--
         windowSoftInputMode : 키보드 활성화 시 모드
                               adjustPan : 키보드 활성화 시 UI 화면이 조정되는 것을 막음
         -->
-        <activity android:name="sang.gondroid.calingredientfood.presentation.MainActivity"
+        <activity
+            android:name=".presentation.MainActivity"
+            android:exported="true"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

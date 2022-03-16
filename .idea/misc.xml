@@ -6,11 +6,18 @@
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable-night/aa.xml" value="0.3277777777777778" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable-night/indicator_shape.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_bottom_sheet_design.xml" value="0.140625" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_cicle_design.xml" value="0.2203125" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_date_decorator_design.xml" value="0.3682051282051282" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_divider_design.xml" value="0.18958333333333333" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_dome_bottom_design.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_dome_design.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_dome_top_design.xml" value="0.1" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_frame_gallery.xml" value="0.2765625" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_round_button.xml" value="0.2203125" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_round_design.xml" value="0.196875" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_select_date_decorator.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_selected_date_decorator.xml" value="0.3212962962962963" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_selected_date_decorator_design.xml" value="0.3682051282051282" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/bg_spinner_search_mode.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/blue.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/circle_indicator.xml" value="0.3687179487179487" />
@@ -21,17 +28,22 @@
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_add.xml" value="0.17083333333333334" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_arrow_down.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_calendar_month.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_camera.xml" value="0.2203125" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_delete.xml" value="0.15677083333333333" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_food_bank.xml" value="0.215625" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_icon_image.xml" value="0.2203125" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_image.xml" value="0.2203125" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_input_icon_icons_com_70097.xml" value="0.18489583333333334" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/ic_remove.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/indicator_blue.xml" value="0.215625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/indicator_night.xml" value="0.3277777777777778" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/drawable/indicator_shape.xml" value="0.3687179487179487" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout-v31/fragment_calculator.xml" value="0.1" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/activity_camera.xml" value="0.296195652173913" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/bottom_sheet_food_ntr_irdnt.xml" value="0.140625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/dialog_layout_food_ntr_irdnt.xml" value="0.5" />
-        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_calculator.xml" value="0.16" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_calculator.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_diet.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/fragment_search.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/item_food_nutrition_ingredient.xml" value="0.33" />
@@ -47,7 +59,9 @@
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/number_picker_horizontal.xml" value="0.5" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/snack_bar_notification.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.19947916666666668" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/menu/calculator_menu.xml" value="0.184375" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/xml/app_bar_scene.xml" value="0.2296195652173913" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/xml/filepaths.xml" value="0.1171875" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/xml/food_ntr_irdnt_scene.xml" value="0.2140625" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/xml/fragment_calculator_scene.xml" value="0.11875" />
       </map>
