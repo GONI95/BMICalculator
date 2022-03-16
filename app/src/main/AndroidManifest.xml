@@ -5,11 +5,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-feature android:name="android..hardware.camera"
-        android:required="true"/>
+    <uses-feature
+        android:name="android..hardware.camera"
+        android:required="true" />
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".CalIngredientFoodApplication"
@@ -20,7 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CalIngredientFood"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name=".presentation.insert.InsertFoodNtrIrdntActivity"
+            android:exported="false" />
         <!--
       FileProvider : file에 대해 content URI를 생성
                      authorities : 시스템에서 다른 Provider와 구별되기 위한 유니크 값
@@ -29,17 +32,16 @@
 
       meta-data : Provider의 공유 경로 설명
                   정의한 xml 파일을 FileProvider의 meta-data에 넣어 연결
-      -->
+        -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="sang.gondroid.calingredientfood.fileprovider"
-            android:grantUriPermissions="true"
-            android:exported="false">
+            android:exported="false"
+            android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/filepaths" />
         </provider>
-
         <!--
         windowSoftInputMode : 키보드 활성화 시 모드
                               adjustPan : 키보드 활성화 시 UI 화면이 조정되는 것을 막음
