@@ -39,6 +39,18 @@
     </style>
 
     <!--
+    textSelectHandle : EditText 커서 손잡이 색상
+    textColorHighlight : EditText 커서 드래그 색상
+    textCursorDrawable : EditText 커서 색상
+    -->
+    <style name="Theme.CalIngredientFood.AnimationEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textSelectHandle">@color/highlight_color</item>
+        <item name="android:textColorHighlight">@color/second_highlight_color</item>
+        <item name="android:textCursorDrawable">@color/highlight_color</item>
+        <item name="android:textColor">@color/text_color</item>
+    </style>
+
+    <!--
     minHeight, minWidth : 각 세로, 가로의 최소 길이를 설정(0으로 할 시 View의 기본여백을 줄임)
     neumorph_shadowColorLight : 밝은 그림자 색상
     neumorph_shadowColorDark : 어두운 그림자 색상

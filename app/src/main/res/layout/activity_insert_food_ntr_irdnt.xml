@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="handler"
             type="sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntActivity" />
@@ -14,16 +15,164 @@
         android:layout_height="match_parent"
         tools:context=".presentation.insert.InsertFoodNtrIrdntActivity">
 
-        <Button
-            android:id="@+id/set_button"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/addButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--
+            자동 포커스 막기
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layoutAnimation="@anim/layout_animation_fall_down">
+
+                <TextView
+                    android:id="@+id/titleTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/create_food_ntr_irdnt"
+                    android:textColor="@color/contrasting_color"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
+                    android:id="@+id/servingWeightEditText"
+                    ie_setError="@{@string/must_not_be_empty}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="number"
+                    android:maxLength="8"
+                    app:ie_hint="@string/please_input_serving_weight"
+                    app:ie_title="@string/serving_weight"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+                    tools:layout_height="10dp" />
+
+                <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
+                    android:id="@+id/descriptionKorEditText"
+                    ie_setError="@{@string/must_not_be_empty}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    app:ie_hint="@string/please_input_descriptionKor"
+                    app:ie_title="@string/descriptionKor"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/servingWeightEditText"
+                    tools:layout_height="10dp" />
+
+                <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
+                    android:id="@+id/companyEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="text"
+                    android:maxLength="30"
+                    app:ie_hint="@string/please_input_company"
+                    app:ie_title="@string/company"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionKorEditText"
+                    tools:layout_height="10dp" />
+
+                <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
+                    android:id="@+id/calorieEditText"
+                    ie_setError="@{@string/must_not_be_empty}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="numberDecimal"
+                    android:maxLength="8"
+                    app:ie_hint="@string/please_input_calorie"
+                    app:ie_title="@string/calorie"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/companyEditText"
+                    tools:layout_height="10dp" />
+
+                <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
+                    android:id="@+id/carbohydrateEditText"
+                    ie_setError="@{@string/must_not_be_empty}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="numberDecimal"
+                    android:maxLength="8"
+                    app:ie_hint="@string/please_input_carbohydrate"
+                    app:ie_title="@string/carbohydrate"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/calorieEditText"
+                    tools:layout_height="10dp" />
+
+                <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
+                    android:id="@+id/proteinEditText"
+                    ie_setError="@{@string/must_not_be_empty}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="numberDecimal"
+                    android:maxLength="8"
+                    app:ie_hint="@string/please_input_protein"
+                    app:ie_title="@string/protein"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/carbohydrateEditText"
+                    tools:layout_height="10dp" />
+
+                <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
+                    android:id="@+id/fatEditText"
+                    ie_setError="@{@string/must_not_be_empty}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:inputType="numberDecimal"
+                    android:maxLength="8"
+                    app:ie_hint="@string/please_input_fat"
+                    app:ie_title="@string/fat"
+                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/proteinEditText"
+                    tools:layout_height="10dp" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="완료"
-            android:textColor="@color/color_on_secondary"
-            android:onClick="@{() -> handler.setFoodNtrIrdnt()}"
+            android:layout_margin="20dp"
+            android:backgroundTint="@color/color_secondary_variant"
+            android:onClick="@{() -> handler.addFoodNtrIrdnt()}"
+            android:text="@string/add"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nestedScrollView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -15,4 +15,22 @@
         <attr name="nc_minValue" format="reference|integer"/>
         <attr name="default_text" format="reference|string"/>
     </declare-styleable>
+
+
+    <declare-styleable name="AnimationEditText">
+        <attr name="android:inputType"/>
+        <attr name="android:maxLength"/>
+        <attr name="ie_title" format="string|reference"/>
+        <attr name="ie_hint" format="string|reference"/>
+
+        <attr name="ie_textSize" format="dimension"/>
+        <attr name="ie_hintTextSize" format="dimension"/>
+        <attr name="ie_titleTextSize" format="dimension"/>
+        <attr name="ie_errorTextSize" format="dimension"/>
+
+        <attr name="ie_textColor" format="reference|integer|color"/>
+        <attr name="ie_titleTextColor" format="reference|integer|color"/>
+        <attr name="ie_hintTextColor" format="reference|integer|color"/>
+        <attr name="ie_errorTextColor" format="reference|integer|color"/>
+    </declare-styleable>
 </resources>

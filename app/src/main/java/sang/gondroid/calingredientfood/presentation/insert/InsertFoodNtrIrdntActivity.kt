@@ -24,11 +24,9 @@ internal class InsertFoodNtrIrdntActivity : BaseActivity<ActivityInsertFoodNtrIr
         binding.handler = this
     }
 
-    override fun initViews() {
+    override fun initViews() { }
 
-    }
-
-    fun setFoodNtrIrdnt() {
+    fun addFoodNtrIrdnt() {
         val intent = Intent(this, CalculatorFragment::class.java)
         intent.putExtra(Constants.FOOD_NTR_IRDNT_MODEL_KEY, FoodNtrIrdntModel(1L,ViewType.FOOD_NTR_IRDNT,"COMPANY", "2017", "FOOD", 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1,1 ,1))
         setResult(RESULT_OK, intent)

@@ -2,10 +2,13 @@ package sang.gondroid.calingredientfood.presentation.util
 
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
@@ -24,6 +27,7 @@ import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
+import sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
 import sang.gondroid.calingredientfood.presentation.widget.decorator.CalendarMinMaxDateDecorator
 import sang.gondroid.calingredientfood.presentation.widget.decorator.LinearDividerDecoration
 import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateDecorator
@@ -228,5 +232,21 @@ internal object BindingAdapters {
     @JvmStatic
     fun ImageView.clipToOutline(value: Boolean) {
         clipToOutline = value
+    }
+
+    @BindingAdapter("ie_setError")
+    @JvmStatic
+    fun AnimationEditText.setError(value: String) {
+
+        this.infoEditText.setOnFocusChangeListener { view, b ->
+            if(b) {
+                hintUpAnimation()
+            } else {
+                if ((view as AppCompatEditText).text!!.isEmpty()) {
+                    hintDownAnimation()
+                    setError(value)
+                }
+            }
+        }
     }
 }

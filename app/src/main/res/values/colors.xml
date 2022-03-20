@@ -19,6 +19,14 @@
     <color name="color_secondary_variant">#3197DC</color>
     <color name="color_on_secondary">#585858</color>
     <color name="color_on_light_secondary">#787878</color>
+
+    <color name="highlight_color">#3385FF</color>
+    <color name="second_highlight_color">#9FC5FF</color>
+    <color name="hint_color">#969696</color>
+    <color name="text_color">#595959</color>
+    <color name="contrasting_color">#000000</color>
+    <color name="second_contrasting_color">#7A7A7A</color>
+    <color name="error_color">#AC0000</color>
 </resources>
 
     <!--
