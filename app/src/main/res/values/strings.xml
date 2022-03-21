@@ -12,8 +12,11 @@
     <string name="three_major_ntr_desc_info">탄, 단, 지 : %1$.2f / %2$.2f / %3$.2f (g)</string>
     <string name="serving_weight_desc_info">%s회 제공량 : %s(g)</string>
     <string name="begin_year_desc_info">구축년도 : %s년</string>
-    
+
+    <string name="descriptionKor">식품</string>
+    <string name="company">업체</string>
     <string name="calorie">칼로리</string>
+    <string name="serving_weight">1회 제공량</string>
     <string name="carbohydrate">탄수화물</string>
     <string name="protein">단백질</string>
     <string name="fat">지방</string>
@@ -43,5 +46,16 @@
 
     <string name="please_set_permissions">저장공간 권한이 필요합니다.</string>
 
+    <string name="please_input_descriptionKor">식품명을 입력해주세요.</string>
+    <string name="please_input_company">업체명을 입력해주세요.</string>
+    <string name="please_input_calorie">칼로리를 입력해주세요. (단위: kcal)</string>
+    <string name="please_input_serving_weight">1회 제공량을 입력해주세요. (단위: g)</string>
+    <string name="please_input_carbohydrate">탄수화물을 입력해주세요. (단위: g)</string>
+    <string name="please_input_protein">단백질을 입력해주세요. (단위: g)</string>
+    <string name="please_input_fat">지방을 입력해주세요. (단위: g)</string>
+
+    <string name="create_food_ntr_irdnt">나만의\n식품 영양 성분표를\n만들어 볼까요?</string>
     <string name="save">저장하기</string>
+
+    <string name="must_not_be_empty">필수 항목이 비어있습니다.</string>
 </resources>

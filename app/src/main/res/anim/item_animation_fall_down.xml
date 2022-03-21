@@ -1,0 +1,40 @@
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:duration="800">
+
+    <!--
+    Gon [22.03.19]
+        translate : View의 위치
+            fromXDelta : X축 시작 시점 / %를 이용하며 0%는 View의 실제 위치
+            toXDelta : X축 도착 지점 / %를 이용하며 0%는 View의 실제 위치
+            repeatMode : 반복할 경우 반복 모드 [restart, reverse]
+            repeatCount : 반복할 횟수 / 무한반복 -1
+            startOffset : 애니메이션 시작까지 대기 시간
+            fillAfter : 애니메이션이 끝난 이후 Delta의 위치를 유지 / Boolean
+
+        alpha : View의 투명도
+            fromAlpha : 시작 투명도 값
+            toAlpha : 끝 투명도 값
+
+        scale : View의 크기
+            fromXScale : 시작 X축 크기 / %, 1.0을 이용하며 100%, 1.0이 View의 실제 크기
+            toXScale : 끝 X축 크기 / %, 1.0을 이용하며 100%, 1.0이 View의 실제 크기
+            pivotX : 크기를 늘릴 때 중점 X 좌표 / % -> 비율, int -> pixel 취급
+    -->
+    <translate
+        android:fromYDelta="0%"
+        android:fromXDelta="100%"
+        android:toXDelta="0%"
+        android:toYDelta="0%" />
+
+    <alpha
+        android:fromAlpha="0"
+        android:toAlpha="1" />
+
+    <scale
+        android:fromXScale="150%"
+        android:fromYScale="150%"
+        android:toXScale="100%"
+        android:toYScale="100%"
+        android:pivotX="50%"
+        android:pivotY="50%" />
+</set>

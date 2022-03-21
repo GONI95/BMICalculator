@@ -23,4 +23,9 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
     </style>
+
+    <style name="EditTextStyle">
+        <item name="colorControlNormal">@color/error_color</item>
+        <item name="colorControlActivated">@color/contrasting_color</item>
+    </style>
 </resources>

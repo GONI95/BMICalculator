@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="java.util.Map"/>
+        <variable name="settingMap" type="Map&lt;String, Object&gt;"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="RtlSymmetry">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:textColor="@{(Integer)settingMap[`titleTextColor`]}"
+            android:textSize="@{(Float)settingMap[`titleTextSize`]}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/infoEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="타이틀" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/hintTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:paddingStart="5dp"
+            android:paddingTop="2dp"
+            android:singleLine="true"
+            android:textColor="@{(Integer)settingMap[`hintTextColor`]}"
+            android:textSize="@{(Float)settingMap[`hintTextSize`]}"
+            app:layout_constraintBottom_toBottomOf="@+id/infoEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            tools:text="데이터를 입력해주세요" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/infoEditText"
+            android:theme="@style/EditTextTheme"
+            style="@style/Theme.CalIngredientFood.AnimationEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="@{(Integer)settingMap[`inputType`]}"
+            android:maxLength="@{(Integer)settingMap[`maxLength`]}"
+            android:paddingTop="5dp"
+            android:textColor="@{(Integer)settingMap[`textColor`]}"
+            android:textSize="@{(Float)settingMap[`textSize`]}"
+            app:errorEnabled="true"
+            app:layout_constraintBottom_toTopOf="@+id/errorTextView"
+            app:layout_constraintEnd_toEndOf="@+id/titleTextView"
+            app:layout_constraintStart_toStartOf="@+id/titleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+            tools:text="100.00" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/errorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="5dp"
+            android:textColor="@{(Integer)settingMap[`errorTextColor`]}"
+            android:textSize="@{(Float)settingMap[`errorTextSize`]}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/titleTextView"
+            app:layout_constraintTop_toBottomOf="@+id/infoEditText"
+            tools:text="잘못된 형식입니다." />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

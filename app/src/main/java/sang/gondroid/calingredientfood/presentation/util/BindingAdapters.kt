@@ -1,21 +1,14 @@
 package sang.gondroid.calingredientfood.presentation.util
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.graphics.drawable.BitmapDrawable
-import android.os.Build
-import android.provider.MediaStore
-import android.view.MenuItem
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.databinding.BindingAdapter
 import androidx.viewpager2.widget.ViewPager2
 import me.relex.circleindicator.CircleIndicator3
@@ -28,18 +21,16 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
-import androidx.lifecycle.Lifecycle
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
+import sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
 import sang.gondroid.calingredientfood.presentation.widget.decorator.CalendarMinMaxDateDecorator
 import sang.gondroid.calingredientfood.presentation.widget.decorator.LinearDividerDecoration
 import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateDecorator
-import java.util.*
 
 
 internal object BindingAdapters {
@@ -241,5 +232,21 @@ internal object BindingAdapters {
     @JvmStatic
     fun ImageView.clipToOutline(value: Boolean) {
         clipToOutline = value
+    }
+
+    @BindingAdapter("ie_setError")
+    @JvmStatic
+    fun AnimationEditText.setError(value: String) {
+
+        this.infoEditText.setOnFocusChangeListener { view, b ->
+            if(b) {
+                hintUpAnimation()
+            } else {
+                if ((view as AppCompatEditText).text!!.isEmpty()) {
+                    hintDownAnimation()
+                    setError(value)
+                }
+            }
+        }
     }
 }
