@@ -4,13 +4,17 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.ApplicationInfo
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import sang.gondroid.calingredientfood.di.appModule
+import sang.gondroid.calingredientfood.presentation.util.Constants
 
-class CalIngredientFoodApplication : Application() {
+internal class CalIngredientFoodApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         DEBUG = isDebuggable(this)
@@ -39,6 +43,9 @@ class CalIngredientFoodApplication : Application() {
     }
 
     companion object {
+        //Gon [22.03.22] : DataStore 인스턴스를 생성하기 위해 preferencesDataStore() 메서드 호출
+        val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Constants.PREFERENCES_DATASTORE_NAME)
+
         var DEBUG = false
             private set
     }
