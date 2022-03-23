@@ -236,16 +236,10 @@ internal object BindingAdapters {
 
     @BindingAdapter("ie_setError")
     @JvmStatic
-    fun AnimationEditText.setError(value: String) {
-
-        this.infoEditText.setOnFocusChangeListener { view, b ->
-            if(b) {
-                hintUpAnimation()
-            } else {
-                if ((view as AppCompatEditText).text!!.isEmpty()) {
-                    hintDownAnimation()
-                    setError(value)
-                }
+    fun AnimationEditText.ieSetError(value: String) {
+        this.infoEditText.setOnFocusChangeListener { view, focusState ->
+            if(!focusState && (view as AppCompatEditText).text!!.isEmpty()) {
+                setError(value)
             }
         }
     }

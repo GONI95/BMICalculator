@@ -3,6 +3,8 @@ package sang.gondroid.calingredientfood.presentation.widget.custom
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Rect
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
@@ -12,7 +14,6 @@ import androidx.core.content.ContextCompat
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.EditTextInputLayoutBinding
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.AppCompatEditText
 
 
 class AnimationEditText @JvmOverloads constructor(
@@ -33,6 +34,24 @@ class AnimationEditText @JvmOverloads constructor(
         attrs?.let {
             binding.settingMap = setTypedArray(it)
         }
+
+        binding.infoEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) { }
+
+            override fun afterTextChanged(editable: Editable?) {
+                editable?.let {
+                    if(it.isNotEmpty()) {
+                        hintUpAnimation()
+                        clearError()
+                    }
+                    else {
+                        hintDownAnimation()
+                    }
+                }
+            }
+        })
     }
 
     @SuppressLint("CustomViewStyleable")
@@ -91,4 +110,10 @@ class AnimationEditText @JvmOverloads constructor(
 
         binding.errorTextView.text = ""
     }
+
+    fun setText(text: String?) {
+        binding.infoEditText.setText(text)
+    }
+
+    fun getText():  String = binding.infoEditText.text.toString()
 }
