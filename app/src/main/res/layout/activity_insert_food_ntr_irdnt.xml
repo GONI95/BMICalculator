@@ -6,8 +6,14 @@
     <data>
 
         <variable
+            name="viewModel"
+            type="sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel" />
+
+        <variable
             name="handler"
             type="sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntActivity" />
+
+        <import type="sang.gondroid.calingredientfood.presentation.util.Constants" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,14 +21,30 @@
         android:layout_height="match_parent"
         tools:context=".presentation.insert.InsertFoodNtrIrdntActivity">
 
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:gravity="center_vertical"
+            android:paddingStart="30dp"
+            android:text="@string/create_food_ntr_irdnt"
+            android:textColor="@color/contrasting_color"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/nestedScrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/nestedScrollView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/addButton"
+            app:layout_constraintBottom_toTopOf="@+id/insertButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/titleTextView">
 
             <!--
             자동 포커스 막기
@@ -36,40 +58,29 @@
                 android:focusableInTouchMode="true"
                 android:layoutAnimation="@anim/layout_animation_fall_down">
 
-                <TextView
-                    android:id="@+id/titleTextView"
-                    android:layout_width="0dp"
-                    android:layout_height="250dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/create_food_ntr_irdnt"
-                    android:textColor="@color/contrasting_color"
-                    android:textSize="25sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
                     android:id="@+id/servingWeightEditText"
-                    ie_setError="@{@string/must_not_be_empty}"
+                    ie_text="@={viewModel.servingWeight}"
+                    uiState="@{viewModel.uiState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginEnd="20dp"
                     android:inputType="number"
-                    android:maxLength="8"
+                    android:maxLength="10"
                     app:ie_hint="@string/please_input_serving_weight"
                     app:ie_title="@string/serving_weight"
-                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
-                    app:layout_constraintTop_toBottomOf="@+id/titleTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     tools:layout_height="10dp" />
 
                 <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
                     android:id="@+id/descriptionKorEditText"
-                    ie_setError="@{@string/must_not_be_empty}"
+                    ie_text="@={viewModel.descriptionKor}"
+                    mustNotEmpty="@{@string/must_not_be_empty}"
+                    uiState="@{viewModel.uiState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -77,13 +88,14 @@
                     android:maxLength="30"
                     app:ie_hint="@string/please_input_descriptionKor"
                     app:ie_title="@string/descriptionKor"
-                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/servingWeightEditText"
+                    app:layout_constraintStart_toStartOf="@+id/servingWeightEditText"
                     app:layout_constraintTop_toBottomOf="@+id/servingWeightEditText"
                     tools:layout_height="10dp" />
 
                 <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
                     android:id="@+id/companyEditText"
+                    ie_text="@={viewModel.company}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -91,68 +103,68 @@
                     android:maxLength="30"
                     app:ie_hint="@string/please_input_company"
                     app:ie_title="@string/company"
-                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/servingWeightEditText"
+                    app:layout_constraintStart_toStartOf="@+id/servingWeightEditText"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionKorEditText"
                     tools:layout_height="10dp" />
 
                 <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
                     android:id="@+id/calorieEditText"
-                    ie_setError="@{@string/must_not_be_empty}"
+                    ie_text="@={viewModel.calorie}"
+                    uiState="@{viewModel.uiState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:inputType="numberDecimal"
-                    android:maxLength="8"
                     app:ie_hint="@string/please_input_calorie"
                     app:ie_title="@string/calorie"
-                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/servingWeightEditText"
+                    app:layout_constraintStart_toStartOf="@+id/servingWeightEditText"
                     app:layout_constraintTop_toBottomOf="@+id/companyEditText"
                     tools:layout_height="10dp" />
 
                 <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
                     android:id="@+id/carbohydrateEditText"
-                    ie_setError="@{@string/must_not_be_empty}"
+                    ie_text="@={viewModel.carbohydrate}"
+                    uiState="@{viewModel.uiState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:inputType="numberDecimal"
-                    android:maxLength="8"
                     app:ie_hint="@string/please_input_carbohydrate"
                     app:ie_title="@string/carbohydrate"
-                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/servingWeightEditText"
+                    app:layout_constraintStart_toStartOf="@+id/servingWeightEditText"
                     app:layout_constraintTop_toBottomOf="@+id/calorieEditText"
                     tools:layout_height="10dp" />
 
                 <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
                     android:id="@+id/proteinEditText"
-                    ie_setError="@{@string/must_not_be_empty}"
+                    ie_text="@={viewModel.protein}"
+                    uiState="@{viewModel.uiState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:inputType="numberDecimal"
-                    android:maxLength="8"
                     app:ie_hint="@string/please_input_protein"
                     app:ie_title="@string/protein"
-                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/servingWeightEditText"
+                    app:layout_constraintStart_toStartOf="@+id/servingWeightEditText"
                     app:layout_constraintTop_toBottomOf="@+id/carbohydrateEditText"
                     tools:layout_height="10dp" />
 
                 <sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText
                     android:id="@+id/fatEditText"
-                    ie_setError="@{@string/must_not_be_empty}"
+                    ie_text="@={viewModel.fat}"
+                    uiState="@{viewModel.uiState}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:inputType="numberDecimal"
-                    android:maxLength="8"
                     app:ie_hint="@string/please_input_fat"
                     app:ie_title="@string/fat"
-                    app:layout_constraintEnd_toEndOf="@+id/titleTextView"
-                    app:layout_constraintStart_toStartOf="@+id/titleTextView"
+                    app:layout_constraintEnd_toEndOf="@+id/servingWeightEditText"
+                    app:layout_constraintStart_toStartOf="@+id/servingWeightEditText"
                     app:layout_constraintTop_toBottomOf="@+id/proteinEditText"
                     tools:layout_height="10dp" />
 
@@ -161,14 +173,16 @@
 
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/addButton"
+            android:id="@+id/insertButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:backgroundTint="@color/color_secondary_variant"
-            android:onClick="@{() -> handler.addFoodNtrIrdnt()}"
-            android:text="@string/add"
-            android:textColor="@color/white"
+            android:background="@drawable/bg_round_design"
+            android:backgroundTint="@color/highlight_color"
+            android:onClick="@{() -> viewModel.insertFoodNtrIrdnt()}"
+            android:text="@string/save"
+            android:textSize="18sp"
+            android:textColor="@color/base_color"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

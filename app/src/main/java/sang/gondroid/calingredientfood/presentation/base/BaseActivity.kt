@@ -17,19 +17,19 @@ internal abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> 
     // Gon [22.03.16] : DataBinding 초기화를 위한 getDataBinding()
     abstract fun getDataBinding() : VDB
 
+    // Gon [22.03.24] : LiveData를 관찰하는 observeData()
+    abstract fun observeData()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = getDataBinding()
+        binding.lifecycleOwner = this
         initState()
+        observeData()
     }
 
-    open fun initState() {
-        initViews()
-    }
-
-    // Gon [22.03.16] : View 초기화를 위한 initViews()
-    open fun initViews() = Unit
+    open fun initState() = Unit
 
     override fun onResume() {
         super.onResume()

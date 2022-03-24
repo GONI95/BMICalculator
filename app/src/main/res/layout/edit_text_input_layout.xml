@@ -7,6 +7,10 @@
     <data>
         <import type="java.util.Map"/>
         <variable name="settingMap" type="Map&lt;String, Object&gt;"/>
+
+        <variable
+            name="handler"
+            type="sang.gondroid.calingredientfood.presentation.widget.custom.AnimationEditText" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,7 +51,6 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/infoEditText"
-            android:theme="@style/EditTextTheme"
             style="@style/Theme.CalIngredientFood.AnimationEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,12 +59,27 @@
             android:paddingTop="5dp"
             android:textColor="@{(Integer)settingMap[`textColor`]}"
             android:textSize="@{(Float)settingMap[`textSize`]}"
+            android:theme="@style/EditTextTheme"
             app:errorEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/errorTextView"
             app:layout_constraintEnd_toEndOf="@+id/titleTextView"
             app:layout_constraintStart_toStartOf="@+id/titleTextView"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView"
             tools:text="100.00" />
+
+        <ImageButton
+            android:id="@+id/textClearImageButton"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="5dp"
+            android:backgroundTint="@android:color/transparent"
+            android:onClick="@{() -> handler.clearEditText()}"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="@+id/hintTextView"
+            app:layout_constraintEnd_toEndOf="@+id/infoEditText"
+            app:layout_constraintTop_toTopOf="@+id/hintTextView"
+            app:tint="@color/text_color"
+            tools:ignore="ContentDescription" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/errorTextView"

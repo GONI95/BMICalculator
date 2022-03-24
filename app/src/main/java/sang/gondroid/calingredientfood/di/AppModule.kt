@@ -1,9 +1,15 @@
 package sang.gondroid.calingredientfood.di
 
+import android.content.Context
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
 import kotlinx.coroutines.Dispatchers
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
+import sang.gondroid.calingredientfood.CalIngredientFoodApplication.Companion.dataStore
+import sang.gondroid.calingredientfood.data.datastore.PreferencesDataStoreManager
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
 import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
@@ -20,7 +26,7 @@ internal val appModule = module {
      */
     viewModel { SearchViewModel(get()) }
     viewModel { CalculatorViewModel() }
-    viewModel { InsertFoodNtrIrdntViewModel() }
+    viewModel { InsertFoodNtrIrdntViewModel(get()) }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체
@@ -51,9 +57,16 @@ internal val appModule = module {
     single { provideFoodNtrIrdntService(get()) }
 
     /**
+     * Preferences DataStore : ProvideDataStore.kt
+     */
+    single { PreferencesDataStoreManager(getPreferencesDataStore(androidApplication())) }
+
+    /**
      * Coroutine Dispatchers
      * Gon [22.01.12] : Coroutine을 Dispatcher에 전달하면 dispatcher가 자신이 관리하는 Thread Pool 내의 Thread에 분배
      */
     single { Dispatchers.IO }
     single { Dispatchers.Main }
 }
+
+private fun getPreferencesDataStore(context: Context): DataStore<Preferences> = context.dataStore

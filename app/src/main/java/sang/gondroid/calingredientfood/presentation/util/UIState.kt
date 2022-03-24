@@ -10,5 +10,6 @@ sealed class UIState {
     object Loading : UIState()
     data class Success<T>(val data : T) : UIState()
     data class Empty(@StringRes val message: Int, val value: String) : UIState()
+    object Failure : UIState()
     data class Error(@StringRes val message: Int) : UIState()
 }

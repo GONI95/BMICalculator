@@ -79,9 +79,11 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
     }
 
     // Gon [22.03.16] : InsertFoodNtrIrdntActivity 실행 후 FoodNtrIrdntModel 반환받음
-    private val insertFoodNtrIrdntActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-        if (it.resultCode == RESULT_OK) {
-            DebugLog.d(it.data?.getParcelableExtra<FoodNtrIrdntModel>(Constants.FOOD_NTR_IRDNT_MODEL_KEY).toString())
+    private val insertFoodNtrIrdntActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val foodNtrIrdntModel = result.data?.getParcelableExtra<FoodNtrIrdntModel>(Constants.FOOD_NTR_IRDNT_MODEL_KEY)
+
+            foodNtrIrdntModel?.let { viewModel.addCalculatorItem(it) }
         }
     }
 

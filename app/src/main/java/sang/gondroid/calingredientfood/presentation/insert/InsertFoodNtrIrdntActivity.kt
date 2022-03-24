@@ -3,13 +3,16 @@ package sang.gondroid.calingredientfood.presentation.insert
 import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import org.koin.android.ext.android.inject
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.ActivityInsertFoodNtrIrdntBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
-import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseActivity
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
 import sang.gondroid.calingredientfood.presentation.util.Constants
+import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel.Event
 
 internal class InsertFoodNtrIrdntActivity : BaseActivity<ActivityInsertFoodNtrIrdntBinding, InsertFoodNtrIrdntViewModel>() {
 
@@ -22,14 +25,31 @@ internal class InsertFoodNtrIrdntActivity : BaseActivity<ActivityInsertFoodNtrIr
         super.initState()
 
         binding.handler = this
+        binding.viewModel = viewModel
     }
 
-    override fun initViews() { }
+    override fun observeData() {
+        lifecycleScope.launch {
+            viewModel.event.collect { event ->
+                when(event) {
+                    is Event.SetResult -> {
+                        setResult(event.data)
+                    }
+                }
+            }
+        }
+    }
 
-    fun addFoodNtrIrdnt() {
+    private fun setResult(data: FoodNtrIrdntModel) {
         val intent = Intent(this, CalculatorFragment::class.java)
-        intent.putExtra(Constants.FOOD_NTR_IRDNT_MODEL_KEY, FoodNtrIrdntModel(1L,ViewType.FOOD_NTR_IRDNT,"COMPANY", "2017", "FOOD", 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1,1 ,1))
+        intent.putExtra(Constants.FOOD_NTR_IRDNT_MODEL_KEY, data)
         setResult(RESULT_OK, intent)
+
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.saveInputTextData()
     }
 }

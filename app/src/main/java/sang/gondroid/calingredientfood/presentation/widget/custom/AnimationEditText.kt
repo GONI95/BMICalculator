@@ -12,7 +12,6 @@ import androidx.core.content.ContextCompat
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.EditTextInputLayoutBinding
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.AppCompatEditText
 
 
 class AnimationEditText @JvmOverloads constructor(
@@ -29,6 +28,7 @@ class AnimationEditText @JvmOverloads constructor(
 
     init {
         binding = getDataBinding(context)
+        binding.handler = this
 
         attrs?.let {
             binding.settingMap = setTypedArray(it)
@@ -46,10 +46,10 @@ class AnimationEditText @JvmOverloads constructor(
             return mapOf(
                 "inputType" to typedArray.getInt(R.styleable.AnimationEditText_android_inputType, EditorInfo.TYPE_CLASS_TEXT),
                 "maxLength" to typedArray.getInteger(R.styleable.AnimationEditText_android_maxLength, 10),
-                "textSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_textSize, spToFloat(16)),
-                "hintTextSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_hintTextSize, spToFloat(16)),
-                "titleTextSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_titleTextSize, spToFloat(16)),
-                "errorTextSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_errorTextSize, spToFloat(12)),
+                "textSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_textSize, spToFloat(18)),
+                "hintTextSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_hintTextSize, spToFloat(18)),
+                "titleTextSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_titleTextSize, spToFloat(18)),
+                "errorTextSize" to typedArray.getDimension(R.styleable.AnimationEditText_ie_errorTextSize, spToFloat(14)),
                 "textColor" to typedArray.getColor(R.styleable.AnimationEditText_ie_textColor, ContextCompat.getColor(context, R.color.text_color)),
                 "titleTextColor" to typedArray.getColor(R.styleable.AnimationEditText_ie_titleTextColor, ContextCompat.getColor(context, R.color.contrasting_color)),
                 "hintTextColor" to typedArray.getColor(R.styleable.AnimationEditText_ie_hintTextColor, ContextCompat.getColor(context, R.color.hint_color)),
@@ -66,10 +66,12 @@ class AnimationEditText @JvmOverloads constructor(
 
     fun hintUpAnimation() {
         binding.hintTextView.animate().translationY(-50f).setDuration(300).alpha(0f).start()
+        binding.textClearImageButton.animate().translationY(0f).setDuration(300).alpha(1f).start()
     }
 
     fun hintDownAnimation() {
         binding.hintTextView.animate().translationY(0f).setDuration(300).alpha(1f).start()
+        binding.textClearImageButton.animate().translationY(-50f).setDuration(300).alpha(0f).start()
     }
 
     fun setError(errorMessage: String) {
@@ -78,17 +80,17 @@ class AnimationEditText @JvmOverloads constructor(
         }
 
         binding.infoEditText.setCompoundDrawables(null, null, errorIcon, null)
-
         binding.infoEditText.backgroundTintList = ContextCompat.getColorStateList(context, R.color.error_color)
-
         binding.errorTextView.text = errorMessage
     }
 
     fun clearError() {
         binding.infoEditText.setCompoundDrawables(null, null, null, null)
-
         binding.infoEditText.backgroundTintList = ContextCompat.getColorStateList(context, R.color.second_contrasting_color)
+        binding.errorTextView.text = null
+    }
 
-        binding.errorTextView.text = ""
+    fun clearEditText() {
+        binding.infoEditText.text?.clear()
     }
 }
