@@ -19,10 +19,11 @@
     <color name="color_on_secondary">#F8F7EF</color>
     <color name="color_on_light_secondary">#E6E6DF</color>
 
-    <color name="highlight_color">#3385FF</color>
-    <color name="second_highlight_color">#9FC5FF</color>
+    <color name="highlight_color">#0B469A</color>
+    <color name="second_highlight_color">#3A88FD</color>
     <color name="hint_color">#969696</color>
-    <color name="text_color">#454545</color>
+    <color name="text_color">#595959</color>
+    <color name="base_color">#FFFFFFFF</color>
     <color name="contrasting_color">#000000</color>
     <color name="second_contrasting_color">#7A7A7A</color>
     <color name="error_color">#AC0000</color>

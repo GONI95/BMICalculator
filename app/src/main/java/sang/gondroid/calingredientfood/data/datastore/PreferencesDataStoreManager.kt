@@ -8,7 +8,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.*
 import okhttp3.internal.toImmutableMap
 import sang.gondroid.calingredientfood.presentation.util.Constants
-import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import java.io.IOException
 
 /**
@@ -19,7 +18,7 @@ class PreferencesDataStoreManager(private val preferencesDataStore: DataStore<Pr
 
     private val prefs by lazy { preferencesDataStore }
 
-    private val foodNtrIrdntKeyArray: Array<Preferences.Key<String>> = with(Constants) {
+    private val keyArray: Array<Preferences.Key<String>> = with(Constants) {
         arrayOf(
             stringPreferencesKey(SERVING_WEIGHT_KEY),
             stringPreferencesKey(DESCRIPTION_KOR_KEY),
@@ -31,10 +30,10 @@ class PreferencesDataStoreManager(private val preferencesDataStore: DataStore<Pr
         )
     }
 
-    suspend fun readFoodNtrIrdntData(): Map<String, String> {
+    suspend fun readInputTextData(): Map<String, String> {
         val foodNtrIrdntDataMap = mutableMapOf<String, String>()
 
-        foodNtrIrdntKeyArray.forEach { key ->
+        keyArray.forEach { key ->
             val text = prefs.data
                 .catch {
                     if (it is IOException) {
@@ -54,16 +53,16 @@ class PreferencesDataStoreManager(private val preferencesDataStore: DataStore<Pr
         return foodNtrIrdntDataMap.toImmutableMap()
     }
 
-    suspend fun saveFoodNtrIrdntData(value: Array<String>) {
-        for ((index, key) in foodNtrIrdntKeyArray.withIndex()) {
+    suspend fun saveInputTextData(inputTextMap: Map<String, String>) {
+        keyArray.forEach { key ->
             prefs.edit { mutablePreferences ->
-                mutablePreferences[key] = value[index]
+                mutablePreferences[key] = (inputTextMap[key.name] as String)
             }
         }
     }
 
-    suspend fun removeFoodNtrIrdntData() {
-        foodNtrIrdntKeyArray.forEach { key ->
+    suspend fun removeInputTextData() {
+        keyArray.forEach { key ->
             prefs.edit { mutablePreferences ->
                 mutablePreferences.remove(key)
             }
