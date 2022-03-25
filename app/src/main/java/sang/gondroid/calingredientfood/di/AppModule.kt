@@ -3,6 +3,7 @@ package sang.gondroid.calingredientfood.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
@@ -10,7 +11,9 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import sang.gondroid.calingredientfood.CalIngredientFoodApplication.Companion.dataStore
 import sang.gondroid.calingredientfood.data.datastore.PreferencesDataStoreManager
+import sang.gondroid.calingredientfood.data.db.ApplicationDatabase
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
+import sang.gondroid.calingredientfood.data.util.API
 import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
@@ -62,6 +65,12 @@ internal val appModule = module {
     single { PreferencesDataStoreManager(getPreferencesDataStore(androidApplication())) }
 
     /**
+     * Room
+     */
+    single { provideDB(androidApplication()) }
+    single { provideFoodNtrIrdntDao(get()) }
+
+    /**
      * Coroutine Dispatchers
      * Gon [22.01.12] : Coroutine을 Dispatcher에 전달하면 dispatcher가 자신이 관리하는 Thread Pool 내의 Thread에 분배
      */
@@ -70,3 +79,8 @@ internal val appModule = module {
 }
 
 private fun getPreferencesDataStore(context: Context): DataStore<Preferences> = context.dataStore
+
+private fun provideDB(context : Context) : ApplicationDatabase =
+    Room.databaseBuilder(context, ApplicationDatabase::class.java, API.DB_NAME).build()
+
+private fun provideFoodNtrIrdntDao(database: ApplicationDatabase) = database.foodNtrIrdntDao()

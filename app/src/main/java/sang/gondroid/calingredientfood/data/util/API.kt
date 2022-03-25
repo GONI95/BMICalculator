@@ -8,4 +8,6 @@ object API {
     const val GET_FNI_LIST = "getFoodNtrItdntList1"
     const val FNI_BGN_YEAR = "2017"
     const val FNI_TYPE = "json"
+
+    const val DB_NAME = "FoodNtrIrdntDB.db"
 }
