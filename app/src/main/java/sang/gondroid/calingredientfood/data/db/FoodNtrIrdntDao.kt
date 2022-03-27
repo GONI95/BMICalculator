@@ -9,9 +9,9 @@ import sang.gondroid.calingredientfood.data.dto.entity.FoodNtrIrdntEntity
  */
 @Dao
 interface FoodNtrIrdntDao {
-    @Query("SELECT * FROM foodNtrIrdntTable")
-    fun getAllFoodNtrIrdnt(): List<FoodNtrIrdntEntity>
+    @Query("SELECT * FROM foodNtrIrdntTable WHERE description_kor LIKE :value")
+    suspend fun getSearchList(value: String): List<FoodNtrIrdntEntity>
 
     @Insert
-    suspend fun insertFoodNtrIrdnt(foodNtrIrdntEntity: FoodNtrIrdntEntity)
+    suspend fun insert(foodNtrIrdntEntity: FoodNtrIrdntEntity)
 }
