@@ -43,9 +43,7 @@ class SearchModeSpinnerAdapter(
             try {
                 searchModeImageView.contentDescription = context.getString(model.modelName)
                 searchModeImageView.setImageResource(model.modelImage)
-                searchModeImageView.setColorFilter(ContextCompat.getColor(context,
-                    R.color.color_on_secondary
-                ))
+                searchModeImageView.setColorFilter(ContextCompat.getColor(context, R.color.transparent_color))
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -57,8 +55,9 @@ class SearchModeSpinnerAdapter(
         with(binding(parent)) {
             val model = values[position]
             try {
-                searchModeImageView.setImageResource(model.modelImage)
                 searchModeTextView.text = context.getString(model.modelName)
+                searchModeImageView.setImageResource(model.modelImage)
+                searchModeImageView.setColorFilter(ContextCompat.getColor(context, R.color.transparent_color))
 
             } catch (e: Exception) {
                 e.printStackTrace()

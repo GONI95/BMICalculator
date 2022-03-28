@@ -27,4 +27,5 @@
     <color name="contrasting_color">#000000</color>
     <color name="second_contrasting_color">#7A7A7A</color>
     <color name="error_color">#AC0000</color>
+    <color name="transparent_color">#00000000</color>
 </resources>

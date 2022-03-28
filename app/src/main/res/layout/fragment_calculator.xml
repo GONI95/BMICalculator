@@ -139,7 +139,7 @@
                         android:layout_height="0dp"
                         android:layout_marginStart="15dp"
                         android:gravity="center|start"
-                        android:text="@string/custom_food_ntr_irdnt"
+                        android:text="@string/custom_food"
                         app:layout_constraintBottom_toBottomOf="@+id/custom_info_add_button"
                         app:layout_constraintEnd_toStartOf="@+id/custom_info_add_button"
                         app:layout_constraintStart_toStartOf="parent"
