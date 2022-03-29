@@ -148,7 +148,7 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
     }
 
     // Gon [22.03.16] : InsertFoodNtrIrdntActivity 실행
-    fun startinsertFoodNtrIrdntActivity() {
+    fun startInsertFoodNtrIrdntActivity() {
         val intent = Intent(requireContext(), InsertFoodNtrIrdntActivity::class.java)
         insertFoodNtrIrdntActivityResultLauncher.launch(intent)
     }

@@ -45,7 +45,7 @@ class FoodNtrIrdntMapper: Mapper<FoodNtrIrdntEntity, FoodNtrIrdntModel> {
                 saturatedFattyAcid,
                 transFat,
                 servingWeight,
-                1)
+                servingCount)
         }
     }
 }
