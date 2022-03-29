@@ -12,12 +12,13 @@ import sang.gondroid.calingredientfood.CalIngredientFoodApplication.Companion.da
 import sang.gondroid.calingredientfood.data.datastore.PreferencesDataStoreManager
 import sang.gondroid.calingredientfood.data.db.ApplicationDatabase
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
+import sang.gondroid.calingredientfood.data.repository.MealNtrIrdntRepositoryImpl
 import sang.gondroid.calingredientfood.data.util.API
 import sang.gondroid.calingredientfood.domain.mapper.FoodNtrIrdntMapper
+import sang.gondroid.calingredientfood.domain.mapper.MealNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
-import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntListUseCase
-import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
-import sang.gondroid.calingredientfood.domain.use_case.InsertCustomFoodNtrIrdntUseCase
+import sang.gondroid.calingredientfood.domain.repository.MealNtrIrdntRepository
+import sang.gondroid.calingredientfood.domain.use_case.*
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel
@@ -29,7 +30,7 @@ internal val appModule = module {
      * viewModel
      */
     viewModel { SearchViewModel(get(), get()) }
-    viewModel { CalculatorViewModel() }
+    viewModel { CalculatorViewModel(get()) }
     viewModel { InsertFoodNtrIrdntViewModel(get(), get()) }
 
     /**
@@ -38,16 +39,20 @@ internal val appModule = module {
     factory { GetFoodNtrIrdntListUseCase(get()) }
     factory { GetCustomFoodNtrIrdntListUseCase(get()) }
     factory { InsertCustomFoodNtrIrdntUseCase(get()) }
+    factory { InsertMealNtrIrdntUseCase(get()) }
+    factory { GetMealNtrIrdntListUseCase(get()) }
 
     /**
      * Repository : Domain과 Data Layer 사이를 중재해주는 객체
      */
     single<FoodNtrIrdntRepository> { FoodNtrIrdntRepositoryImpl(get(), get(), get(), get()) }
+    single<MealNtrIrdntRepository> { MealNtrIrdntRepositoryImpl() }
 
     /**
      * Mapper : Model <-> Dto
      */
     single { FoodNtrIrdntMapper() }
+    single { MealNtrIrdntMapper(get()) }
 
     /**
      * Adapter
@@ -72,6 +77,7 @@ internal val appModule = module {
      */
     single { provideDB(androidApplication()) }
     single { provideFoodNtrIrdntDao(get()) }
+    single { provideMealNtrIrdntDao(get()) }
 
     /**
      * Coroutine Dispatchers
@@ -82,8 +88,3 @@ internal val appModule = module {
 }
 
 private fun getPreferencesDataStore(context: Context): DataStore<Preferences> = context.dataStore
-
-private fun provideDB(context : Context) : ApplicationDatabase =
-    Room.databaseBuilder(context, ApplicationDatabase::class.java, API.DB_NAME).build()
-
-private fun provideFoodNtrIrdntDao(database: ApplicationDatabase) = database.foodNtrIrdntDao()

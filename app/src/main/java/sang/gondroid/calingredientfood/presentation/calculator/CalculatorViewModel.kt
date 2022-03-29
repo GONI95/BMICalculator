@@ -3,17 +3,23 @@ package sang.gondroid.calingredientfood.presentation.calculator
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
+import sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
+import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.util.UIState
 import kotlin.collections.ArrayList
 
-internal class CalculatorViewModel : BaseViewModel() {
+internal class CalculatorViewModel(
+    private val insertMealNtrIrdntUseCase: InsertMealNtrIrdntUseCase
+) : BaseViewModel() {
 
     /**
      * Gon [22.02.22] : 1. LiveData를 이용해 값이 변경되면 fragment_search.xml의 표현식을 통해 BindingAdapter 호출
@@ -67,16 +73,55 @@ internal class CalculatorViewModel : BaseViewModel() {
     private fun onMenuItemClick(itemId: Int) : Boolean =
         when(itemId) {
             R.id.save_menu_item -> {
-                insertCalculator()
+                insertMeal()
                 true
             }
             else -> false
         }
 
-    private fun insertCalculator() {
-        DebugLog.d("called")
+    private fun insertMeal() = viewModelScope.launch {
+        val mealNtrIrdntModel = createMealNtrIrdntModel()
+        insertMealNtrIrdntUseCase.invoke(mealNtrIrdntModel)
+    }
 
-        DebugLog.i("pictureUri : ${selectPictureUri.value}")
-        DebugLog.i("currentCalendarDay : ${selectCalendarDay.value}")
+    private fun createMealNtrIrdntModel(): MealNtrIrdntModel {
+        var totalCalorie = 0.0
+        var totalCarbohydrate = 0.0
+        var totalProtein = 0.0
+        var totalFat = 0.0
+        var totalSugar = 0.0
+        var totalSalt = 0.0
+        var totalCholesterol = 0.0
+        var totalSaturatedFattyAcid = 0.0
+        var totalTransFat = 0.0
+
+        calculatorList.forEach {
+            totalCalorie += it.calorie.times(it.servingCount)
+            totalCarbohydrate += it.carbohydrate.times(it.servingCount)
+            totalProtein += it.protein.times(it.servingCount)
+            totalFat += it.fat.times(it.servingCount)
+            totalSugar += it.sugar.times(it.servingCount)
+            totalSalt += it.salt.times(it.servingCount)
+            totalCholesterol += it.cholesterol.times(it.servingCount)
+            totalSaturatedFattyAcid += it.saturatedFattyAcid.times(it.servingCount)
+            totalTransFat += it.transFat.times(it.servingCount)
+        }
+
+        return MealNtrIrdntModel(
+            hashCode().toLong(),
+            ViewType.MEAL_NTR_IRDNT,
+            selectPictureUri.value,
+            selectCalendarDay.value.toString(),
+            calculatorList,
+            totalCalorie,
+            totalCarbohydrate,
+            totalProtein,
+            totalFat,
+            totalSugar,
+            totalSalt,
+            totalCholesterol,
+            totalSaturatedFattyAcid,
+            totalTransFat
+        )
     }
 }

@@ -3,7 +3,7 @@ package sang.gondroid.calingredientfood.data.repository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import sang.gondroid.calingredientfood.data.data_source.FoodNtrIrdntService
-import sang.gondroid.calingredientfood.data.db.FoodNtrIrdntDao
+import sang.gondroid.calingredientfood.data.db.FoodNtrIrdntDAO
 import sang.gondroid.calingredientfood.data.dto.network.NetworkItem
 import sang.gondroid.calingredientfood.data.util.*
 import sang.gondroid.calingredientfood.domain.mapper.FoodNtrIrdntMapper
@@ -18,7 +18,7 @@ import java.lang.Exception
 class FoodNtrIrdntRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher,
     private val foodNtrIrdntService: FoodNtrIrdntService,
-    private val foodNtrIrdntDao: FoodNtrIrdntDao,
+    private val foodNtrIrdntDAO: FoodNtrIrdntDAO,
     private val foodNtrIrdntMapper: FoodNtrIrdntMapper,
 ) : FoodNtrIrdntRepository {
 
@@ -40,7 +40,7 @@ class FoodNtrIrdntRepositoryImpl(
 
     override suspend fun getCustomFoodNtrIrdntList(value: String): List<FoodNtrIrdntModel> =
         withContext(ioDispatcher) {
-            val result = foodNtrIrdntDao.getSearchList(value)
+            val result = foodNtrIrdntDAO.getSearchList(value)
 
             result.map { entity ->
                 foodNtrIrdntMapper.toModel(entity, ViewType.FOOD_NTR_IRDNT)
@@ -50,7 +50,7 @@ class FoodNtrIrdntRepositoryImpl(
     override suspend fun insertCustomFoodNtrIrdnt(foodNtrIrdntModel: FoodNtrIrdntModel) =
         withContext(ioDispatcher) {
             val foodNtrIrdntEntity = foodNtrIrdntMapper.toEntity(foodNtrIrdntModel)
-            foodNtrIrdntDao.insert(foodNtrIrdntEntity)
+            foodNtrIrdntDAO.insert(foodNtrIrdntEntity)
         }
 
     /**
