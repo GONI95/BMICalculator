@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.prolificinteractive.materialcalendarview.CalendarDay
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
+import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
@@ -80,8 +82,15 @@ internal class CalculatorViewModel(
         }
 
     private fun insertMeal() = viewModelScope.launch {
-        val mealNtrIrdntModel = createMealNtrIrdntModel()
-        insertMealNtrIrdntUseCase.invoke(mealNtrIrdntModel)
+        try {
+            require(calculatorList.isNotEmpty())
+
+            val mealNtrIrdntModel = createMealNtrIrdntModel()
+            insertMealNtrIrdntUseCase.invoke(mealNtrIrdntModel)
+
+        } catch (e: IllegalArgumentException) {
+            _calculatorUIStateLiveData.postValue(UIState.Failure)
+        }
     }
 
     private fun createMealNtrIrdntModel(): MealNtrIrdntModel {

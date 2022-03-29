@@ -46,7 +46,7 @@ internal val appModule = module {
      * Repository : Domain과 Data Layer 사이를 중재해주는 객체
      */
     single<FoodNtrIrdntRepository> { FoodNtrIrdntRepositoryImpl(get(), get(), get(), get()) }
-    single<MealNtrIrdntRepository> { MealNtrIrdntRepositoryImpl() }
+    single<MealNtrIrdntRepository> { MealNtrIrdntRepositoryImpl(get(), get(), get()) }
 
     /**
      * Mapper : Model <-> Dto
