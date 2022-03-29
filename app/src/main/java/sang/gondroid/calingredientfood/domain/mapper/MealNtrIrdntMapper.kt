@@ -11,7 +11,7 @@ class MealNtrIrdntMapper(
     override fun toModel(input: MealNtrIrdntEntity, viewType: ViewType): MealNtrIrdntModel {
         return with(input) {
             MealNtrIrdntModel(
-                id!!,
+                id ?: 0,
                 viewType,
                 mealImage,
                 currentDate,
