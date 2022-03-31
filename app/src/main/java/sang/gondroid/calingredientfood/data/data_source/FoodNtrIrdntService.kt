@@ -11,7 +11,7 @@ import sang.gondroid.calingredientfood.data.util.API
  */
 interface FoodNtrIrdntService {
     @GET(API.GET_FNI_LIST)
-    suspend fun getFoodNtrItdnt(
+    suspend fun getSearchList(
         @Query("desc_kor") descKor : String
     ) : Response<NetworkFoodNtrIrdnt>
 }

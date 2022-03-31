@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.data.datastore.PreferencesDataStoreManager
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
+import sang.gondroid.calingredientfood.domain.use_case.InsertCustomFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import sang.gondroid.calingredientfood.presentation.util.Constants
@@ -16,7 +17,8 @@ import java.util.*
 
 
 internal class InsertFoodNtrIrdntViewModel(
-    private val preferencesDataStoreManager: PreferencesDataStoreManager
+    private val preferencesDataStoreManager: PreferencesDataStoreManager,
+    private val insertCustomFoodNtrIrdntUseCase: InsertCustomFoodNtrIrdntUseCase
 ) : BaseViewModel() {
 
     private var savableState = true
@@ -61,7 +63,7 @@ internal class InsertFoodNtrIrdntViewModel(
         }
     }
 
-    fun insertFoodNtrIrdnt() = viewModelScope.launch {
+    fun insertCustomFoodNtrIrdnt() = viewModelScope.launch {
         val inputTextMap = getInputTextMap()
 
         inputTextMap.keys.forEach { key ->
@@ -71,8 +73,11 @@ internal class InsertFoodNtrIrdntViewModel(
             }
         }
 
+        val newFoodNtrIrdntModel = createFoodNtrIrdntModel()
+        insertCustomFoodNtrIrdntUseCase.invoke(newFoodNtrIrdntModel)
+
         removeInputTextData()
-        _event.emit(Event.SetResult(createFoodNtrIrdntModel()))
+        _event.emit(Event.SetResult(newFoodNtrIrdntModel))
     }
 
     private fun getInputTextMap() =

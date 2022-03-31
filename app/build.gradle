@@ -122,4 +122,13 @@ dependencies {
 
     //lifecycleScope
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.2.0'
+
+    //Room
+    def  room_version = "2.3.0"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"   // optional - Kotlin Extensions and Coroutines support for Room
+
+    // Room table을 확인
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 }

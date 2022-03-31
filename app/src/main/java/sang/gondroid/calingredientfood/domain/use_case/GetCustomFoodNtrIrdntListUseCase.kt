@@ -4,12 +4,12 @@ import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 
 /**
- * Gon [22.01.12] : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
+ * Gon [22.03.26] : Room DB에 매개변수에 해당하는 식품 영양성분 검색 결과를 요청
  *                  FoodNtrIrdntRepository를 받아 개별 비즈니스 로직을 담당하는 UseCase
  */
-class GetFoodNtrIrdntListUseCase(
+class GetCustomFoodNtrIrdntListUseCase(
     private val foodNtrIrdntRepository: FoodNtrIrdntRepository
 ) {
-    suspend fun invoke(value: String): List<FoodNtrIrdntModel>? =
-        foodNtrIrdntRepository.getFoodNtrIrdntList(value)
+    suspend fun invoke(value: String): List<FoodNtrIrdntModel> =
+        foodNtrIrdntRepository.getCustomFoodNtrIrdntList(value)
 }

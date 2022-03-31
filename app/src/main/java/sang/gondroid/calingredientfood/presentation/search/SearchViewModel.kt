@@ -8,15 +8,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.R
-import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
-import sang.gondroid.calingredientfood.domain.model.Model
+import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
-import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.util.SearchMode
 import sang.gondroid.calingredientfood.presentation.util.UIState
 
 internal class SearchViewModel(
-    private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntListUseCase
+    private val getFoodNtrIrdntUseCase: GetFoodNtrIrdntListUseCase,
+    private val getSearchCustomFoodNtrIrdntListUseCase: GetCustomFoodNtrIrdntListUseCase
 ) : BaseViewModel() {
 
     /**
@@ -56,19 +55,19 @@ internal class SearchViewModel(
         val currentSearchMode = currentSearchModeLiveData.value
 
         if (currentSearchMode == SearchMode.FOOD) {
-            searchFood(value)
+            searchFoodNtrIrdnt(value)
         } else {
-            searchDate(value)
+            searchCustomFoodNtrIrdnt(value)
         }
     }
 
     /**
-     * Gon [22.02.22] : GetFoodNtrIrdntUseCase로 부터 반환받은 결과를 통해 UIState 업데이트
+     * Gon [22.02.22] : GetCustomFoodNtrIrdntListUseCase 부터 반환받은 결과를 통해 UIState 업데이트
      *                  매개변수 : EditText에 입력한 값
      *
-     *                  GetFoodNtrIrdntUseCase : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
+     *                  GetCustomFoodNtrIrdntListUseCase : Room DB에 매개변수에 해당하는 식품 영양성분 요청
      */
-    private fun searchFood(value : String) = viewModelScope.launch {
+    private fun searchFoodNtrIrdnt(value : String) = viewModelScope.launch {
         _foodNtrIrdnrUIStateLiveData.postValue(UIState.Loading)
 
         val uiState = getFoodNtrIrdntUseCase.invoke(value)?.let {
@@ -82,7 +81,24 @@ internal class SearchViewModel(
         _foodNtrIrdnrUIStateLiveData.postValue(uiState)
     }
 
-    private fun searchDate(value : String) = viewModelScope.launch {
+    /**
+     * Gon [22.02.22] : GetFoodNtrIrdntUseCase로 부터 반환받은 결과를 통해 UIState 업데이트
+     *                  매개변수 : EditText에 입력한 값
+     *
+     *                  GetFoodNtrIrdntUseCase : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
+     */
+    private fun searchCustomFoodNtrIrdnt(value : String) = viewModelScope.launch {
+        val newValue = createRegexpString(value)
+        val uiState = getSearchCustomFoodNtrIrdntListUseCase.invoke(newValue).run {
+            if (this.isNotEmpty()) {
+                UIState.Success(this)
+            } else {
+                UIState.Empty(R.string.ui_state_empty, value)
+            }
+        }
 
+        _foodNtrIrdnrUIStateLiveData.postValue(uiState)
     }
+
+    private fun createRegexpString(value: String) = "%$value%"
 }

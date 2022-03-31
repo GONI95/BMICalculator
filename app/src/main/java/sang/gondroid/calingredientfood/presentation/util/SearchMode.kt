@@ -12,6 +12,6 @@ enum class SearchMode(
     @StringRes val modelName: Int,
     @StringRes val modelDescription: Int
 ) {
-    FOOD(R.drawable.ic_food_bank, R.string.food, R.string.please_word),
-    DATE(R.drawable.ic_calendar_month, R.string.date, R.string.please_date);
+    FOOD(R.drawable.ic_food, R.string.food, R.string.please_food_name),
+    DATE(R.drawable.ic_folder, R.string.custom_food, R.string.please_custom_food_name);
 }

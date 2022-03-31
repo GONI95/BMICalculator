@@ -3,8 +3,8 @@
 
     <string name="greetings">식단 관리를 시작해보세요</string>
 
-    <string name="please_word">식품명 입력</string>
-    <string name="please_date">날짜 입력</string>
+    <string name="please_food_name">식품명 입력</string>
+    <string name="please_custom_food_name">사용자 정의 식품명 입력</string>
     <string name="please_enter_a_search_term">검색어를 입력해주세요.</string>
 
     <string name="add">추가</string>
@@ -42,7 +42,9 @@
 
     <string name="okay">확인</string>
     <string name="same_value_exists">동일한 식품 정보가 존재합니다.</string>
-    <string name="custom_food_ntr_irdnt">사용자 정의 식품</string>
+
+    <string name="food">식품</string>
+    <string name="custom_food">사용자 정의 식품</string>
 
     <string name="please_set_permissions">저장공간 권한이 필요합니다.</string>
 

@@ -3,17 +3,22 @@ package sang.gondroid.calingredientfood.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import sang.gondroid.calingredientfood.CalIngredientFoodApplication.Companion.dataStore
 import sang.gondroid.calingredientfood.data.datastore.PreferencesDataStoreManager
+import sang.gondroid.calingredientfood.data.db.ApplicationDatabase
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
-import sang.gondroid.calingredientfood.domain.mapper.ToFoodNtrIrdntModelMapper
+import sang.gondroid.calingredientfood.data.repository.MealNtrIrdntRepositoryImpl
+import sang.gondroid.calingredientfood.data.util.API
+import sang.gondroid.calingredientfood.domain.mapper.FoodNtrIrdntMapper
+import sang.gondroid.calingredientfood.domain.mapper.MealNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
-import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.repository.MealNtrIrdntRepository
+import sang.gondroid.calingredientfood.domain.use_case.*
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel
@@ -24,24 +29,30 @@ internal val appModule = module {
     /**
      * viewModel
      */
-    viewModel { SearchViewModel(get()) }
-    viewModel { CalculatorViewModel() }
-    viewModel { InsertFoodNtrIrdntViewModel(get()) }
+    viewModel { SearchViewModel(get(), get()) }
+    viewModel { CalculatorViewModel(get()) }
+    viewModel { InsertFoodNtrIrdntViewModel(get(), get()) }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체
      */
-    single { GetFoodNtrIrdntListUseCase(get()) }
+    factory { GetFoodNtrIrdntListUseCase(get()) }
+    factory { GetCustomFoodNtrIrdntListUseCase(get()) }
+    factory { InsertCustomFoodNtrIrdntUseCase(get()) }
+    factory { InsertMealNtrIrdntUseCase(get()) }
+    factory { GetMealNtrIrdntListUseCase(get()) }
 
     /**
      * Repository : Domain과 Data Layer 사이를 중재해주는 객체
      */
-    single<FoodNtrIrdntRepository> { FoodNtrIrdntRepositoryImpl(get(), get(), get(named("toItemModelMapper"))) }
+    single<FoodNtrIrdntRepository> { FoodNtrIrdntRepositoryImpl(get(), get(), get(), get()) }
+    single<MealNtrIrdntRepository> { MealNtrIrdntRepositoryImpl(get(), get(), get()) }
 
     /**
      * Mapper : Model <-> Dto
      */
-    single(named("toItemModelMapper")) { ToFoodNtrIrdntModelMapper() }
+    single { FoodNtrIrdntMapper() }
+    single { MealNtrIrdntMapper(get()) }
 
     /**
      * Adapter
@@ -60,6 +71,13 @@ internal val appModule = module {
      * Preferences DataStore : ProvideDataStore.kt
      */
     single { PreferencesDataStoreManager(getPreferencesDataStore(androidApplication())) }
+
+    /**
+     * Room
+     */
+    single { provideDB(androidApplication()) }
+    single { provideFoodNtrIrdntDao(get()) }
+    single { provideMealNtrIrdntDao(get()) }
 
     /**
      * Coroutine Dispatchers

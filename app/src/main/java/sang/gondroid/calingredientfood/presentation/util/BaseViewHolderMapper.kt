@@ -24,7 +24,7 @@ object BaseViewHolderMapper {
                     LayoutFoodNtrIrdntItemBinding.inflate(inflater, parent, false)
                 )
             }
-            ViewType.CALCULATOR -> {
+            ViewType.CALCULATOR, ViewType.MEAL_NTR_IRDNT -> {
                 CalculatorViewHolder(
                     LayoutCalculatorItemBinding.inflate(inflater, parent, false)
                 )
