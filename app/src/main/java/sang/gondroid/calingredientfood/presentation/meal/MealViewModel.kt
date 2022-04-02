@@ -1,25 +1,22 @@
-package sang.gondroid.calingredientfood.presentation.calculator
+package sang.gondroid.calingredientfood.presentation.meal
 
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
-import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
-import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.util.UIState
 import kotlin.collections.ArrayList
 
-internal class CalculatorViewModel(
+internal class MealViewModel(
     private val insertMealNtrIrdntUseCase: InsertMealNtrIrdntUseCase
 ) : BaseViewModel() {
 

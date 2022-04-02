@@ -7,8 +7,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.databinding.BindingAdapter
-import androidx.viewpager2.widget.ViewPager2
-import me.relex.circleindicator.CircleIndicator3
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
@@ -22,7 +20,6 @@ import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
-import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
 import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpinnerAdapter
 import sang.gondroid.calingredientfood.presentation.widget.decorator.CalendarMinMaxDateDecorator
 import sang.gondroid.calingredientfood.presentation.widget.decorator.LinearDividerDecoration
@@ -30,17 +27,6 @@ import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateD
 
 
 internal object BindingAdapters {
-
-    @JvmStatic
-    @BindingAdapter("setAdapter","setViewPager")
-    fun bindAdapterAndViewPager(
-        circleIndicator: CircleIndicator3,
-        viewPagerAdapter: MainViewPagerAdapter,
-        viewPager: ViewPager2
-    ) {
-        viewPager.adapter = viewPagerAdapter
-        circleIndicator.setViewPager(viewPager)
-    }
 
     /**
      * Gon [22.01.25] : Spinner와 관련된 설정을 해주는 메서드

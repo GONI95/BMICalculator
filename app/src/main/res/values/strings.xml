@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">CalIngredientFood</string>
 
+    <!-- bottom navigation view -->
+    <string name="search">검색</string>
+    <string name="meal">식단</string>
+    <string name="management">관리</string>
+
     <string name="greetings">식단 관리를 시작해보세요</string>
 
     <string name="please_food_name">식품명 입력</string>

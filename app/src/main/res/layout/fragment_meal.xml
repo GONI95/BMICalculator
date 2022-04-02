@@ -5,11 +5,11 @@
     <data>
         <variable
             name="handler"
-            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment" />
+            type="sang.gondroid.calingredientfood.presentation.meal.MealFragment" />
 
         <variable
-            name="calculatorViewModel"
-            type="sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel" />
+            name="mealViewModel"
+            type="sang.gondroid.calingredientfood.presentation.meal.MealViewModel" />
 
         <variable
             name="calculatorAdapter"
@@ -19,10 +19,11 @@
             name="pictureDawable"
             type="android.graphics.drawable.BitmapDrawable" />
 
-        <import type="android.view.View"/>
         <variable
             name="externalStorageState"
             type="Boolean" />
+
+        <import type="android.view.View"/>
 
         <import type="com.prolificinteractive.materialcalendarview.CalendarDay"/>
     </data>
@@ -52,7 +53,7 @@
 
                 <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                     setCalendarView="@{CalendarDay.today()}"
-                    setCalendarDay="@={calculatorViewModel.selectCalendarDay}"
+                    setCalendarDay="@={mealViewModel.selectCalendarDay}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -67,7 +68,7 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
-                    onMenuItemClick="@{calculatorViewModel.onMenuItemClick}"
+                    onMenuItemClick="@{mealViewModel.onMenuItemClick}"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
@@ -170,7 +171,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/calculator_recyclerView"
                         adapter="@{calculatorAdapter}"
-                        submitList="@{calculatorViewModel.calculatorUIStateLiveData}"
+                        submitList="@{mealViewModel.calculatorUIStateLiveData}"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="10dp"
@@ -184,7 +185,7 @@
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/calculator_progress_bar"
-                        showLoading="@{calculatorViewModel.calculatorUIStateLiveData}"
+                        showLoading="@{mealViewModel.calculatorUIStateLiveData}"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"

@@ -8,12 +8,20 @@ import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.base.FragmentListener
 import sang.gondroid.calingredientfood.presentation.util.Constants
+import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.custom.FoodNtrIrdntBottomSheet
 import sang.gondroid.calingredientfood.presentation.widget.custom.NotificationSnackBar
 import sang.gondroid.calingredientfood.presentation.widget.listener.FoodNtrIrdntListener
 
 internal class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
+
+    companion object {
+        const val TAG = "SearchFragment"
+
+        fun newInstance() = SearchFragment()
+    }
+
     override val viewModel: SearchViewModel by viewModel()
 
     override fun getDataBinding(): FragmentSearchBinding =
@@ -34,8 +42,10 @@ internal class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewMo
 
             override fun onClickAddButton(model: FoodNtrIrdntModel) {
                 // Gon [22.03.03] : FragmentListener sendCalculatorItem() 호출 / MainActivity의 구현체가 호출됨
-                fragmentListener?.sendCalculatorItem(model)?.also {
-                    if (!it)
+                val result = fragmentListener?.sendCalculatorItem(model)
+
+                result?.let {
+                    if (result)
                         NotificationSnackBar.make(requireView(), resources.getString(R.string.same_value_exists)).show()
                 }
             }
