@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Theme.CalIngredientFood" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/base_color</item>
@@ -12,21 +13,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
+
         <!-- Customize your theme here. -->
-    </style>
-
-    <!--
-    fitsSystemWindows : view가 차지하는 영역을 statusBar 또는 softKey 영역을 제외하여 확장
-    windowTranslucentStatus : statusBar 투명 설정
-    -->
-    <style name="AppTheme.AppBarOverlay" parent="Theme.CalIngredientFood">
-        <item name="elevation">0dp</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:fitsSystemWindows">true</item>
-    </style>
-
-    <style name="EditTextTheme">
-        <item name="colorControlNormal">@color/second_contrasting_color</item>
-        <item name="colorControlActivated">@color/second_contrasting_color</item>
+        <item name="android:windowSplashScreenBackground">@color/base_color</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/avd_splash_anim</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/ic_splash_branding</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
     </style>
 </resources>
