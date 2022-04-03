@@ -19,7 +19,7 @@
                 android:layout_height="match_parent">
 
                 <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/notification_lottieAnimationView"
+                    android:id="@+id/notificationAnimationView"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginTop="10dp"
@@ -31,7 +31,7 @@
                     app:lottie_rawRes="@raw/notification_character" />
 
                 <TextView
-                    android:id="@+id/notification_info_textView"
+                    android:id="@+id/notificationInfoTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -39,12 +39,12 @@
                     android:text="@string/same_value_exists"
                     android:textColor="@color/white"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/notification_action_button"
-                    app:layout_constraintStart_toEndOf="@+id/notification_lottieAnimationView"
+                    app:layout_constraintEnd_toStartOf="@+id/notificationActionButton"
+                    app:layout_constraintStart_toEndOf="@+id/notificationAnimationView"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <Button
-                    android:id="@+id/notification_action_button"
+                    android:id="@+id/notificationActionButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"

@@ -14,7 +14,7 @@ class CalendarMinMaxDateDecorator(private val minDay: CalendarDay, private val m
     }
 
     override fun decorate(view: DayViewFacade?) {
-        view?.addSpan(ForegroundColorSpan(context.getColor(R.color.gray)))
+        view?.addSpan(ForegroundColorSpan(context.getColor(R.color.hint_color)))
         view?.setDaysDisabled(true)
     }
 }

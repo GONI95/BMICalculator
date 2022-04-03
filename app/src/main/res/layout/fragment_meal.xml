@@ -48,7 +48,7 @@
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentScrim="@color/color_primary"
+                app:contentScrim="@color/base_color"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -64,7 +64,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_gravity="bottom"
-                    android:background="@color/color_shadow_dark" />
+                    android:background="@color/shadow_dark_color" />
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
@@ -95,7 +95,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/food_imageView"
+                    android:id="@+id/foodImageView"
                     android:layout_width="125dp"
                     android:layout_height="125dp"
                     android:layout_marginEnd="8dp"
@@ -107,7 +107,7 @@
                     clipToOutline="@{Boolean.TRUE}" />
 
                 <ImageButton
-                    android:id="@+id/take_picture_imageButton"
+                    android:id="@+id/takePictureImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom|end"
@@ -119,13 +119,14 @@
             </FrameLayout>
 
             <soup.neumorphism.NeumorphCardView
-                android:id="@+id/calculator_neumorphCardView"
+                android:id="@+id/calculatorCardView"
                 style="@style/Theme.CalIngredientFood.Neumorphism"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -141,20 +142,20 @@
                         android:layout_marginStart="15dp"
                         android:gravity="center|start"
                         android:text="@string/custom_food"
-                        app:layout_constraintBottom_toBottomOf="@+id/custom_info_add_button"
-                        app:layout_constraintEnd_toStartOf="@+id/custom_info_add_button"
+                        app:layout_constraintBottom_toBottomOf="@+id/customInfoAddButton"
+                        app:layout_constraintEnd_toStartOf="@+id/customInfoAddButton"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/custom_info_add_button" />
+                        app:layout_constraintTop_toTopOf="@+id/customInfoAddButton" />
 
                     <soup.neumorphism.NeumorphButton
-                        android:id="@+id/custom_info_add_button"
+                        android:id="@+id/customInfoAddButton"
                         style="@style/Theme.CalIngredientFood.Neumorphism.Small.Button"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="5dp"
-                        android:text="@string/add"
                         android:onClick="@{() -> handler.startInsertFoodNtrIrdntActivity()}"
+                        android:text="@string/add"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,14 +163,14 @@
                         android:id="@+id/view"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/color_shadow_dark"
+                        android:background="@color/shadow_dark_color"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/custom_info_add_button" />
+                        app:layout_constraintTop_toBottomOf="@+id/customInfoAddButton" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/calculator_recyclerView"
+                        android:id="@+id/calculatorRecyclerView"
                         adapter="@{calculatorAdapter}"
                         submitList="@{mealViewModel.calculatorUIStateLiveData}"
                         android:layout_width="0dp"
@@ -177,6 +178,7 @@
                         android:layout_marginStart="10dp"
                         android:paddingTop="3dp"
                         android:paddingBottom="3dp"
+                        android:nestedScrollingEnabled="false"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -184,13 +186,13 @@
                         app:layout_constraintTop_toTopOf="@+id/view" />
 
                     <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/calculator_progress_bar"
+                        android:id="@+id/calculatorProgressBar"
                         showLoading="@{mealViewModel.calculatorUIStateLiveData}"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_gravity="center"
-                        app:layout_constraintEnd_toEndOf="@+id/custom_info_add_button"
-                        app:layout_constraintStart_toStartOf="@+id/calculator_recyclerView"
+                        app:layout_constraintEnd_toEndOf="@+id/customInfoAddButton"
+                        app:layout_constraintStart_toStartOf="@+id/calculatorRecyclerView"
                         app:layout_constraintTop_toBottomOf="@+id/view"
                         app:lottie_autoPlay="true"
                         app:lottie_loop="true"

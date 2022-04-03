@@ -10,7 +10,7 @@
 
             <stroke
                 android:width="2dp"
-                android:color="@color/color_secondary" />
+                android:color="@color/highlight_color" />
         </shape>
     </item>
 </layer-list>

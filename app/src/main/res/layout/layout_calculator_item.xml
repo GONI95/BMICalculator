@@ -25,19 +25,19 @@
         android:layout_marginBottom="20dp">
 
         <ImageButton
-            android:id="@+id/calculator_delete_button"
+            android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:background="@android:color/transparent"
             android:src="@drawable/ic_delete"
-            app:layout_constraintBottom_toBottomOf="@+id/calculator_description_kor_textView"
+            app:layout_constraintBottom_toBottomOf="@+id/descriptionKorTextView"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/calculator_description_kor_textView"
-            app:layout_constraintTop_toTopOf="@+id/calculator_description_kor_textView" />
+            app:layout_constraintStart_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toTopOf="@+id/descriptionKorTextView" />
 
         <TextView
-            android:id="@+id/calculator_description_kor_textView"
+            android:id="@+id/descriptionKorTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -45,74 +45,74 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{item.descriptionKOR}"
-            android:textColor="@color/color_on_secondary"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/calculator_delete_button"
+            app:layout_constraintEnd_toStartOf="@+id/deleteButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="식품 명" />
 
         <TextView
-            android:id="@+id/calculator_company_textView"
+            android:id="@+id/companyTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="@{item.company}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/calculator_description_kor_textView"
-            app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/calculator_description_kor_textView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionKorTextView"
             tools:text="업체 명" />
 
         <TextView
-            android:id="@+id/calculator_serving_weight_textView"
+            android:id="@+id/servingWeightTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@{@string/serving_weight_desc_info(item.servingCount, item.servingWeight * item.servingCount)}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/calculator_company_textView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/companyTextView"
             tools:text="1회 제공량" />
 
         <TextView
-            android:id="@+id/calculator_calorie_textView"
+            android:id="@+id/calorieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{@string/calorie_desc_info(item.calorie * item.servingCount)}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/calculator_serving_weight_textView"
-            app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/calculator_serving_weight_textView"
+            app:layout_constraintEnd_toEndOf="@+id/servingWeightTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/servingWeightTextView"
             tools:text="칼로리" />
 
         <TextView
-            android:id="@+id/calculator_three_major_ntr_textView"
+            android:id="@+id/threeMajorNtrTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{@string/three_major_ntr_desc_info(item.carbohydrate * item.servingCount, item.protein * item.servingCount, item.fat * item.servingCount)}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/calculator_serving_weight_textView"
-            app:layout_constraintStart_toStartOf="@+id/calculator_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/calculator_calorie_textView"
+            app:layout_constraintEnd_toEndOf="@+id/servingWeightTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
             tools:text="탄.단.지" />
 
         <sang.gondroid.calingredientfood.presentation.widget.custom.HorizontalNumberCounter
-            android:id="@+id/calculator_number_counter"
+            android:id="@+id/numberCounter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toEndOf="@+id/calculator_delete_button"
-            app:layout_constraintTop_toBottomOf="@+id/calculator_three_major_ntr_textView"
+            app:layout_constraintEnd_toEndOf="@+id/deleteButton"
+            app:layout_constraintTop_toBottomOf="@+id/threeMajorNtrTextView"
             app:default_text="1"
             nc_text="@{Integer.toString(item.servingCount)}"
             app:nc_maxValue="99"
             app:nc_minValue="1"
-            app:nc_textColor="@color/color_on_secondary"
+            app:nc_textColor="@color/text_color"
             app:nc_textSize="16sp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

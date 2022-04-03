@@ -7,9 +7,9 @@
     neumorph_backgroundColor : 배경 색상
     -->
     <style name="Theme.CalIngredientFood.Neumorphism">
-        <item name="neumorph_shadowColorLight">@color/color_shadow_light</item>
-        <item name="neumorph_shadowColorDark">@color/color_shadow_dark</item>
-        <item name="neumorph_backgroundColor">@color/color_primary</item>
+        <item name="neumorph_shadowColorLight">@color/shadow_light_color</item>
+        <item name="neumorph_shadowColorDark">@color/shadow_dark_color</item>
+        <item name="neumorph_backgroundColor">@color/base_color</item>
     </style>
 
     <!--
@@ -20,7 +20,7 @@
     -->
     <style name="Theme.CalIngredientFood.EditText" parent="Widget.AppCompat.EditText">
         <item name="android:background">@null</item>
-        <item name="android:textColor">@color/color_on_secondary</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">16sp</item>
         <item name="android:singleLine">true</item>
         <item name="android:maxLength">30</item>
@@ -34,7 +34,7 @@
     -->
     <style name="Theme.CalIngredientFood.AnimationEditText" parent="Widget.AppCompat.EditText">
         <item name="android:textSelectHandle">@color/highlight_color</item>
-        <item name="android:textColorHighlight">@color/second_highlight_color</item>
+        <item name="android:textColorHighlight">@color/light_highlight_color</item>
         <item name="android:textCursorDrawable">@color/highlight_color</item>
         <item name="android:textColor">@color/text_color</item>
     </style>
@@ -46,13 +46,10 @@
     neumorph_backgroundColor : 배경 색상
       -->
     <style name="Theme.CalIngredientFood.Neumorphism.Small.Button" parent="Widget.Neumorph.Button">
-        <item name="android:textColor">@color/color_on_light_secondary</item>
+        <item name="android:textColor">@color/light_text_color</item>
         <item name="android:minHeight">48dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:textSize">12sp</item>
-        <item name="neumorph_shadowColorLight">@color/color_shadow_light</item>
-        <item name="neumorph_shadowColorDark">@color/color_shadow_dark</item>
-        <item name="neumorph_backgroundColor">@color/color_primary</item>
         <item name="neumorph_shadowElevation">4dp</item>
     </style>
 
@@ -61,7 +58,7 @@
     -->
     <style name="Theme.CalIngredientFood.Dome.Top.TextView" parent="Widget.AppCompat.TextView">
         <item name="android:background">@drawable/bg_dome_top_design</item>
-        <item name="android:textColor">@color/color_primary</item>
+        <item name="android:textColor">@color/base_color</item>
         <item name="android:textSize">13sp</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">3dp</item>
@@ -72,7 +69,7 @@
     -->
     <style name="Theme.CalIngredientFood.Dome.Bottom.TextView" parent="Widget.AppCompat.TextView">
         <item name="android:background">@drawable/bg_dome_bottom_design</item>
-        <item name="android:textColor">@color/color_on_light_secondary</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">11sp</item>
         <item name="android:gravity">center</item>
         <item name="android:padding">3dp</item>
@@ -88,7 +85,6 @@
     <style name="Theme.CalIngredientFood.BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Theme.CalIngredientFood.BottomSheet.Modal</item>
         <item name="android:windowIsFloating">false</item>
-        <item name="android:navigationBarColor">@color/color_primary</item>
     </style>
 
     <!--
@@ -106,7 +102,7 @@
     cardElevation : CardView 고도 설정
      -->
     <style name="Theme.CalIngredientFood.NotificationSnackBar.CardView" parent="CardView">
-        <item name="cardBackgroundColor">@color/dark_gray</item>
+        <item name="cardBackgroundColor">@color/dark_contrasting_color</item>
         <item name="cardCornerRadius">5dp</item>
         <item name="cardElevation">0dp</item>
     </style>

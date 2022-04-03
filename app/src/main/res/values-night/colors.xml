@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="pink">#FF6398</color>
-    <color name="dark_gray">#555555</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-
-    <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pink">#FF6398</color>
 
-    <color name="color_primary">#26282B</color>
-    <color name="color_shadow_light">#2C2E32</color>
-    <color name="color_shadow_dark">#212225</color>
-
-    <color name="color_secondary_pale">#FBEEA8</color>
-
-    <color name="color_secondary">#FAE36E</color>
-    <color name="color_secondary_variant">#CFB461</color>
-    <color name="color_on_secondary">#F8F7EF</color>
-    <color name="color_on_light_secondary">#E6E6DF</color>
+    <color name="base_color">#EFF2F4</color>
+    <color name="shadow_light_color">#FEFEFF</color>
+    <color name="shadow_dark_color">#DBE0E7</color>
 
     <color name="highlight_color">#0B469A</color>
-    <color name="second_highlight_color">#3A88FD</color>
-    <color name="hint_color">#969696</color>
+    <color name="light_highlight_color">#3A88FD</color>
+
     <color name="text_color">#595959</color>
-    <color name="base_color">#FFFFFFFF</color>
+    <color name="light_text_color">#808080</color>
+    <color name="hint_color">#AFAFAF</color>
+
     <color name="contrasting_color">#000000</color>
-    <color name="second_contrasting_color">#7A7A7A</color>
+    <color name="dark_contrasting_color">#636363</color>
+    <color name="light_contrasting_color">#7A7A7A</color>
+
     <color name="error_color">#AC0000</color>
+
     <color name="transparent_color">#00000000</color>
 </resources>

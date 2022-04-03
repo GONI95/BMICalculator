@@ -20,49 +20,72 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
-            onOffsetChanged="@{toolbarMotionLayout}"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:theme="@style/AppTheme.AppBarOverlay">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <androidx.constraintlayout.motion.widget.MotionLayout
-                    android:id="@+id/toolbar_motionLayout"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:layoutDescription="@xml/toolbar_scene"
-                    app:layout_collapseMode="parallax">
+                    android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/fried_chicken_imageView"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        android:src="@drawable/ic_icon_fried_chicken"
-                        tools:layout_editor_absoluteX="28dp"
-                        tools:layout_editor_absoluteY="55dp" />
-
-                    <ImageView
-                        android:id="@+id/sandwich_imageView"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
+                        android:rotation="30"
+                        android:src="@drawable/ic_icon_fried_chicken"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.2" />
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:rotation="-30"
                         android:src="@drawable/ic_icon_sandwich"
-                        tools:layout_editor_absoluteX="183dp"
-                        tools:layout_editor_absoluteY="100dp" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.7"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.45" />
 
                     <TextView
-                        android:id="@+id/greetings_textView"
+                        android:id="@+id/greetingsTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/greetings"
-                        android:textColor="@color/color_on_secondary"
+                        android:textColor="@color/text_color"
                         android:textSize="24sp"
-                        android:textStyle="bold" />
-                </androidx.constraintlayout.motion.widget.MotionLayout>
+                        android:textStyle="bold"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        app:layout_constraintBottom_toTopOf="@+id/slideUpTextView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.8" />
+
+                    <TextView
+                        android:id="@+id/slideUpTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/please_slideUp"
+                        android:textColor="@color/hint_color"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/greetingsTextView" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -73,14 +96,14 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <soup.neumorphism.NeumorphCardView
-                android:id="@+id/search_neumorphCardView"
+                android:id="@+id/searchCardView"
+                style="@style/Theme.CalIngredientFood.Neumorphism"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/response_motionLayout"
-                app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
-                app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
-                app:layout_constraintTop_toTopOf="@+id/horizontal_top_guideline"
-                style="@style/Theme.CalIngredientFood.Neumorphism">
+                app:layout_constraintBottom_toTopOf="@+id/responseCardView"
+                app:layout_constraintEnd_toStartOf="@+id/verticalRightGuideline"
+                app:layout_constraintStart_toStartOf="@+id/verticalLeftGuideline"
+                app:layout_constraintTop_toTopOf="@+id/horizontalTopGuideline">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -88,84 +111,74 @@
 
                     <Spinner
                         android:id="@+id/search_mode_spinner"
+                        setSpinner="@{searchViewModel.currentSearchModeLiveData}"
                         android:layout_width="wrap_content"
                         android:layout_height="48dp"
                         android:background="@drawable/bg_spinner_search_mode"
-                        setSpinner="@{searchViewModel.currentSearchModeLiveData}"
-                        android:onItemSelected="@{searchViewModel::onSelectItem}"/>
+                        android:onItemSelected="@{searchViewModel::onSelectItem}" />
 
                     <EditText
-                        android:id="@+id/search_editText"
+                        android:id="@+id/searchEditText"
+                        style="@style/Theme.CalIngredientFood.EditText"
+                        onEditorEnterAction="@{searchViewModel.searchFunc}"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="20dp"
-                        android:hint="@{searchViewModel.currentSearchModeLiveData.modelDescription}"
-                        onEditorEnterAction="@{searchViewModel.searchFunc}"
-                        targetMotionLayout="@{responseMotionLayout}"
-                        style="@style/Theme.CalIngredientFood.EditText"/>
+                        android:hint="@{searchViewModel.currentSearchModeLiveData.modelDescription}" />
 
                 </LinearLayout>
             </soup.neumorphism.NeumorphCardView>
 
 
-            <androidx.constraintlayout.motion.widget.MotionLayout
-                android:id="@+id/response_motionLayout"
+            <soup.neumorphism.NeumorphCardView
+                android:id="@+id/responseCardView"
+                style="@style/Theme.CalIngredientFood.Neumorphism"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                app:layoutDescription="@xml/fragment_calculator_scene"
-                app:layout_constraintBottom_toTopOf="@+id/horizontal_bottom_guideline"
-                app:layout_constraintEnd_toStartOf="@+id/vertical_right_guideline"
-                app:layout_constraintStart_toStartOf="@+id/vertical_left_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/search_neumorphCardView">
+                app:layout_constraintBottom_toTopOf="@+id/horizontalBottomGuideline"
+                app:layout_constraintEnd_toStartOf="@+id/verticalRightGuideline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/verticalLeftGuideline"
+                app:layout_constraintTop_toBottomOf="@+id/searchCardView">
 
-                <soup.neumorphism.NeumorphCardView
-                    android:id="@+id/response_neumorphCardView"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    style="@style/Theme.CalIngredientFood.Neumorphism">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                    <FrameLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/responseRecyclerView"
+                        adapter="@{foodNtrIrdntAdapter}"
+                        submitList="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="false"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/response_recyclerView"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:paddingTop="3dp"
-                            android:paddingBottom="3dp"
-                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            adapter="@{foodNtrIrdntAdapter}"
-                            submitList="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"/>
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/responseProgressBar"
+                        showLoading="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/horizontal_progress_bar" />
 
-                        <com.airbnb.lottie.LottieAnimationView
-                            android:id="@+id/response_progressBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            app:lottie_autoPlay="true"
-                            app:lottie_loop="true"
-                            app:lottie_rawRes="@raw/horizontal_progress_bar"
-                            showLoading="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"/>
-
-                        <TextView
-                            android:id="@+id/response_ui_state_textView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="20dp"
-                            android:gravity="center"
-                            showMessage="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"/>
-                    </FrameLayout>
-                </soup.neumorphism.NeumorphCardView>
-            </androidx.constraintlayout.motion.widget.MotionLayout>
+                    <TextView
+                        android:id="@+id/responseUIStateTextView"
+                        showMessage="@{searchViewModel.foodNtrIrdnrUIStateLiveData}"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:gravity="center" />
+                </FrameLayout>
+            </soup.neumorphism.NeumorphCardView>
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/vertical_left_guideline"
+                android:id="@+id/verticalLeftGuideline"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -174,7 +187,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/vertical_right_guideline"
+                android:id="@+id/verticalRightGuideline"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -183,16 +196,16 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/horizontal_top_guideline"
+                android:id="@+id/horizontalTopGuideline"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintGuide_percent="0.05"
+                app:layout_constraintGuide_percent="0.02"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/horizontal_bottom_guideline"
+                android:id="@+id/horizontalBottomGuideline"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:orientation="horizontal"

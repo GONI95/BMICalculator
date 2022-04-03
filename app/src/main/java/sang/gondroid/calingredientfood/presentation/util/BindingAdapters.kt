@@ -14,6 +14,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -63,8 +64,8 @@ internal object BindingAdapters {
      *                  UIState가 Success인 경우 submitList 호출과 View VISIBLE 아닌 경우 View INVISIBLE
      */
     @JvmStatic
-    @BindingAdapter("onEditorEnterAction", "targetMotionLayout")
-    fun EditText.onEditorEnterAction(searchFunc: Function1<String, Unit>, motionLayout: MotionLayout) {
+    @BindingAdapter("onEditorEnterAction")
+    fun EditText.onEditorEnterAction(searchFunc: Function1<String, Unit>) {
 
         setOnEditorActionListener { v, actionId, _ ->
 
@@ -83,7 +84,6 @@ internal object BindingAdapters {
                  */
                 if (imeText && imeAction) {
                     true.also {
-                        motionLayout.transitionToEnd()
                         searchFunc(replaceText)
                     }
                 }

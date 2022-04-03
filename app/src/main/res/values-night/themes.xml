@@ -1,17 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.CalIngredientFood" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryVariant">@color/color_primary</item>
-        <item name="colorOnPrimary">@color/color_primary</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/color_secondary</item>
-        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
+
+        <!-- Status bar color / icon color -->
+        <item name="android:statusBarColor" tools:targetApi="l">@color/base_color</item>
         <item name="android:windowLightStatusBar">true</item>
+        <!-- Navigation bar color / icon color [미설정]-->
+        <item name="android:navigationBarColor">@color/base_color</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -23,10 +18,11 @@
         <item name="elevation">0dp</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:fitsSystemWindows">true</item>
+        <item name="android:background">@color/base_color</item>
     </style>
 
     <style name="EditTextStyle">
-        <item name="colorControlNormal">@color/error_color</item>
-        <item name="colorControlActivated">@color/contrasting_color</item>
+        <item name="colorControlNormal">@color/light_contrasting_color</item>
+        <item name="colorControlActivated">@color/light_contrasting_color</item>
     </style>
 </resources>
