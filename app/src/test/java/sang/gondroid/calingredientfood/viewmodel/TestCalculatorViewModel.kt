@@ -8,11 +8,11 @@ import org.junit.Test
 import org.koin.test.inject
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListUseCase
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
+import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
 
 @ExperimentalCoroutinesApi
 class TestCalculatorViewModel : ViewModelTest() {
-    private val viewModel: CalculatorViewModel by inject()
+    private val viewModel: MealViewModel by inject()
     private val getMealListIrdntUseCase: GetMealNtrIrdntListUseCase by inject()
 
     @Before

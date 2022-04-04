@@ -21,20 +21,20 @@ class CalculatorViewHolder(
                 adapterListener.onClickItem(model)
             }
 
-            binding.calculatorDeleteButton.setOnClickListener {
+            binding.deleteButton.setOnClickListener {
                 adapterListener.onClickRemoveButton(model)
             }
 
-            val counUpButtonClicklistener = View.OnClickListener {
+            val countUpButtonClicklistener = View.OnClickListener {
                 adapterListener.onClickCountUpdateButton(model.servingCount + 1, adapterPosition)
             }
 
-            val counDownButtonClicklistener = View.OnClickListener {
+            val countDownButtonClicklistener = View.OnClickListener {
                 adapterListener.onClickCountUpdateButton(model.servingCount - 1, adapterPosition)
             }
 
-            binding.calculatorNumberCounter.countUpButton.setOnClickListener(counUpButtonClicklistener)
-            binding.calculatorNumberCounter.countDownButton.setOnClickListener(counDownButtonClicklistener)
+            binding.numberCounter.countUpButton.setOnClickListener(countUpButtonClicklistener)
+            binding.numberCounter.countDownButton.setOnClickListener(countDownButtonClicklistener)
         }
     }
 }

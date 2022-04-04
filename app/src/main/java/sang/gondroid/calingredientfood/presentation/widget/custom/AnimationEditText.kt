@@ -86,7 +86,7 @@ class AnimationEditText @JvmOverloads constructor(
 
     fun clearError() {
         binding.infoEditText.setCompoundDrawables(null, null, null, null)
-        binding.infoEditText.backgroundTintList = ContextCompat.getColorStateList(context, R.color.second_contrasting_color)
+        binding.infoEditText.backgroundTintList = ContextCompat.getColorStateList(context, R.color.light_contrasting_color)
         binding.errorTextView.text = null
     }
 

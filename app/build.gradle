@@ -79,10 +79,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$ktx_version"
     //implementation "androidx.fragment:fragment-ktx:$androidx_version"
 
-    // Circleindicator [ ViewPager 상태 표시줄 ]
-    def circleindicator_version = "2.1.6"
-    implementation "me.relex:circleindicator:$circleindicator_version"
-
     // Coroutines
     def coroutine_version = "1.4.2"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"

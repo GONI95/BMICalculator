@@ -10,7 +10,7 @@ import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.ActivityInsertFoodNtrIrdntBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseActivity
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorFragment
+import sang.gondroid.calingredientfood.presentation.meal.MealFragment
 import sang.gondroid.calingredientfood.presentation.util.Constants
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel.Event
 
@@ -41,7 +41,7 @@ internal class InsertFoodNtrIrdntActivity : BaseActivity<ActivityInsertFoodNtrIr
     }
 
     private fun setResult(data: FoodNtrIrdntModel) {
-        val intent = Intent(this, CalculatorFragment::class.java)
+        val intent = Intent(this, MealFragment::class.java)
         intent.putExtra(Constants.FOOD_NTR_IRDNT_MODEL_KEY, data)
         setResult(RESULT_OK, intent)
 

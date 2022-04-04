@@ -1,4 +1,4 @@
-package sang.gondroid.calingredientfood.presentation.calculator
+package sang.gondroid.calingredientfood.presentation.meal
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -20,12 +20,11 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.Lifecycle
 import org.koin.android.viewmodel.ext.android.viewModel
 import sang.gondroid.calingredientfood.R
-import sang.gondroid.calingredientfood.databinding.FragmentCalculatorBinding
+import sang.gondroid.calingredientfood.databinding.FragmentMealBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntActivity
 import sang.gondroid.calingredientfood.presentation.util.Constants
-import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.custom.FoodNtrIrdntBottomSheet
 import sang.gondroid.calingredientfood.presentation.widget.custom.NotificationSnackBar
@@ -35,9 +34,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, CalculatorViewModel>() {
+internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
 
     companion object {
+        const val TAG = "MealFragment"
+
+        fun newInstance() = MealFragment()
+
         private val REQUIRED_PERMISSION = arrayOf(
             Manifest.permission.WRITE_EXTERNAL_STORAGE
         )
@@ -53,9 +56,9 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
 
     private val calculatorSet = mutableSetOf<FoodNtrIrdntModel>()
 
-    override val viewModel: CalculatorViewModel by viewModel()
+    override val viewModel: MealViewModel by viewModel()
 
-    override fun getDataBinding(): FragmentCalculatorBinding = FragmentCalculatorBinding.inflate(layoutInflater)
+    override fun getDataBinding(): FragmentMealBinding = FragmentMealBinding.inflate(layoutInflater)
 
     /**
      * Gon [22.02.14] : BaseRecyclerViewAdapter 객체, CalculatorViewHolder의 Event가 발생되면 호출되는 CalculatorListener 구현체
@@ -139,9 +142,9 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
         }
 
     override fun initViews() = with(binding) {
-        calculatorViewModel = viewModel
-        calculatorAdapter = this@CalculatorFragment.calculatorAdapter
-        handler = this@CalculatorFragment
+        mealViewModel = viewModel
+        calculatorAdapter = this@MealFragment.calculatorAdapter
+        handler = this@MealFragment
 
         // Gon [22.03.14] : 외부 저장소는 항상 접근이 보장되어 있지 않음(이동식 SD 카드 제거 등)
         externalStorageState = Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED
@@ -233,23 +236,18 @@ internal class CalculatorFragment : BaseFragment<FragmentCalculatorBinding, Calc
     /**
      * Gon [22.03.03] : MainActivity에서 FragmentListener의 sendCalculatorItem()에 의해 호출됨
      *                  Fragment가 초기화 되지않은 상태에서 ViewModel을 호출할 수 없기 때문에 Lifecycle 상태가
-     *                  INITIALIZED인 경우 calculatorList 담아둠
+     *                  INITIALIZED인 경우 calculatorSet에 담아둠
      *                  STARTED로 변경가 호출된 경우부턴 viewModel.addCalculatorItem() 호출
      */
     fun receiveCalculatorItem(model: FoodNtrIrdntModel): Boolean =
-        when(lifecycle.currentState) {
-            Lifecycle.State.INITIALIZED -> {
-                if (calculatorSet.contains(model))
-                    false
-                else {
-                    calculatorSet.add(model)
-                    true
-                }
-            }
+        if (lifecycle.currentState == Lifecycle.State.INITIALIZED) {
+            calculatorSet.add(model)
+                .not()
 
-            else ->
-                viewModel.addCalculatorItem(model)
+        } else {
+            viewModel.addCalculatorItem(model)
         }
+
 
     override fun observeData() { }
 }

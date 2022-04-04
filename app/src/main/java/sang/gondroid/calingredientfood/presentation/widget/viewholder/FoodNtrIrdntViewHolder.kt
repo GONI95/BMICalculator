@@ -18,7 +18,7 @@ class FoodNtrIrdntViewHolder(
             binding.root.setOnClickListener {
                 adapterListener.onClickItem(model)
             }
-            binding.foodNtrIrdntAddButton.setOnClickListener {
+            binding.addButton.setOnClickListener {
                 adapterListener.onClickAddButton(model)
             }
         }

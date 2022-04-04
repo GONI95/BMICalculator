@@ -12,14 +12,15 @@ import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntList
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
+import sang.gondroid.calingredientfood.presentation.management.ManagementViewModel
+import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 
 internal val appTestModule = module {
 
     // ViewMdoel
     viewModel { SearchViewModel(get(), get()) }
-    viewModel { CalculatorViewModel(get()) }
+    viewModel { MealViewModel(get()) }
 
     // UseCase
     factory { GetFoodNtrIrdntListUseCase(get<FoodNtrIrdntRepository>()) }

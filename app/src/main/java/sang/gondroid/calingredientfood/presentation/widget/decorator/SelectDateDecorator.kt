@@ -15,7 +15,7 @@ class SelectDateDecorator(private val context: Context, private val selectDay: C
     }
 
     override fun decorate(view: DayViewFacade?) {
-        view?.addSpan(ForegroundColorSpan(context.getColor(R.color.black)))
+        view?.addSpan(ForegroundColorSpan(context.getColor(R.color.contrasting_color)))
         val drawable = context.getDrawable(R.drawable.bg_selected_date_decorator_design)
 
         if (drawable != null) {

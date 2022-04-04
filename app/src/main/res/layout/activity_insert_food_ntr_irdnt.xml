@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel" />
@@ -27,7 +26,7 @@
             android:layout_height="200dp"
             android:gravity="center_vertical"
             android:paddingStart="30dp"
-            android:text="@string/create_food_ntr_irdnt"
+            android:text="@string/create_custom_food_ntr_irdnt"
             android:textColor="@color/contrasting_color"
             android:textSize="26sp"
             android:textStyle="bold"

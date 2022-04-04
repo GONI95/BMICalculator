@@ -1,7 +1,13 @@
 <resources>
     <string name="app_name">CalIngredientFood</string>
 
+    <!-- bottom navigation view -->
+    <string name="search">검색</string>
+    <string name="meal">식단</string>
+    <string name="management">관리</string>
+
     <string name="greetings">식단 관리를 시작해보세요</string>
+    <string name="please_slideUp">저를 위로 밀어주세요</string>
 
     <string name="please_food_name">식품명 입력</string>
     <string name="please_custom_food_name">사용자 정의 식품명 입력</string>
@@ -56,7 +62,7 @@
     <string name="please_input_protein">단백질을 입력해주세요. (단위: g)</string>
     <string name="please_input_fat">지방을 입력해주세요. (단위: g)</string>
 
-    <string name="create_food_ntr_irdnt">나만의\n식품 영양 성분표를\n만들어 볼까요?</string>
+    <string name="create_custom_food_ntr_irdnt">나만의\n식품 영양 성분표를\n만들어 볼까요?</string>
     <string name="save">저장하기</string>
 
     <string name="must_not_be_empty">필수 항목이 비어있습니다.</string>

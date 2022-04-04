@@ -3,26 +3,23 @@ package sang.gondroid.calingredientfood.di
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.room.Room
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import sang.gondroid.calingredientfood.CalIngredientFoodApplication.Companion.dataStore
 import sang.gondroid.calingredientfood.data.datastore.PreferencesDataStoreManager
-import sang.gondroid.calingredientfood.data.db.ApplicationDatabase
 import sang.gondroid.calingredientfood.data.repository.FoodNtrIrdntRepositoryImpl
 import sang.gondroid.calingredientfood.data.repository.MealNtrIrdntRepositoryImpl
-import sang.gondroid.calingredientfood.data.util.API
 import sang.gondroid.calingredientfood.domain.mapper.FoodNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.mapper.MealNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.repository.MealNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.use_case.*
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
-import sang.gondroid.calingredientfood.presentation.calculator.CalculatorViewModel
+import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel
-import sang.gondroid.calingredientfood.presentation.widget.adapter.MainViewPagerAdapter
+import sang.gondroid.calingredientfood.presentation.management.ManagementViewModel
 
 internal val appModule = module {
 
@@ -30,8 +27,9 @@ internal val appModule = module {
      * viewModel
      */
     viewModel { SearchViewModel(get(), get()) }
-    viewModel { CalculatorViewModel(get()) }
+    viewModel { MealViewModel(get()) }
     viewModel { InsertFoodNtrIrdntViewModel(get(), get()) }
+    viewModel { ManagementViewModel() }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체
@@ -53,11 +51,6 @@ internal val appModule = module {
      */
     single { FoodNtrIrdntMapper() }
     single { MealNtrIrdntMapper(get()) }
-
-    /**
-     * Adapter
-     */
-    factory { MainViewPagerAdapter(it[0], it[1]) }
 
     /**
      * Network : ProvideAPI.kt

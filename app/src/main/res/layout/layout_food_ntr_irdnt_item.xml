@@ -17,18 +17,18 @@
         android:layout_marginBottom="20dp">
 
         <soup.neumorphism.NeumorphButton
-            android:id="@+id/foodNtrIrdnt_add_button"
+            android:id="@+id/addButton"
             style="@style/Theme.CalIngredientFood.Neumorphism.Small.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@string/add"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintStart_toEndOf="@+id/descriptionKorTextView"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/foodNtrIrdnt_description_kor_textView"
+            android:id="@+id/descriptionKorTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -36,60 +36,60 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{item.descriptionKOR}"
-            android:textColor="@color/color_on_secondary"
+            android:textColor="@color/text_color"
             android:textSize="16sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/foodNtrIrdnt_add_button"
+            app:layout_constraintEnd_toStartOf="@+id/addButton"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="식품 명" />
 
         <TextView
-            android:id="@+id/foodNtrIrdnt_company_textView"
+            android:id="@+id/companyTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:maxLines="1"
             android:text="@{item.company}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_description_kor_textView"
-            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_description_kor_textView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionKorTextView"
             tools:text="업체 명" />
 
         <TextView
-            android:id="@+id/foodNtrIrdnt_serving_weight_textView"
+            android:id="@+id/servingWeightTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@{@string/serving_weight_desc_info(item.servingCount, item.servingWeight)}"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_company_textView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/companyTextView"
             tools:text="1회 제공량" />
 
         <TextView
-            android:id="@+id/foodNtrIrdnt_calorie_textView"
+            android:id="@+id/calorieTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{@string/calorie_desc_info(item.calorie)}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_serving_weight_textView"
-            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_serving_weight_textView"
+            app:layout_constraintEnd_toEndOf="@+id/servingWeightTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/servingWeightTextView"
             tools:text="칼로리" />
 
         <TextView
-            android:id="@+id/foodNtrIrdnt_three_major_ntr_textView"
+            android:id="@+id/threeMajorNtrTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="@{@string/three_major_ntr_desc_info(item.carbohydrate, item.protein, item.fat)}"
             android:textSize="12sp"
-            app:layout_constraintEnd_toEndOf="@+id/foodNtrIrdnt_serving_weight_textView"
-            app:layout_constraintStart_toStartOf="@+id/foodNtrIrdnt_description_kor_textView"
-            app:layout_constraintTop_toBottomOf="@+id/foodNtrIrdnt_calorie_textView"
+            app:layout_constraintEnd_toEndOf="@+id/servingWeightTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
             tools:text="탄.단.지" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
