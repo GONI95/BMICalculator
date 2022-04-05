@@ -1,15 +1,12 @@
 package sang.gondroid.calingredientfood.presentation.widget.adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import sang.gondroid.calingredientfood.databinding.LayoutFoodNtrIrdntItemBinding
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.util.BaseViewHolderMapper
 import sang.gondroid.calingredientfood.presentation.widget.listener.AdapterListener
 import sang.gondroid.calingredientfood.presentation.widget.viewholder.BaseViewHolder
-import sang.gondroid.calingredientfood.presentation.widget.viewholder.FoodNtrIrdntViewHolder
 
 /**
  * Gon [22.01.20] : Adapter에서 공통적으로 사용될 메서드 정의

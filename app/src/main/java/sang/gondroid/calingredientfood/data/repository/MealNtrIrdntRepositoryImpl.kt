@@ -1,7 +1,10 @@
 package sang.gondroid.calingredientfood.data.repository
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 import sang.gondroid.calingredientfood.data.db.MealNtrIrdntDAO
 import sang.gondroid.calingredientfood.domain.mapper.MealNtrIrdntMapper
@@ -14,7 +17,7 @@ class MealNtrIrdntRepositoryImpl(
     private val ioDispatcher: CoroutineDispatcher,
     private val mealNtrIrdntDAO: MealNtrIrdntDAO,
     private val mealNtrIrdntMapper: MealNtrIrdntMapper
-): MealNtrIrdntRepository {
+) : MealNtrIrdntRepository {
     override fun getMealNtrIrdntList(): Flow<List<MealNtrIrdntModel>> = flow {
         mealNtrIrdntDAO.getMealNtrIrdntList()
             .map { mealNtrIrdntEntityList ->
@@ -28,7 +31,6 @@ class MealNtrIrdntRepositoryImpl(
             }
     }
 
-
     override suspend fun insertMealNtrIrdnt(mealNtrIrdntModel: MealNtrIrdntModel) =
         withContext(ioDispatcher) {
             val mealNtrIrdntEntity = mealNtrIrdntMapper.toEntity(mealNtrIrdntModel)
@@ -38,5 +40,4 @@ class MealNtrIrdntRepositoryImpl(
 
             mealNtrIrdntDAO.insert(mealNtrIrdntEntity)
         }
-
 }

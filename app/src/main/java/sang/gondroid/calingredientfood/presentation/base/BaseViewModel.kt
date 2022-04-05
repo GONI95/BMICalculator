@@ -6,7 +6,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
-
 internal abstract class BaseViewModel : ViewModel() {
 
     /**

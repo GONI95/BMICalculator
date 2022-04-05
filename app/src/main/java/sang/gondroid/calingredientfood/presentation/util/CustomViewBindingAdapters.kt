@@ -39,11 +39,10 @@ object CustomViewBindingAdapters {
     fun AnimationEditText.setTextWatcher(textAttrChagned: InverseBindingListener?) {
         infoEditText.addTextChangedListener { editable ->
             editable?.let {
-                if(it.isNotEmpty()) {
+                if (it.isNotEmpty()) {
                     hintUpAnimation()
                     clearError()
-                }
-                else {
+                } else {
                     hintDownAnimation()
                 }
             }
@@ -62,7 +61,7 @@ object CustomViewBindingAdapters {
     @JvmStatic
     fun AnimationEditText.mustNotEmpty(message: String) {
         infoEditText.setOnFocusChangeListener { _, focusState ->
-            if(!focusState && infoEditText.text.isEmpty()) {
+            if (!focusState && infoEditText.text.isEmpty()) {
                 setError(message)
             }
         }
@@ -71,14 +70,12 @@ object CustomViewBindingAdapters {
     @BindingAdapter("uiState")
     @JvmStatic
     fun AnimationEditText.setUiState(uiState: UIState) {
-        when(uiState) {
+        when (uiState) {
             is UIState.Failure -> {
-                if(this.infoEditText.text.isNullOrEmpty())
+                if (this.infoEditText.text.isNullOrEmpty())
                     setError(resources.getString(R.string.must_not_be_empty))
             }
-            else -> {
-
-            }
+            else -> { }
         }
     }
 }

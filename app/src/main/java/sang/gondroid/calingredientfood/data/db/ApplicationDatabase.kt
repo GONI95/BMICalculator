@@ -20,7 +20,7 @@ import sang.gondroid.calingredientfood.data.dto.entity.MealNtrIrdntEntity
 @TypeConverters(RoomTypeConverters::class)
 abstract class ApplicationDatabase : RoomDatabase() {
 
-    abstract fun foodNtrIrdntDAO() : FoodNtrIrdntDAO
+    abstract fun foodNtrIrdntDAO(): FoodNtrIrdntDAO
 
-    abstract fun mealNtrIrdntDAO() : MealNtrIrdntDAO
+    abstract fun mealNtrIrdntDAO(): MealNtrIrdntDAO
 }

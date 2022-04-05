@@ -8,7 +8,7 @@ import sang.gondroid.calingredientfood.data.dto.entity.FoodNtrIrdntEntity
 
 class RoomTypeConverters {
     @TypeConverter
-    fun fromFoodNtrIrdntList(list: List<FoodNtrIrdntEntity>) : String {
+    fun fromFoodNtrIrdntList(list: List<FoodNtrIrdntEntity>): String {
         return Gson().toJson(list)
     }
 

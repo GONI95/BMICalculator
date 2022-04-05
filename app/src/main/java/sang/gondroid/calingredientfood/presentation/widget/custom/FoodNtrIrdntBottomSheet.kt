@@ -20,7 +20,7 @@ class FoodNtrIrdntBottomSheet internal constructor(private val model: FoodNtrIrd
         /**
          * Gon [22.01.24] : 여러 번 표시되지 않도록 SingleTon Pattern으로 구현
          */
-        fun newInstance(model: FoodNtrIrdntModel) : FoodNtrIrdntBottomSheet =
+        fun newInstance(model: FoodNtrIrdntModel): FoodNtrIrdntBottomSheet =
             FoodNtrIrdntBottomSheet(model).also {
                 DebugLog.d("called : ${hashCode()}")
             }
@@ -31,7 +31,7 @@ class FoodNtrIrdntBottomSheet internal constructor(private val model: FoodNtrIrd
      */
     override fun getTheme(): Int = R.style.Theme_CalIngredientFood_BottomSheetDialog
 
-    private lateinit var binding : BottomSheetFoodNtrIrdntBinding
+    private lateinit var binding: BottomSheetFoodNtrIrdntBinding
 
     private fun getDataBinding(): BottomSheetFoodNtrIrdntBinding =
         BottomSheetFoodNtrIrdntBinding.inflate(layoutInflater)

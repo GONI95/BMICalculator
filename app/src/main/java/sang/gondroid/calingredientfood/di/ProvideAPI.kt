@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
  * Gon [22.01.11] : Retrofi2 API 서비스를 반환하는 메서드
  * FoodNtrIrdnt(Food nutrition ingredient)
  */
-fun provideFoodNtrIrdntService(retrofit: Retrofit) : FoodNtrIrdntService {
+fun provideFoodNtrIrdntService(retrofit: Retrofit): FoodNtrIrdntService {
     return retrofit.create(FoodNtrIrdntService::class.java)
 }
 

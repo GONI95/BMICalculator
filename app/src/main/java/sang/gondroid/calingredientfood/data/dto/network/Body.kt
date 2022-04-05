@@ -1,6 +1,5 @@
 package sang.gondroid.calingredientfood.data.dto.network
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Body(

@@ -12,7 +12,6 @@ import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntList
 import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
-import sang.gondroid.calingredientfood.presentation.management.ManagementViewModel
 import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 
@@ -29,7 +28,7 @@ internal val appTestModule = module {
     factory { GetMealNtrIrdntListUseCase(get<MealNtrIrdntRepository>()) }
     factory { InsertMealNtrIrdntUseCase(get<MealNtrIrdntRepository>()) }
 
-    //Mapper
+    // Mapper
     single { MealNtrIrdntMapper(get()) }
     single { FoodNtrIrdntMapper() }
 

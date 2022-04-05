@@ -38,12 +38,11 @@ internal class CalIngredientFoodApplication : Application() {
         } catch (e: PackageManager.NameNotFoundException) {
             /* debuggable variable will remain false */
         }
-
         return debuggable
     }
 
     companion object {
-        //Gon [22.03.22] : DataStore 인스턴스를 생성하기 위해 preferencesDataStore() 메서드 호출
+        // Gon [22.03.22] : DataStore 인스턴스를 생성하기 위해 preferencesDataStore() 메서드 호출
         val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Constants.PREFERENCES_DATASTORE_NAME)
 
         var DEBUG = false

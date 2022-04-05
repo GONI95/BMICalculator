@@ -15,7 +15,11 @@ import sang.gondroid.calingredientfood.domain.mapper.FoodNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.mapper.MealNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.repository.MealNtrIrdntRepository
-import sang.gondroid.calingredientfood.domain.use_case.*
+import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
+import sang.gondroid.calingredientfood.domain.use_case.InsertCustomFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel

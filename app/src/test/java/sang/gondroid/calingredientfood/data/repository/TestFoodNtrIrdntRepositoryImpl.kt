@@ -26,9 +26,9 @@ class TestFoodNtrIrdntRepositoryImpl : FoodNtrIrdntRepository {
         )
     }
 
-    override suspend fun getFoodNtrIrdnt(value: String) : List<FoodNtrIrdntModel>? {
-        return when(value) {
-            "Success" ->{ foodList }
+    override suspend fun getFoodNtrIrdnt(value: String): List<FoodNtrIrdntModel>? {
+        return when (value) {
+            "Success" -> { foodList }
             "Empty" -> { emptyList() }
             else -> { null }
         }

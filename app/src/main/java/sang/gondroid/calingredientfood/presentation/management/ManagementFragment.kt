@@ -20,5 +20,4 @@ internal class ManagementFragment : BaseFragment<FragmentManagementBinding, Mana
     override fun initViews() { }
 
     override fun observeData() { }
-
 }

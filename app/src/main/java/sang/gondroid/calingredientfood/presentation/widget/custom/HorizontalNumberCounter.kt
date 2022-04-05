@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.NumberCounterHorizontalBinding
-import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
 /**
  * Gon [22.02.22] : ConstraintLayout 상속받아 구현한 CustomView 정의 [ up, down Button ]
@@ -21,7 +20,9 @@ import sang.gondroid.calingredientfood.presentation.util.DebugLog
  *                  AttributeSet을 넘겨 View의 속성을 설정하기 때문에 문제는 없을 것으로 판단됨
  */
 class HorizontalNumberCounter @JvmOverloads internal constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     // Gon [22.02.22] : NumberCounterHorizontalBinding(외부)에서 접근 가능한 프로퍼티 선언
@@ -60,11 +61,11 @@ class HorizontalNumberCounter @JvmOverloads internal constructor(
      *                              반환하여 Garbage Collection의 대상에서 제외시킴
      */
     @SuppressLint("CustomViewStyleable")
-    private fun setTypedArray(attrs: AttributeSet) : Map<String, Any> {
+    private fun setTypedArray(attrs: AttributeSet): Map<String, Any> {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.NumberCounter)
 
         try {
-            //text 설정이 layout에서 이루어지면 enable 작업이 안됨
+            // text 설정이 layout에서 이루어지면 enable 작업이 안됨
             binding.countInfoTextView.text = typedArray.getText(R.styleable.NumberCounter_default_text)
 
             return mapOf(

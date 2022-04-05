@@ -58,7 +58,6 @@ class SearchModeSpinnerAdapter(
                 searchModeTextView.text = context.getString(model.modelName)
                 searchModeImageView.setImageResource(model.modelImage)
                 searchModeImageView.setColorFilter(ContextCompat.getColor(context, R.color.transparent_color))
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }
