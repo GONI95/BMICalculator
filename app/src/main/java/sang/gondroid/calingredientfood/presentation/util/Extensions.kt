@@ -13,5 +13,4 @@ object Extensions {
      *                  Generic을 구현하기 위해 Java 컴파일러는 Type erasure를 적용합니다
      */
     inline fun <reified T> List<Model>.checkType() = all { it is T }
-
 }

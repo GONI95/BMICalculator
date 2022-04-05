@@ -11,10 +11,10 @@ import sang.gondroid.calingredientfood.presentation.widget.listener.AdapterListe
  *                  있는 경우, 새로 생성하지 않고 생성되어있는 ViewHolder의 ItemView에 데이터를 Binding 하여 재사용
  */
 abstract class BaseViewHolder<T : Model> (
-    binding : ViewDataBinding
+    binding: ViewDataBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
-    abstract fun bindData(model : T)
+    abstract fun bindData(model: T)
 
     abstract fun bindViews(model: T, adapterListener: AdapterListener)
 }

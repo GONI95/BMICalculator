@@ -7,7 +7,7 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator
 import com.prolificinteractive.materialcalendarview.DayViewFacade
 import sang.gondroid.calingredientfood.R
 
-class CalendarMinMaxDateDecorator(private val minDay: CalendarDay, private val maxDay: CalendarDay, private val context: Context): DayViewDecorator {
+class CalendarMinMaxDateDecorator(private val minDay: CalendarDay, private val maxDay: CalendarDay, private val context: Context) : DayViewDecorator {
 
     override fun shouldDecorate(day: CalendarDay): Boolean {
         return (day.date < minDay.date) || (day.date > maxDay.date)

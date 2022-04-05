@@ -1,8 +1,8 @@
 package sang.gondroid.calingredientfood.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationBarView
@@ -42,7 +42,7 @@ internal class MainActivity : AppCompatActivity(), FragmentListener, NavigationB
      * Gon [22.04.01] : BottomNavigationView에서 선택한 bottom_navigation_menu의 item 값에 따라 해당하는 Framgent를 표시
      */
     override fun onNavigationItemSelected(item: MenuItem): Boolean =
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.menu_search -> {
                 showFragment(searchFragment, SearchFragment.TAG)
                 true
@@ -58,7 +58,6 @@ internal class MainActivity : AppCompatActivity(), FragmentListener, NavigationB
             else -> false
         }
 
-
     private fun showFragment(fragment: Fragment, tag: String) = with(supportFragmentManager) {
         // Gon [22.04.01] : FragmentManager에 추가된 Fragment들 중 동일한 tag를 가지는 Fragment를 찾음
         val findFragment = findFragmentByTag(tag)
@@ -71,7 +70,6 @@ internal class MainActivity : AppCompatActivity(), FragmentListener, NavigationB
         // Gon [22.04.01] : findFragment의 값이 null이면 프래그먼트를 추가, null이 아니면 숨겨두었던 Fragment를 표시
         findFragment?.let {
             beginTransaction().show(it).commitAllowingStateLoss()
-
         } ?: kotlin.run {
             beginTransaction()
                 .add(R.id.fragmentContainer, fragment, tag)
@@ -85,5 +83,4 @@ internal class MainActivity : AppCompatActivity(), FragmentListener, NavigationB
      */
     override fun sendCalculatorItem(model: FoodNtrIrdntModel): Boolean =
         mealFragment.receiveCalculatorItem(model)
-
 }

@@ -1,0 +1,2 @@
+[*.{kt,kts}]
+disabled_rules = import-ordering    # ktlint 작업 중 import에 대한 정리 규칙을 무시

@@ -67,7 +67,7 @@ internal class SearchViewModel(
      *
      *                  GetCustomFoodNtrIrdntListUseCase : Room DB에 매개변수에 해당하는 식품 영양성분 요청
      */
-    private fun searchFoodNtrIrdnt(value : String) = viewModelScope.launch {
+    private fun searchFoodNtrIrdnt(value: String) = viewModelScope.launch {
         _foodNtrIrdnrUIStateLiveData.postValue(UIState.Loading)
 
         val uiState = getFoodNtrIrdntUseCase.invoke(value)?.let {
@@ -87,7 +87,7 @@ internal class SearchViewModel(
      *
      *                  GetFoodNtrIrdntUseCase : FoodNtrIrdntInfoService API에 매개변수에 해당하는 식품 영양성분 요청
      */
-    private fun searchCustomFoodNtrIrdnt(value : String) = viewModelScope.launch {
+    private fun searchCustomFoodNtrIrdnt(value: String) = viewModelScope.launch {
         val newValue = createRegexpString(value)
         val uiState = getSearchCustomFoodNtrIrdntListUseCase.invoke(newValue).run {
             if (this.isNotEmpty()) {

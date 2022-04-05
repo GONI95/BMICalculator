@@ -8,7 +8,7 @@ import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
  *                  Domain / Data Layer 사이를 중재해주는 매개체 역할을 하는 Repository
  */
 interface FoodNtrIrdntRepository {
-    suspend fun getFoodNtrIrdntList(value: String) : List<FoodNtrIrdntModel>?
+    suspend fun getFoodNtrIrdntList(value: String): List<FoodNtrIrdntModel>?
 
     suspend fun getCustomFoodNtrIrdntList(value: String): List<FoodNtrIrdntModel>
 

@@ -31,7 +31,7 @@ internal class InsertFoodNtrIrdntActivity : BaseActivity<ActivityInsertFoodNtrIr
     override fun observeData() {
         lifecycleScope.launch {
             viewModel.event.collect { event ->
-                when(event) {
+                when (event) {
                     is Event.SetResult -> {
                         setResult(event.data)
                     }

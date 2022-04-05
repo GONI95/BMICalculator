@@ -5,7 +5,9 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.catch
 import okhttp3.internal.toImmutableMap
 import sang.gondroid.calingredientfood.presentation.util.Constants
 import java.io.IOException

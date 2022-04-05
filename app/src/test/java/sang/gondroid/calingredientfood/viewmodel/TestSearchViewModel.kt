@@ -15,21 +15,21 @@ class TestSearchViewModel : ViewModelTest() {
     private val viewModel: SearchViewModel by inject()
 
     @Test
-    fun `test viewModel searchFunc Success`() : Unit = runBlockingTest {
+    fun `test viewModel searchFunc Success`(): Unit = runBlockingTest {
         val searchFunc = viewModel.searchFunc
         searchFunc("Success")
         println(viewModel.foodNtrIrdnrUIStateLiveData.getOrAwaitValue())
     }
 
     @Test
-    fun `test viewModel searchFunc Fail`() : Unit = runBlockingTest {
+    fun `test viewModel searchFunc Fail`(): Unit = runBlockingTest {
         val searchFunc = viewModel.searchFunc
         searchFunc("Empty")
         println(viewModel.foodNtrIrdnrUIStateLiveData.getOrAwaitValue())
     }
 
     @Test
-    fun `test viewModel searchFunc Error`() : Unit = runBlockingTest {
+    fun `test viewModel searchFunc Error`(): Unit = runBlockingTest {
         val searchFunc = viewModel.searchFunc
         searchFunc("Exception")
         println(viewModel.foodNtrIrdnrUIStateLiveData.getOrAwaitValue())

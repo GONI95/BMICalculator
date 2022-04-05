@@ -8,7 +8,7 @@ import com.prolificinteractive.materialcalendarview.DayViewFacade
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 
-class SelectDateDecorator(private val context: Context, private val selectDay: CalendarDay): DayViewDecorator {
+class SelectDateDecorator(private val context: Context, private val selectDay: CalendarDay) : DayViewDecorator {
 
     override fun shouldDecorate(day: CalendarDay): Boolean {
         return day.date == selectDay.date

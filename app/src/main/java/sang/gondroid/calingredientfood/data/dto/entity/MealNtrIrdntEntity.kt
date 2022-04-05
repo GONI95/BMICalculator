@@ -1,7 +1,9 @@
 package sang.gondroid.calingredientfood.data.dto.entity
 
 import android.net.Uri
-import androidx.room.*
+import androidx.room.PrimaryKey
+import androidx.room.ColumnInfo
+import androidx.room.TypeConverters
 import com.google.gson.annotations.SerializedName
 import sang.gondroid.calingredientfood.data.db.RoomTypeConverters
 
@@ -17,7 +19,7 @@ data class MealNtrIrdntEntity(
     val currentDate: String,
     @TypeConverters(RoomTypeConverters::class)
     @SerializedName("food_ntr_irdnt_list")
-    val foodNtrIrdntList : List<FoodNtrIrdntEntity>,
+    val foodNtrIrdntList: List<FoodNtrIrdntEntity>,
     @ColumnInfo(name = "total_calorie")
     val totalCalorie: Double,
     @ColumnInfo(name = "total_carbohydrate")
@@ -36,4 +38,4 @@ data class MealNtrIrdntEntity(
     val totalSaturatedFattyAcid: Double,
     @ColumnInfo(name = "total_trans_fat")
     val totalTransFat: Double
-):Entity
+) : Entity

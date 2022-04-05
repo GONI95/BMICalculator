@@ -18,7 +18,7 @@ object BaseViewHolderMapper {
     @Suppress("UNCHECKED_CAST")
     fun <T : Model> viewHolderMapper(parent: ViewGroup, viewType: ViewType): BaseViewHolder<T> {
         val inflater = LayoutInflater.from(parent.context)
-        return when(viewType) {
+        return when (viewType) {
             ViewType.FOOD_NTR_IRDNT -> {
                 FoodNtrIrdntViewHolder(
                     LayoutFoodNtrIrdntItemBinding.inflate(inflater, parent, false)

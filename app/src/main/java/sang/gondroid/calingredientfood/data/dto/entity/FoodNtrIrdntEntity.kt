@@ -1,6 +1,7 @@
 package sang.gondroid.calingredientfood.data.dto.entity
 
-import androidx.room.*
+import androidx.room.PrimaryKey
+import androidx.room.ColumnInfo
 
 /**
  * [22.03.25] : Database의 Table 역할을 하는 FoodNtrIrdntEntity
@@ -8,7 +9,7 @@ import androidx.room.*
  *              불일치에 대한 SQL문 없이도 객체를 통해 간접적으로 데이터베이스의 데이터를 다룰 수 있습니다.
  */
 @androidx.room.Entity(tableName = "foodNtrIrdntTable")
-data class FoodNtrIrdntEntity (
+data class FoodNtrIrdntEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     override val id: Long?,
@@ -40,4 +41,4 @@ data class FoodNtrIrdntEntity (
     val servingWeight: Int,
     @ColumnInfo(name = "serving_count")
     val servingCount: Int
-    ) : Entity
+) : Entity

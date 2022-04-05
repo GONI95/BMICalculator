@@ -8,7 +8,6 @@ import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.base.FragmentListener
 import sang.gondroid.calingredientfood.presentation.util.Constants
-import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BaseRecyclerViewAdapter
 import sang.gondroid.calingredientfood.presentation.widget.custom.FoodNtrIrdntBottomSheet
 import sang.gondroid.calingredientfood.presentation.widget.custom.NotificationSnackBar
@@ -34,22 +33,29 @@ internal class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewMo
      *                  by lazy : 사용되는 시점에서 객체 생성과 동시에 값을 초기화
      */
     private val foodNtrIrdntAdapter by lazy {
-        BaseRecyclerViewAdapter<FoodNtrIrdntModel>(listOf(), object : FoodNtrIrdntListener {
+        BaseRecyclerViewAdapter<FoodNtrIrdntModel>(
+            listOf(),
+            object : FoodNtrIrdntListener {
 
-            override fun onClickItem(model: FoodNtrIrdntModel) {
-                FoodNtrIrdntBottomSheet.newInstance(model).show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
-            }
+                override fun onClickItem(model: FoodNtrIrdntModel) {
+                    FoodNtrIrdntBottomSheet.newInstance(model)
+                        .show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
+                }
 
-            override fun onClickAddButton(model: FoodNtrIrdntModel) {
-                // Gon [22.03.03] : FragmentListener sendCalculatorItem() 호출 / MainActivity의 구현체가 호출됨
-                val result = fragmentListener?.sendCalculatorItem(model)
+                override fun onClickAddButton(model: FoodNtrIrdntModel) {
+                    // Gon [22.03.03] : FragmentListener sendCalculatorItem() 호출 / MainActivity의 구현체가 호출됨
+                    val result = fragmentListener?.sendCalculatorItem(model)
 
-                result?.let {
-                    if (result)
-                        NotificationSnackBar.make(requireView(), resources.getString(R.string.same_value_exists)).show()
+                    result?.let {
+                        if (result)
+                            NotificationSnackBar.make(
+                                requireView(),
+                                resources.getString(R.string.same_value_exists)
+                            ).show()
+                    }
                 }
             }
-        })
+        )
     }
 
     override fun initViews() = with(binding) {
@@ -57,7 +63,7 @@ internal class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewMo
         foodNtrIrdntAdapter = this@SearchFragment.foodNtrIrdntAdapter
     }
 
-    override fun observeData() { }
+    override fun observeData() {}
 
     // Gon [22.03.03] : FragmentListener 등록
     override fun onAttach(context: Context) {

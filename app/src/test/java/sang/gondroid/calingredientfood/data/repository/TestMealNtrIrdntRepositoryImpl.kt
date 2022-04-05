@@ -12,7 +12,7 @@ class TestMealNtrIrdntRepositoryImpl(
     private val mealNtrIrdntMapper: MealNtrIrdntMapper
 ) : MealNtrIrdntRepository {
 
-    private val mealNtrIrdntList : MutableList<MealNtrIrdntEntity> = mutableListOf()
+    private val mealNtrIrdntList: MutableList<MealNtrIrdntEntity> = mutableListOf()
 
     override fun getMealNtrIrdntList(): Flow<List<MealNtrIrdntModel>> = flow {
         val result = mealNtrIrdntList.map {

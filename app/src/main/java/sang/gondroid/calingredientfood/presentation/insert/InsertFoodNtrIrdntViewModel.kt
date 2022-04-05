@@ -13,8 +13,7 @@ import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import sang.gondroid.calingredientfood.presentation.util.Constants
 import sang.gondroid.calingredientfood.presentation.util.UIState
-import java.util.*
-
+import java.util.Calendar
 
 internal class InsertFoodNtrIrdntViewModel(
     private val preferencesDataStoreManager: PreferencesDataStoreManager,
@@ -35,7 +34,7 @@ internal class InsertFoodNtrIrdntViewModel(
     val event = _event.asSharedFlow()
 
     private val _uiState = MutableLiveData<UIState>(UIState.Init)
-    val uiState : LiveData<UIState>
+    val uiState: LiveData<UIState>
         get() = _uiState
 
     override fun fetchData() = viewModelScope.launch {
@@ -52,7 +51,8 @@ internal class InsertFoodNtrIrdntViewModel(
     }
 
     private fun removeInputTextData() = viewModelScope.launch {
-        savableState = false   // Gon [22.03.22] : 비동기 처리로 인해 saveFoodNtrIrdntData() 호출 전 false를 먼저 저장해두는 것이 좋음
+        // Gon [22.03.22] : 비동기 처리로 인해 saveFoodNtrIrdntData() 호출 전 false를 먼저 저장해두는 것이 좋음
+        savableState = false
         preferencesDataStoreManager.removeInputTextData()
     }
 
@@ -83,12 +83,12 @@ internal class InsertFoodNtrIrdntViewModel(
     private fun getInputTextMap() =
         mutableMapOf(
             Constants.SERVING_WEIGHT_KEY to servingWeight.value!!,
-            Constants.DESCRIPTION_KOR_KEY to  descriptionKor.value!!,
-            Constants.COMPANY_KEY to  company.value!!,
-            Constants.CALORIE_KEY to  calorie.value!!,
-            Constants.CARBOHYDRATE_KEY to  carbohydrate.value!!,
+            Constants.DESCRIPTION_KOR_KEY to descriptionKor.value!!,
+            Constants.COMPANY_KEY to company.value!!,
+            Constants.CALORIE_KEY to calorie.value!!,
+            Constants.CARBOHYDRATE_KEY to carbohydrate.value!!,
             Constants.PROTEIN_KEY to protein.value!!,
-            Constants.FAT_KEY to  fat.value!!
+            Constants.FAT_KEY to fat.value!!
         )
 
     private fun createFoodNtrIrdntModel() =
@@ -97,7 +97,7 @@ internal class InsertFoodNtrIrdntViewModel(
             type = ViewType.CALCULATOR,
             servingWeight = servingWeight.value!!.toInt(),
             descriptionKOR = descriptionKor.value!!,
-            company =  company.value!!,
+            company = company.value!!,
             calorie = calorie.value!!.toDouble(),
             carbohydrate = carbohydrate.value!!.toDouble(),
             protein = protein.value!!.toDouble(),

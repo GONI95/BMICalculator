@@ -4,7 +4,7 @@ import sang.gondroid.calingredientfood.data.dto.entity.FoodNtrIrdntEntity
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.util.ViewType
 
-class FoodNtrIrdntMapper: Mapper<FoodNtrIrdntEntity, FoodNtrIrdntModel> {
+class FoodNtrIrdntMapper : Mapper<FoodNtrIrdntEntity, FoodNtrIrdntModel> {
 
     override fun toModel(input: FoodNtrIrdntEntity, viewType: ViewType): FoodNtrIrdntModel {
         return with(input) {
@@ -24,7 +24,8 @@ class FoodNtrIrdntMapper: Mapper<FoodNtrIrdntEntity, FoodNtrIrdntModel> {
                 saturatedFattyAcid,
                 transFat,
                 servingWeight,
-                servingCount)
+                servingCount
+            )
         }
     }
 
@@ -45,7 +46,8 @@ class FoodNtrIrdntMapper: Mapper<FoodNtrIrdntEntity, FoodNtrIrdntModel> {
                 saturatedFattyAcid,
                 transFat,
                 servingWeight,
-                servingCount)
+                servingCount
+            )
         }
     }
 }

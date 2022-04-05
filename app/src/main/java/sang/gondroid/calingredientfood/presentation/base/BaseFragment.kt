@@ -13,17 +13,17 @@ internal abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> 
     /**
      * Gon [21.12.27] : viewModel을 외부에서 받는 Generic 타입으로 선언했습니다.
      */
-    abstract val viewModel : VM
+    abstract val viewModel: VM
 
     /**
      * Gon [21.12.27] : binding을 외부에서 받는 Generic 타입으로 선언했습니다.
      */
-    protected lateinit var binding : VDB
+    protected lateinit var binding: VDB
 
     /**
      * Gon [21.12.27] : DataBinding 초기화를 위한 getDataBinding()
      */
-    abstract fun getDataBinding() : VDB
+    abstract fun getDataBinding(): VDB
 
     /**
      * Gon [21.12.27] : View 초기화를 위한 initViews()
@@ -34,7 +34,6 @@ internal abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> 
      * Gon [21.12.27] : LiveData를 관찰하는 observeData()
      */
     abstract fun observeData()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

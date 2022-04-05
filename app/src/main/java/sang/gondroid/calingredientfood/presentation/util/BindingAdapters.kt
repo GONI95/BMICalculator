@@ -5,7 +5,10 @@ import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.*
+import android.widget.Spinner
+import android.widget.EditText
+import android.widget.TextView
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -14,7 +17,6 @@ import com.google.android.material.appbar.AppBarLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
@@ -26,7 +28,6 @@ import sang.gondroid.calingredientfood.presentation.widget.decorator.CalendarMin
 import sang.gondroid.calingredientfood.presentation.widget.decorator.LinearDividerDecoration
 import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateDecorator
 
-
 internal object BindingAdapters {
 
     /**
@@ -37,8 +38,9 @@ internal object BindingAdapters {
      */
     @JvmStatic
     @BindingAdapter("setSpinner")
-    fun Spinner.setAdapterAndSelection(searchMode : SearchMode) {
-        val arrayAdapter = SearchModeSpinnerAdapter(context, R.layout.layout_search_mode_item, SearchMode.values())
+    fun Spinner.setAdapterAndSelection(searchMode: SearchMode) {
+        val arrayAdapter =
+            SearchModeSpinnerAdapter(context, R.layout.layout_search_mode_item, SearchMode.values())
         adapter = arrayAdapter
         setSelection(searchMode.ordinal, false)
     }
@@ -53,10 +55,12 @@ internal object BindingAdapters {
     @JvmStatic
     @BindingAdapter("onOffsetChanged")
     fun AppBarLayout.onOffsetChanged(toolbarMotionLayout: MotionLayout) {
-        addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
-            val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
-            toolbarMotionLayout.progress = seekPosition
-        })
+        addOnOffsetChangedListener(
+            AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
+                val seekPosition = -verticalOffset / appBarLayout.totalScrollRange.toFloat()
+                toolbarMotionLayout.progress = seekPosition
+            }
+        )
     }
 
     /**
@@ -74,7 +78,7 @@ internal object BindingAdapters {
                 .hideSoftInputFromWindow(v.windowToken, 0)
 
             with(v.editableText) {
-                val replaceText = this.toString().replace(" ","")
+                val replaceText = this.toString().replace(" ", "")
                 val imeAction = actionId == EditorInfo.IME_ACTION_SEARCH
                 val imeText = replaceText.isNotBlank() or replaceText.isNotEmpty()
 
@@ -102,15 +106,16 @@ internal object BindingAdapters {
     @Suppress("UNCHECKED_CAST")
     @BindingAdapter("adapter", "submitList")
     @JvmStatic
-    fun <T: Model> RecyclerView.setAdapterAndSubmitList(
-        foodNtrIrdntAdapter: BaseRecyclerViewAdapter<out T>, uiState: UIState
+    fun <T : Model> RecyclerView.setAdapterAndSubmitList(
+        foodNtrIrdntAdapter: BaseRecyclerViewAdapter<out T>,
+        uiState: UIState
     ) {
-        if(adapter == null) {
+        if (adapter == null) {
             addItemDecoration(LinearDividerDecoration(context, R.drawable.bg_divider_design))
-            adapter  = foodNtrIrdntAdapter
+            adapter = foodNtrIrdntAdapter
         }
 
-        visibility = when(uiState) {
+        visibility = when (uiState) {
             is UIState.Success<*> -> {
 
                 val items = (uiState as UIState.Success<List<T>>).data
@@ -137,7 +142,7 @@ internal object BindingAdapters {
     @BindingAdapter("showMessage")
     @JvmStatic
     fun TextView.showMessage(uiState: UIState) {
-        visibility = when(uiState) {
+        visibility = when (uiState) {
             is UIState.Empty -> {
                 text = resources.getString(uiState.message, uiState.value)
                 View.VISIBLE
@@ -155,9 +160,17 @@ internal object BindingAdapters {
     @BindingAdapter("setCalendarView")
     @JvmStatic
     fun MaterialCalendarView.setCalendarView(todayCalendarDay: CalendarDay) {
-        val minDay = CalendarDay.from(todayCalendarDay.year, todayCalendarDay.month, todayCalendarDay.day - 6)
+        val minDay = CalendarDay.from(
+            todayCalendarDay.year,
+            todayCalendarDay.month,
+            todayCalendarDay.day - 6
+        )
 
-        val stCalendarDay = CalendarDay.from(minDay.year, if (todayCalendarDay.day > 6) minDay.month else minDay.month - 1, 1)
+        val stCalendarDay = CalendarDay.from(
+            minDay.year,
+            if (todayCalendarDay.day > 6) minDay.month else minDay.month - 1,
+            1
+        )
         val enCalendarDay = CalendarDay.from(todayCalendarDay.year, todayCalendarDay.month, 31)
 
         this.state().edit()
@@ -165,7 +178,8 @@ internal object BindingAdapters {
             .setMaximumDate(enCalendarDay)
             .commit()
 
-        val calendarMinMaxDateDecorator = CalendarMinMaxDateDecorator(minDay, todayCalendarDay, context)
+        val calendarMinMaxDateDecorator =
+            CalendarMinMaxDateDecorator(minDay, todayCalendarDay, context)
         val selectDateDecorator = SelectDateDecorator(context, todayCalendarDay)
         addDecorators(calendarMinMaxDateDecorator, selectDateDecorator)
     }

@@ -64,13 +64,13 @@ internal class MealViewModel(
      *                  LiveData를 이용해 값이 변경되면 fragment_calculator.xml의 표현식을 통해 BindingAdapter.submitList() 메서드가 호출됨
      */
     fun countUpdateCalculatorItem(servingCount: Int, position: Int) {
-        calculatorList[position] = calculatorList[position].copy(servingCount= servingCount)
+        calculatorList[position] = calculatorList[position].copy(servingCount = servingCount)
         _calculatorUIStateLiveData.postValue(UIState.Success(calculatorList.toList()))
     }
 
     val onMenuItemClick: (Int) -> Boolean = this::onMenuItemClick
-    private fun onMenuItemClick(itemId: Int) : Boolean =
-        when(itemId) {
+    private fun onMenuItemClick(itemId: Int): Boolean =
+        when (itemId) {
             R.id.save_menu_item -> {
                 insertMeal()
                 true
@@ -84,7 +84,6 @@ internal class MealViewModel(
 
             val mealNtrIrdntModel = createMealNtrIrdntModel()
             insertMealNtrIrdntUseCase.invoke(mealNtrIrdntModel)
-
         } catch (e: IllegalArgumentException) {
             _calculatorUIStateLiveData.postValue(UIState.Failure)
         }

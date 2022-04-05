@@ -5,7 +5,7 @@ import kotlinx.coroutines.withContext
 import sang.gondroid.calingredientfood.data.data_source.FoodNtrIrdntService
 import sang.gondroid.calingredientfood.data.db.FoodNtrIrdntDAO
 import sang.gondroid.calingredientfood.data.dto.network.NetworkItem
-import sang.gondroid.calingredientfood.data.util.*
+import sang.gondroid.calingredientfood.data.util.toDoubleOrZero
 import sang.gondroid.calingredientfood.domain.mapper.FoodNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
@@ -32,7 +32,6 @@ class FoodNtrIrdntRepositoryImpl(
                 result.body()?.body?.networkItems?.let { networkItems ->
                     toDomainModelList(networkItems)
                 } ?: emptyList()
-
             } catch (e: Exception) {
                 null
             }

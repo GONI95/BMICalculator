@@ -14,7 +14,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
-import android.view.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Lifecycle
@@ -31,8 +30,6 @@ import sang.gondroid.calingredientfood.presentation.widget.custom.NotificationSn
 import sang.gondroid.calingredientfood.presentation.widget.listener.CalculatorListener
 import java.io.File
 import java.text.SimpleDateFormat
-import java.util.*
-
 
 internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>() {
 
@@ -51,7 +48,7 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
 
         private const val FILENAME_FORMAT = "yyyyMMdd_HHmmss"
         private var imageUri: Uri? = null
-        private var currentPhotoPath : String? = null
+        private var currentPhotoPath: String? = null
     }
 
     private val calculatorSet = mutableSetOf<FoodNtrIrdntModel>()
@@ -65,20 +62,22 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
      *                  by lazy : 사용되는 시점에서 객체 생성과 동시에 값을 초기화
      */
     private val calculatorAdapter by lazy {
-        BaseRecyclerViewAdapter<FoodNtrIrdntModel>(listOf(), object : CalculatorListener {
+        BaseRecyclerViewAdapter<FoodNtrIrdntModel>(
+            listOf(),
+            object : CalculatorListener {
+                override fun onClickItem(model: FoodNtrIrdntModel) {
+                    FoodNtrIrdntBottomSheet.newInstance(model).show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
+                }
 
-            override fun onClickItem(model: FoodNtrIrdntModel) {
-                FoodNtrIrdntBottomSheet.newInstance(model).show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
-            }
+                override fun onClickRemoveButton(model: FoodNtrIrdntModel) {
+                    viewModel.removeCalculatorItem(model)
+                }
 
-            override fun onClickRemoveButton(model: FoodNtrIrdntModel) {
-                viewModel.removeCalculatorItem(model)
+                override fun onClickCountUpdateButton(servingCount: Int, position: Int) {
+                    viewModel.countUpdateCalculatorItem(servingCount, position)
+                }
             }
-
-            override fun onClickCountUpdateButton(servingCount: Int, position: Int) {
-                viewModel.countUpdateCalculatorItem(servingCount, position)
-            }
-        })
+        )
     }
 
     // Gon [22.03.16] : InsertFoodNtrIrdntActivity 실행 후 FoodNtrIrdntModel 반환받음
@@ -97,7 +96,6 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
                 Manifest.permission.WRITE_EXTERNAL_STORAGE -> {
                     if (actionMap.value) {
                         permissionStateList[0] = true
-
                     } else {
                         permissionStateList[0] = false
                         NotificationSnackBar.make(requireView(), resources.getString(R.string.please_set_permissions)).show()
@@ -111,7 +109,8 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
      * Gon [22.03.14] : Android 9.0(API 28) 파이 이상 버젼에선 ImageDecoder를 사용해 Bitmap 객체로 변환
      *                  미만 버젼에선 MediaStore.Images.Media.getBitmap()을 사용해 Bitmap 객체로 변환
      */
-    private val findPictureResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+    private val findPictureResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 val uri = result.data?.data ?: imageUri
 
@@ -126,9 +125,8 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             val source = ImageDecoder.createSource(requireContext().contentResolver, uri)
             ImageDecoder.decodeBitmap(source)
-
         } else {
-            //촬영한 사진이 갤러리에 갱신되지 않는 경우, 이를 해결하기 위한 방법
+            // 촬영한 사진이 갤러리에 갱신되지 않는 경우, 이를 해결하기 위한 방법
             currentPhotoPath?.let {
                 Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE).also { mediaScanIntent ->
                     val f = File(it)
@@ -177,7 +175,7 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
      *                                  MIME_TYPE : 미디어 항목의 MIME 유형
      *                                  RELATIVE_PATH : 지속되는 저장 장치 내에서 항목의 상대 경로
      *                  contentResolver.insert : URL의 테이블에 행 삽입
-    */
+     */
     fun takePicture() {
         requestPermissionResultLauncher.launch(REQUIRED_PERMISSION)
 
@@ -189,8 +187,8 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
 
             imageUri = requireContext().contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
         } else {
-            val imagePath = File(Environment.getExternalStorageDirectory(), "TakePicture").apply{
-                if(!this.exists()) this.mkdirs()
+            val imagePath = File(Environment.getExternalStorageDirectory(), "TakePicture").apply {
+                if (!this.exists()) this.mkdirs()
             }
 
             val imageFile = File(imagePath, createFileName()).also {
@@ -220,9 +218,9 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
     }
 
     @SuppressLint("SimpleDateFormat")
-    private fun createFileName() : String {
+    private fun createFileName(): String {
         val filename = SimpleDateFormat(FILENAME_FORMAT).format(System.currentTimeMillis())
-        return "${filename}.jpg"
+        return "$filename.jpg"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -243,11 +241,9 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
         if (lifecycle.currentState == Lifecycle.State.INITIALIZED) {
             calculatorSet.add(model)
                 .not()
-
         } else {
             viewModel.addCalculatorItem(model)
         }
-
 
     override fun observeData() { }
 }
