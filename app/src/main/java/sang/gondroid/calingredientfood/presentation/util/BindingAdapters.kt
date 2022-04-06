@@ -1,6 +1,8 @@
 package sang.gondroid.calingredientfood.presentation.util
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -16,9 +18,19 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.appbar.AppBarLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat.getDrawable
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.charts.PieChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.data.Entry
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.Model
@@ -27,6 +39,13 @@ import sang.gondroid.calingredientfood.presentation.widget.adapter.SearchModeSpi
 import sang.gondroid.calingredientfood.presentation.widget.decorator.CalendarMinMaxDateDecorator
 import sang.gondroid.calingredientfood.presentation.widget.decorator.LinearDividerDecoration
 import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateDecorator
+import com.github.mikephil.charting.formatter.ValueFormatter
+import kotlin.collections.ArrayList
+import com.github.mikephil.charting.components.Legend
+import sang.gondroid.calingredientfood.presentation.widget.custom.LineChartMarkerView
+import sang.gondroid.calingredientfood.presentation.widget.custom.PieChartRenderer
+import java.text.NumberFormat
+import java.util.Calendar
 
 internal object BindingAdapters {
 
@@ -166,16 +185,16 @@ internal object BindingAdapters {
             todayCalendarDay.day - 6
         )
 
-        val stCalendarDay = CalendarDay.from(
+        val startCalendarDay = CalendarDay.from(
             minDay.year,
             if (todayCalendarDay.day > 6) minDay.month else minDay.month - 1,
             1
         )
-        val enCalendarDay = CalendarDay.from(todayCalendarDay.year, todayCalendarDay.month, 31)
+        val endCalendarDay = CalendarDay.from(todayCalendarDay.year, todayCalendarDay.month, 31)
 
         this.state().edit()
-            .setMinimumDate(stCalendarDay)
-            .setMaximumDate(enCalendarDay)
+            .setMinimumDate(startCalendarDay)
+            .setMaximumDate(endCalendarDay)
             .commit()
 
         val calendarMinMaxDateDecorator =
@@ -220,7 +239,7 @@ internal object BindingAdapters {
     @JvmStatic
     fun ImageView.imageDrawable(value: BitmapDrawable?) {
         setImageDrawable(
-            value ?: ContextCompat.getDrawable(context, R.drawable.ic_icon_image)
+            value ?: getDrawable(context, R.drawable.ic_icon_image)
         )
     }
 
@@ -228,5 +247,195 @@ internal object BindingAdapters {
     @JvmStatic
     fun ImageView.clipToOutline(value: Boolean) {
         clipToOutline = value
+    }
+
+    @BindingAdapter("setThreeMajorNtrChart")
+    @JvmStatic
+    fun PieChart.setThreeMajorNtrChart(threeMajorNtrPercent: List<Float>?) {
+
+        if (threeMajorNtrPercent != null && threeMajorNtrPercent.isNotEmpty()) {
+            val extraVerticalOffset = 15f
+            val formSize = 10f
+            val smallTextSize = 12f
+            val textSize = 14f
+
+            /**
+             * Gon [22.04.06] : PieChart 디자인 설정
+             *                  setDrawEntryLabels : Label(주제) 표시 유무
+             *                  setUsePercentValues : 데이터와 상관없이 % 값으로 valueText 표시 유무
+             *                  holeRadius : Chart 중심의 원을 최대 반지름의 백분율로 설정 (기본값 50%)
+             *                  animateY : Chart가 겹쳐지지 않은 상태에서 펼쳐지는 애니메이션
+             *                  invalidate : Chart 새로고침
+             */
+            setExtraOffsets(0f, extraVerticalOffset, 0f, extraVerticalOffset)
+            renderer = PieChartRenderer(this, formSize)
+            centerText = resources.getString(R.string.three_major_ntr_chart_center)
+            setCenterTextSize(textSize)
+            setDrawEntryLabels(false)
+            setUsePercentValues(true)
+            description.isEnabled = false
+            holeRadius = 50f
+            animateY(1000)
+
+            with(legend) {
+                form = Legend.LegendForm.CIRCLE
+                horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+                this.formSize = formSize
+                this.textSize = smallTextSize
+                textColor = getColor(context, R.color.text_color) // 레전드 컬러 설정
+            }
+
+            val pieEntryList = ArrayList<PieEntry>()
+            val labelArray = arrayOf(
+                resources.getString(R.string.carbohydrate),
+                resources.getString(R.string.protein),
+                resources.getString(R.string.fat)
+            )
+
+            val pieDataSetColorArray = intArrayOf(
+                R.color.green,
+                R.color.blue,
+                R.color.yellow
+            )
+
+            val valueTextColorList = listOf(
+                getColor(context, R.color.green),
+                getColor(context, R.color.blue),
+                getColor(context, R.color.yellow)
+            )
+
+            repeat(threeMajorNtrPercent.size) {
+                pieEntryList.add(
+                    PieEntry(
+                        threeMajorNtrPercent[it],
+                        labelArray[it]
+                    )
+                )
+            }
+
+            val pieDataSet = PieDataSet(pieEntryList, null)
+
+            /**
+             * Gon [22.04.06] : PieChart 데이터와 관련된 디자인 설정
+             *                  valueTextSize : slice에 위치하는 value textSzie 설정
+             *                  valueTextColor : slice에 위치하는 value color 설정
+             *                  formSize : Chart 하단 slice 설명란 textSize 설정
+             *                  sliceSpace : slice 마다 공백 크기 설정
+             */
+            with(pieDataSet) {
+                setColors()
+                setColors(pieDataSetColorArray, context)
+                valueTextSize = textSize
+                setValueTextColors(valueTextColorList)
+                sliceSpace = 3f
+                selectionShift = 3f
+                valueLineWidth = 2f
+                valueLinePart1Length = 0.6f
+                valueLinePart2Length = 0.3f
+                valueLinePart1OffsetPercentage = 120f // Line starts outside of chart
+                isUsingSliceColorAsValueLineColor = true
+                yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
+                valueTypeface = Typeface.DEFAULT_BOLD
+                valueFormatter = object : ValueFormatter() {
+                    private val formatter = NumberFormat.getPercentInstance()
+
+                    override fun getFormattedValue(value: Float): String =
+                        formatter.format(value / 100f)
+                }
+            }
+
+            // Gon [22.04.06] : Chart에 사용될 정보 설정
+            data = PieData(pieDataSet)
+            invalidate()
+        }
+    }
+
+    @BindingAdapter("setAverageCalorieChart")
+    @JvmStatic
+    fun LineChart.setAverageCalorie(calorieList: List<Float>?) {
+
+        val dateList = mutableListOf<String>()
+        val startDay = CalendarDay.today()
+        startDay.calendar.add(Calendar.DATE, -7)
+
+        repeat(7) {
+            startDay.calendar.add(Calendar.DATE, +1)
+
+            val month = startDay.calendar.get(Calendar.MONTH) + 1
+            val day = startDay.calendar.get(Calendar.DATE)
+
+            dateList.add("$month.$day")
+        }
+
+        if (calorieList != null && calorieList.isNotEmpty()) {
+            val extraVerticalOffset = 20f
+            val formSize = 10f
+            val smallTextSize = 12f
+
+            setExtraOffsets(0f, extraVerticalOffset, 0f, extraVerticalOffset)
+            marker = LineChartMarkerView(context, R.layout.line_chart_marker)
+            description.isEnabled = false
+            axisRight.isEnabled = false
+            legend.textColor = Color.WHITE
+            animateXY(1000, 1000)
+
+            with(legend) {
+                form = Legend.LegendForm.CIRCLE
+                horizontalAlignment = Legend.LegendHorizontalAlignment.RIGHT
+                this.formSize = formSize
+                this.textSize = smallTextSize
+                textColor = getColor(context, R.color.text_color)
+            }
+
+            // XAxis (아래쪽) - 선 유무, 사이즈, 색상, 축 위치 설정
+            with(xAxis) {
+                setDrawAxisLine(false)
+                setDrawGridLines(false)
+                position = XAxis.XAxisPosition.BOTTOM
+                granularity = 1f
+                this.textSize = smallTextSize
+                textColor = getColor(context, R.color.light_text_color)
+                position = XAxis.XAxisPosition.BOTTOM
+            }
+
+            // YAxis(Right) (왼쪽) - 선 유무, 데이터 최솟값/최댓값, 색상
+            axisLeft.isEnabled = false
+
+            // XAxis에 원하는 String 설정하기 (날짜)
+            xAxis.valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return dateList[value.toInt()]
+                }
+            }
+
+            val lineEntryList = ArrayList<Entry>()
+
+            repeat(calorieList.size) {
+                lineEntryList.add(
+                    Entry(
+                        it.toFloat(),
+                        calorieList[it]
+                    )
+                )
+            }
+
+            val lineDataSet = LineDataSet(lineEntryList, resources.getString(R.string.calorie))
+
+            with(lineDataSet) {
+                fillAlpha = 50
+                fillColor = getColor(context, R.color.blue)
+                setDrawFilled(true)
+                color = getColor(context, R.color.blue)
+                setCircleColor(getColor(context, R.color.blue))
+                lineWidth = 2f
+                circleRadius = 5f
+                setDrawValues(false)
+                setDrawHorizontalHighlightIndicator(false)
+                highLightColor = getColor(context, R.color.hint_color)
+            }
+
+            data = LineData(lineDataSet)
+            invalidate()
+        }
     }
 }

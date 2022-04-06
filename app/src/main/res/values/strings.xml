@@ -22,6 +22,7 @@
     <string name="descriptionKor">식품</string>
     <string name="company">업체</string>
     <string name="calorie">칼로리</string>
+    <string name="calorie_unit">kcal</string>
     <string name="serving_weight">1회 제공량</string>
     <string name="carbohydrate">탄수화물</string>
     <string name="protein">단백질</string>
@@ -66,4 +67,9 @@
     <string name="save">저장하기</string>
 
     <string name="must_not_be_empty">필수 항목이 비어있습니다.</string>
+
+    <string name="food_management">식품 관리</string>
+    <string name="meal_management">식단 관리</string>
+    <string name="average_calorie_intake">평균 칼로리 섭취량</string>
+    <string name="three_major_ntr_chart_center">3대 영양소\n 백분율</string>
 </resources>
