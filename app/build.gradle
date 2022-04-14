@@ -127,4 +127,7 @@ dependencies {
 
     // Room table을 확인
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+    // MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

@@ -17,7 +17,9 @@ internal class ManagementFragment : BaseFragment<FragmentManagementBinding, Mana
     override fun getDataBinding(): FragmentManagementBinding =
         FragmentManagementBinding.inflate(layoutInflater)
 
-    override fun initViews() { }
+    override fun initViews() {
+        binding.viewModel = viewModel
+    }
 
     override fun observeData() { }
 }

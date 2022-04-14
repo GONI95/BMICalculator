@@ -3,6 +3,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="pink">#FF6398</color>
 
+    <color name="yellow">#F5AA15</color>
+    <color name="green">#0E9554</color>
+    <color name="blue">#256CE3</color>
+
     <color name="base_color">#EFF2F4</color>
     <color name="shadow_light_color">#FEFEFF</color>
     <color name="shadow_dark_color">#DBE0E7</color>
