@@ -22,6 +22,9 @@
         android:theme="@style/Theme.CalIngredientFood"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".presentation.management.meal.MealManagementActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.insert.InsertFoodNtrIrdntActivity"
             android:exported="false" />
         <!--

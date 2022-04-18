@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="handler"
+            type="sang.gondroid.calingredientfood.presentation.management.ManagementFragment" />
 
         <variable
             name="viewModel"
@@ -24,6 +27,7 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="@string/meal_management"
+            android:onClick="@{() -> handler.startMealManagementActivity()}"
             app:layout_constraintBottom_toTopOf="@+id/averageCalorieCardView"
             app:layout_constraintEnd_toStartOf="@+id/foodManagementButton"
             app:layout_constraintStart_toStartOf="parent"
