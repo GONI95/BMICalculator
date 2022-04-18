@@ -7,7 +7,7 @@ class MealNtrIrdntModel(
     override val id: Long,
     override val type: ViewType,
     val mealImage: Uri?,
-    val currentDate: String,
+    val createdDate: String,
     val foodNtrIrdntList: List<FoodNtrIrdntModel>,
     val totalCalorie: Double,
     val totalCarbohydrate: Double,

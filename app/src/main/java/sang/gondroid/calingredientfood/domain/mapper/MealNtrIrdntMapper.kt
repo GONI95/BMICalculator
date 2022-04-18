@@ -1,6 +1,5 @@
 package sang.gondroid.calingredientfood.domain.mapper
 
-import kotlinx.coroutines.flow.map
 import sang.gondroid.calingredientfood.data.dto.entity.MealNtrIrdntEntity
 import sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.util.ViewType
@@ -8,15 +7,16 @@ import sang.gondroid.calingredientfood.domain.util.ViewType
 class MealNtrIrdntMapper(
     private val foodNtrIrdntMapper: FoodNtrIrdntMapper
 ) : Mapper<MealNtrIrdntEntity, MealNtrIrdntModel> {
+
     override fun toModel(input: MealNtrIrdntEntity, viewType: ViewType): MealNtrIrdntModel {
         return with(input) {
             MealNtrIrdntModel(
                 id ?: 0,
                 viewType,
                 mealImage,
-                currentDate,
-                foodNtrIrdntList.map {
-                    foodNtrIrdntMapper.toModel(it, viewType)
+                createdDate,
+                foodNtrIrdntList.mapIndexed { index, foodNtrIrdntEntity ->
+                    foodNtrIrdntMapper.toModel(index, foodNtrIrdntEntity, viewType)
                 },
                 totalCalorie,
                 totalCarbohydrate,
@@ -36,7 +36,7 @@ class MealNtrIrdntMapper(
             MealNtrIrdntEntity(
                 null,
                 mealImage,
-                currentDate,
+                createdDate,
                 foodNtrIrdntList.map {
                     foodNtrIrdntMapper.toEntity(it)
                 },

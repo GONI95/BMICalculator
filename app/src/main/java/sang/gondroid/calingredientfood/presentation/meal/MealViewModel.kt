@@ -1,5 +1,6 @@
 package sang.gondroid.calingredientfood.presentation.meal
 
+import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +15,7 @@ import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
 import sang.gondroid.calingredientfood.presentation.util.UIState
+import java.text.SimpleDateFormat
 import kotlin.collections.ArrayList
 
 internal class MealViewModel(
@@ -89,7 +91,9 @@ internal class MealViewModel(
         }
     }
 
+    @SuppressLint("SimpleDateFormat")
     private fun createMealNtrIrdntModel(): MealNtrIrdntModel {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
         var totalCalorie = 0.0
         var totalCarbohydrate = 0.0
         var totalProtein = 0.0
@@ -116,7 +120,7 @@ internal class MealViewModel(
             hashCode().toLong(),
             ViewType.MEAL_NTR_IRDNT,
             selectPictureUri.value,
-            selectCalendarDay.value.toString(),
+            dateFormat.format(selectCalendarDay.value!!.date),
             calculatorList,
             totalCalorie,
             totalCarbohydrate,

@@ -7,4 +7,6 @@ interface MealNtrIrdntRepository {
     fun getMealNtrIrdntList(): Flow<List<MealNtrIrdntModel>>
 
     suspend fun insertMealNtrIrdnt(mealNtrIrdntModel: MealNtrIrdntModel)
+
+    fun getLastSevenDaysMealNtrIrdntList(): Flow<List<MealNtrIrdntModel>>
 }

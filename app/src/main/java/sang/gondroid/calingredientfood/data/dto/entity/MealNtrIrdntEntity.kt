@@ -15,8 +15,8 @@ data class MealNtrIrdntEntity(
     @TypeConverters(RoomTypeConverters::class)
     @ColumnInfo(name = "meal_image")
     val mealImage: Uri?,
-    @ColumnInfo(name = "current_date")
-    val currentDate: String,
+    @ColumnInfo(name = "created_date")
+    val createdDate: String,
     @TypeConverters(RoomTypeConverters::class)
     @SerializedName("food_ntr_irdnt_list")
     val foodNtrIrdntList: List<FoodNtrIrdntEntity>,

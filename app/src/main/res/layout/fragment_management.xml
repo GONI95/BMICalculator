@@ -85,7 +85,6 @@
                     android:paddingEnd="10dp"
                     android:text="@{viewModel.averageCalorie}"
                     android:textColor="@color/blue"
-                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/calorieUnitTextView"
                     app:layout_constraintEnd_toStartOf="@+id/view"
@@ -122,8 +121,6 @@
                     setAverageCalorieChart="@{viewModel.calorieList}"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginEnd="5dp"
                     app:layout_constraintBottom_toBottomOf="@+id/calorieUnitTextView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/view"
@@ -149,7 +146,7 @@
                 android:padding="10dp">
 
                 <com.github.mikephil.charting.charts.PieChart
-                    setThreeMajorNtrChart="@{viewModel.threeMajorNtrPercent}"
+                    setThreeMajorNtrChart="@{viewModel.threeMajorNtrList}"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
