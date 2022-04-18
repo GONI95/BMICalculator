@@ -368,11 +368,12 @@ internal object BindingAdapters {
         }
 
         if (calorieList != null && calorieList.isNotEmpty()) {
-            val extraVerticalOffset = 20f
+            val extraTopOffset = 22f
+            val extraBottomOffset = 10f
             val formSize = 10f
             val smallTextSize = 12f
 
-            setExtraOffsets(0f, extraVerticalOffset, 0f, extraVerticalOffset)
+            setExtraOffsets(10f, extraTopOffset, 10f, extraBottomOffset)
             marker = LineChartMarkerView(context, R.layout.line_chart_marker)
             description.isEnabled = false
             axisRight.isEnabled = false
@@ -399,7 +400,7 @@ internal object BindingAdapters {
             }
 
             // YAxis(Right) (왼쪽) - 선 유무, 데이터 최솟값/최댓값, 색상
-            axisLeft.isEnabled = false
+            axisLeft.setDrawLabels(false)
 
             // XAxis에 원하는 String 설정하기 (날짜)
             xAxis.valueFormatter = object : ValueFormatter() {

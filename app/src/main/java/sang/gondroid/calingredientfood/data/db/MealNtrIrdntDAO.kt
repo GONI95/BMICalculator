@@ -16,4 +16,10 @@ interface MealNtrIrdntDAO {
 
     @Insert
     suspend fun insert(mealNtrIrdntEntity: MealNtrIrdntEntity)
+
+    @Query("SELECT * FROM mealNtrIrdntTable WHERE created_date BETWEEN :startDate and :currentDate ORDER BY created_date")
+    fun getLastSevenDaysMealNtrIrdntList(
+        startDate: String,
+        currentDate: String
+    ): Flow<List<MealNtrIrdntEntity>>
 }

@@ -6,6 +6,29 @@ import sang.gondroid.calingredientfood.domain.util.ViewType
 
 class FoodNtrIrdntMapper : Mapper<FoodNtrIrdntEntity, FoodNtrIrdntModel> {
 
+    fun toModel(index: Int, input: FoodNtrIrdntEntity, viewType: ViewType): FoodNtrIrdntModel {
+        return with(input) {
+            FoodNtrIrdntModel(
+                index.toLong(),
+                viewType,
+                company,
+                beginYear,
+                descriptionKOR,
+                calorie,
+                carbohydrate,
+                protein,
+                fat,
+                sugar,
+                salt,
+                cholesterol,
+                saturatedFattyAcid,
+                transFat,
+                servingWeight,
+                servingCount
+            )
+        }
+    }
+
     override fun toModel(input: FoodNtrIrdntEntity, viewType: ViewType): FoodNtrIrdntModel {
         return with(input) {
             FoodNtrIrdntModel(
