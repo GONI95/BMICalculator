@@ -42,6 +42,8 @@ import sang.gondroid.calingredientfood.presentation.widget.decorator.SelectDateD
 import com.github.mikephil.charting.formatter.ValueFormatter
 import kotlin.collections.ArrayList
 import com.github.mikephil.charting.components.Legend
+import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import sang.gondroid.calingredientfood.presentation.widget.custom.LineChartMarkerView
 import sang.gondroid.calingredientfood.presentation.widget.custom.PieChartRenderer
 import java.text.NumberFormat
@@ -437,6 +439,18 @@ internal object BindingAdapters {
 
             data = LineData(lineDataSet)
             invalidate()
+        }
+    }
+
+    @BindingAdapter("setChipInitializeIconState")
+    @JvmStatic
+    fun ChipGroup.setChipInitializeIconState(chipInitialize: Chip) {
+        setOnCheckedChangeListener { _, checkedId ->
+            if (checkedId != R.id.chipInitialize) {
+                chipInitialize.chipIcon = getDrawable(context, R.drawable.ic_undo)
+            } else {
+                chipInitialize.chipIcon = null
+            }
         }
     }
 }

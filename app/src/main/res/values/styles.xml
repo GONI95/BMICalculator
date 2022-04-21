@@ -111,4 +111,15 @@
         <item name="cardCornerRadius">5dp</item>
         <item name="cardElevation">0dp</item>
     </style>
+
+    <style name="Theme.CalIngredientFood.Chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/bg_chip_state_color</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="chipIconTint">@color/icon_chip_state_color</item>
+        <item name="chipIconSize">18dp</item>
+        <item name="textStartPadding">2dp</item>
+        <item name="chipStartPadding">8dp</item>
+        <item name="chipEndPadding">4dp</item>
+    </style>
 </resources>

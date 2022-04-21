@@ -72,4 +72,10 @@
     <string name="meal_management">식단 관리</string>
     <string name="average_calorie_intake">평균 칼로리 섭취량</string>
     <string name="three_major_ntr_chart_center">3대 영양소\n 백분율</string>
+
+    <string name="initialize">초기화</string>
+    <string name="in_order_of_highest_calorie">칼로리 높은 순</string>
+    <string name="in_order_of_highest_carbohydrate">탄수화물 높은 순</string>
+    <string name="in_order_of_highest_protein">단백질 높은 순</string>
+    <string name="in_order_of_highest_fat">지방 높은 순</string>
 </resources>

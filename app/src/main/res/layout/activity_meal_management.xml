@@ -6,7 +6,152 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/base_color"
         tools:context=".presentation.management.meal.MealManagementActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="0dp"
+            android:layout_height="75dp"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    app:layout_collapseMode="pin">
+
+                    <soup.neumorphism.NeumorphCardView
+                        android:id="@+id/searchCardView"
+                        style="@style/Theme.CalIngredientFood.Neumorphism"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/searchEditText"
+                            style="@style/Theme.CalIngredientFood.EditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="20dp" />
+
+                    </soup.neumorphism.NeumorphCardView>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="@+id/appBarLayout"
+            app:layout_constraintStart_toStartOf="@+id/appBarLayout"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+            app:tabGravity="fill"
+            android:background="@color/base_color"
+            app:tabIndicatorFullWidth="false"
+            app:tabMaxWidth="0dp"
+            app:tabMode="auto" />
+
+        <HorizontalScrollView
+            android:id="@+id/filterScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="@+id/appBarLayout"
+            app:layout_constraintStart_toStartOf="@+id/appBarLayout"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
+                app:checkedChip="@id/chipInitialize"
+                app:chipSpacingHorizontal="4dp"
+                app:chipSpacingVertical="6dp"
+                app:layout_constraintBottom_toTopOf="@id/viewPager"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true"
+                setChipInitializeIconState="@{chipInitialize}">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipInitialize"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/initialize"
+                    android:textColor="@color/text_initialize_chip_state_color"
+                    app:chipIconEnabled="true"
+                    app:chipBackgroundColor="@color/bg_initialize_chip_state_color"
+                    app:chipIconTint="@color/brown"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCalorie"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_calorie"
+                    app:chipIconEnabled="true"
+                    app:chipIcon="@drawable/ic_arrow_upward" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipCarbohydrate"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_carbohydrate"
+                    app:chipIconEnabled="true"
+                    app:chipIcon="@drawable/ic_arrow_upward" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipProtein"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_protein"
+                    app:chipIconEnabled="true"
+                    app:chipIcon="@drawable/ic_arrow_upward" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFat"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_fat"
+                    app:chipIconEnabled="true"
+                    app:chipIcon="@drawable/ic_arrow_upward" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/contrasting_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/appBarLayout"
+            app:layout_constraintStart_toStartOf="@+id/appBarLayout"
+            app:layout_constraintTop_toBottomOf="@+id/filterScrollView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
