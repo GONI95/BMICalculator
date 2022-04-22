@@ -122,4 +122,11 @@
         <item name="chipStartPadding">8dp</item>
         <item name="chipEndPadding">4dp</item>
     </style>
+
+    <style name="Theme.CalIngredientFood.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="android:background">@color/base_color</item>
+        <item name="tabIndicatorColor">@color/blue</item>
+        <item name="tabTextColor">@color/text_color</item>
+        <item name="tabSelectedTextColor">@color/black</item>
+    </style>
 </resources>
