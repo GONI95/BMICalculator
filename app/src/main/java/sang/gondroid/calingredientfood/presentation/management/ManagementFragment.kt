@@ -1,8 +1,10 @@
 package sang.gondroid.calingredientfood.presentation.management
 
+import android.content.Intent
 import org.koin.android.ext.android.inject
 import sang.gondroid.calingredientfood.databinding.FragmentManagementBinding
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
+import sang.gondroid.calingredientfood.presentation.management.meal.MealManagementActivity
 
 internal class ManagementFragment : BaseFragment<FragmentManagementBinding, ManagementViewModel>() {
 
@@ -18,8 +20,14 @@ internal class ManagementFragment : BaseFragment<FragmentManagementBinding, Mana
         FragmentManagementBinding.inflate(layoutInflater)
 
     override fun initViews() {
+        binding.handler = this
         binding.viewModel = viewModel
     }
 
-    override fun observeData() { }
+    fun startMealManagementActivity() {
+        val intent = Intent(requireContext(), MealManagementActivity::class.java)
+        startActivity(intent)
+    }
+
+    override fun observeData() {}
 }

@@ -25,6 +25,8 @@ import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel
 import sang.gondroid.calingredientfood.presentation.management.ManagementViewModel
+import sang.gondroid.calingredientfood.presentation.management.meal.MealManagementViewModel
+import sang.gondroid.calingredientfood.presentation.management.meal.month_category.MonthCategoryViewModel
 
 internal val appModule = module {
 
@@ -35,6 +37,8 @@ internal val appModule = module {
     viewModel { MealViewModel(get()) }
     viewModel { InsertFoodNtrIrdntViewModel(get(), get()) }
     viewModel { ManagementViewModel(get(), get()) }
+    viewModel { MealManagementViewModel() }
+    viewModel { MonthCategoryViewModel(it[0]) }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체

@@ -72,4 +72,24 @@
     <string name="meal_management">식단 관리</string>
     <string name="average_calorie_intake">평균 칼로리 섭취량</string>
     <string name="three_major_ntr_chart_center">3대 영양소\n 백분율</string>
+
+    <string name="initialize">초기화</string>
+    <string name="in_order_of_highest_calorie">칼로리 높은 순</string>
+    <string name="in_order_of_highest_carbohydrate">탄수화물 높은 순</string>
+    <string name="in_order_of_highest_protein">단백질 높은 순</string>
+    <string name="in_order_of_highest_fat">지방 높은 순</string>
+
+    <string name="all">전체</string>
+    <string name="january">1월</string>
+    <string name="february">2월</string>
+    <string name="march">3월</string>
+    <string name="april">4월</string>
+    <string name="may">5월</string>
+    <string name="june">6월</string>
+    <string name="july">7월</string>
+    <string name="august">8월</string>
+    <string name="september">9월</string>
+    <string name="october">10월</string>
+    <string name="november">11월</string>
+    <string name="december">12월</string>
 </resources>
