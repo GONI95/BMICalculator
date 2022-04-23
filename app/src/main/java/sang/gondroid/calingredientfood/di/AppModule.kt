@@ -38,7 +38,7 @@ internal val appModule = module {
     viewModel { InsertFoodNtrIrdntViewModel(get(), get()) }
     viewModel { ManagementViewModel(get(), get()) }
     viewModel { MealManagementViewModel() }
-    viewModel { MonthCategoryViewModel(it[0]) }
+    viewModel { MonthCategoryViewModel(it[0], it[1]) }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체

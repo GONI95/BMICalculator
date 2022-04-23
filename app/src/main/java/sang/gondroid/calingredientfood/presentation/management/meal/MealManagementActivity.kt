@@ -31,7 +31,7 @@ internal class MealManagementActivity :
 
     private val fragmentList by lazy {
         monthCategories.map {
-            MonthCategoryFragment.newInstance(it)
+            MonthCategoryFragment.newInstance(it, viewModel.monthRangeMap.getValue(it))
         }
     }
 
