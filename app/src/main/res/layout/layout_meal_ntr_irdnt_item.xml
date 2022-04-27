@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="20dp">
+
+        <TextView
+            android:id="@+id/createDateTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{item.createdDate}"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/calorieTextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2022-04-25" />
+
+        <TextView
+            android:id="@+id/calorieTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/calorie_desc_info(item.totalCalorie)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/threeMajorNtrTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/createDateTextView"
+            tools:text="칼로리" />
+
+        <TextView
+            android:id="@+id/threeMajorNtrTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/three_major_ntr_desc_info(item.totalCarbohydrate, item.totalProtein, item.totalFat)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
+            tools:text="탄.단.지" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

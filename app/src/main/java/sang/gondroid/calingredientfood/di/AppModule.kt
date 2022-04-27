@@ -15,11 +15,12 @@ import sang.gondroid.calingredientfood.domain.mapper.FoodNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.mapper.MealNtrIrdntMapper
 import sang.gondroid.calingredientfood.domain.repository.FoodNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.repository.MealNtrIrdntRepository
-import sang.gondroid.calingredientfood.domain.use_case.InsertCustomFoodNtrIrdntUseCase
-import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
-import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntListUseCase
-import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListForMonthUseCase
 import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.GetFoodNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
+import sang.gondroid.calingredientfood.domain.use_case.InsertCustomFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.use_case.GetLastSevenDaysMealNtrIrdntListUseCase
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
@@ -38,7 +39,7 @@ internal val appModule = module {
     viewModel { InsertFoodNtrIrdntViewModel(get(), get()) }
     viewModel { ManagementViewModel(get(), get()) }
     viewModel { MealManagementViewModel() }
-    viewModel { MonthCategoryViewModel(it[0], it[1]) }
+    viewModel { MonthCategoryViewModel(it[0], it[1], get()) }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체
@@ -49,6 +50,7 @@ internal val appModule = module {
     factory { InsertMealNtrIrdntUseCase(get()) }
     factory { GetMealNtrIrdntListUseCase(get()) }
     factory { GetLastSevenDaysMealNtrIrdntListUseCase(get()) }
+    factory { GetMealNtrIrdntListForMonthUseCase(get()) }
 
     /**
      * Repository : Domain과 Data Layer 사이를 중재해주는 객체

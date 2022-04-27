@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import sang.gondroid.calingredientfood.databinding.LayoutCalculatorItemBinding
 import sang.gondroid.calingredientfood.databinding.LayoutFoodNtrIrdntItemBinding
+import sang.gondroid.calingredientfood.databinding.LayoutMealNtrIrdntItemBinding
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.widget.viewholder.BaseViewHolder
 import sang.gondroid.calingredientfood.presentation.widget.viewholder.CalculatorViewHolder
 import sang.gondroid.calingredientfood.presentation.widget.viewholder.FoodNtrIrdntViewHolder
+import sang.gondroid.calingredientfood.presentation.widget.viewholder.MealNtrIrdntViewHolder
 
 object BaseViewHolderMapper {
 
@@ -24,9 +26,14 @@ object BaseViewHolderMapper {
                     LayoutFoodNtrIrdntItemBinding.inflate(inflater, parent, false)
                 )
             }
-            ViewType.CALCULATOR, ViewType.MEAL_NTR_IRDNT -> {
+            ViewType.CALCULATOR -> {
                 CalculatorViewHolder(
                     LayoutCalculatorItemBinding.inflate(inflater, parent, false)
+                )
+            }
+            ViewType.MEAL_NTR_IRDNT -> {
+                MealNtrIrdntViewHolder(
+                    LayoutMealNtrIrdntItemBinding.inflate(inflater, parent, false)
                 )
             }
         } as BaseViewHolder<T>

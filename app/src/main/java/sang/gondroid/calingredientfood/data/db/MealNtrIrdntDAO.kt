@@ -22,4 +22,12 @@ interface MealNtrIrdntDAO {
         startDate: String,
         currentDate: String
     ): Flow<List<MealNtrIrdntEntity>>
+
+    @Query("SELECT * FROM mealNtrIrdntTable WHERE created_date BETWEEN :firstDay and :lastDay ORDER BY created_date DESC LIMIT :loadSize OFFSET (:page-1) * :loadSize")
+    suspend fun getMealNtrIrdntListForMonth(
+        firstDay: String,
+        lastDay: String,
+        page: Int,
+        loadSize: Int
+    ): List<MealNtrIrdntEntity>
 }

@@ -5,6 +5,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.FragmentSearchBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
+import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.base.FragmentListener
 import sang.gondroid.calingredientfood.presentation.util.Constants
@@ -37,8 +38,8 @@ internal class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewMo
             listOf(),
             object : FoodNtrIrdntListener {
 
-                override fun onClickItem(model: FoodNtrIrdntModel) {
-                    FoodNtrIrdntBottomSheet.newInstance(model)
+                override fun onClickItem(model: Model) {
+                    FoodNtrIrdntBottomSheet.newInstance(model as FoodNtrIrdntModel)
                         .show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
                 }
 
