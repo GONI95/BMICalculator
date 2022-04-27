@@ -9,53 +9,69 @@
             type="sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp">
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp">
 
-        <TextView
-            android:id="@+id/createDateTextView"
-            android:layout_width="0dp"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="5dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@{item.createdDate}"
-            android:textColor="@color/text_color"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/calorieTextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="2022-04-25" />
+            android:paddingHorizontal="5dp"
+            android:paddingVertical="5dp">
 
-        <TextView
-            android:id="@+id/calorieTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{@string/calorie_desc_info(item.totalCalorie)}"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/threeMajorNtrTextView"
-            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
-            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
-            app:layout_constraintTop_toBottomOf="@+id/createDateTextView"
-            tools:text="칼로리" />
+            <TextView
+                android:id="@+id/createDateTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{item.createdDate}"
+                android:textColor="@color/text_color"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/calorieTextView"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
+                app:layout_constraintStart_toStartOf="@+id/appCompatImageView"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView"
+                tools:text="2022-04-25" />
 
-        <TextView
-            android:id="@+id/threeMajorNtrTextView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@{@string/three_major_ntr_desc_info(item.totalCarbohydrate, item.totalProtein, item.totalFat)}"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
-            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
-            app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
-            tools:text="탄.단.지" />
+            <TextView
+                android:id="@+id/calorieTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{@string/calorie_desc_info(item.totalCalorie)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/threeMajorNtrTextView"
+                app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+                app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+                app:layout_constraintTop_toBottomOf="@+id/createDateTextView"
+                tools:text="칼로리" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/threeMajorNtrTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{@string/three_major_ntr_desc_info(item.totalCarbohydrate, item.totalProtein, item.totalFat)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+                app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+                app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
+                tools:text="탄.단.지" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_food"
+                app:layout_constraintBottom_toTopOf="@+id/createDateTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

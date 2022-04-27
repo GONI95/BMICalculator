@@ -3,7 +3,7 @@ package sang.gondroid.calingredientfood.presentation.management.meal.month_categ
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -16,6 +16,7 @@ import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.util.MonthCategory
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BasePagingDataAdapter
+import sang.gondroid.calingredientfood.presentation.widget.decorator.GridSpacingDecoration
 import sang.gondroid.calingredientfood.presentation.widget.listener.AdapterListener
 
 internal class MonthCategoryFragment :
@@ -45,9 +46,14 @@ internal class MonthCategoryFragment :
         )
     }
 
+    /**
+     * Gon [22.04.27] : GridLayoutManager(context, 가로 item 수, 출력 방향, item의 첫, 끝 중 시작 위치)
+     */
     override fun initViews() {
         binding.mealNtrIrdntRecyclerView.adapter = mealNtrIrdntPagingDataAdapter
-        binding.mealNtrIrdntRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.mealNtrIrdntRecyclerView.layoutManager =
+            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+        binding.mealNtrIrdntRecyclerView.addItemDecoration(GridSpacingDecoration(2, 30, true))
     }
 
     @Suppress("UNCHECKED_CAST")
