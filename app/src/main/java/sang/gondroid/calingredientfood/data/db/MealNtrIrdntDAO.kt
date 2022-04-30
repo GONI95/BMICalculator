@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 import sang.gondroid.calingredientfood.data.dto.entity.MealNtrIrdntEntity
+import sang.gondroid.calingredientfood.presentation.util.MealNtrIrdntSort
 
 /**
  * [22.03.29] : Data Access Object(데이터에 접근할 수 있는 메서드를 정의해놓은 Interface)
@@ -23,10 +24,19 @@ interface MealNtrIrdntDAO {
         currentDate: String
     ): Flow<List<MealNtrIrdntEntity>>
 
-    @Query("SELECT * FROM mealNtrIrdntTable WHERE created_date BETWEEN :firstDay and :lastDay ORDER BY created_date DESC LIMIT :loadSize OFFSET (:page-1) * :loadSize")
+    @Query(
+        "SELECT * FROM mealNtrIrdntTable WHERE created_date BETWEEN :firstDay AND :lastDay ORDER BY " +
+            "CASE WHEN :mealNtrIrdntSort = 'INITIALIZE' THEN created_date END DESC, " +
+            "CASE WHEN :mealNtrIrdntSort = 'CALORIE' THEN total_calorie END DESC, " +
+            "CASE WHEN :mealNtrIrdntSort = 'CARBOHYDRATE' THEN total_carbohydrate END DESC, " +
+            "CASE WHEN :mealNtrIrdntSort = 'PROTEIN' THEN total_protein END DESC, " +
+            "CASE WHEN :mealNtrIrdntSort = 'FAT' THEN total_fat END DESC " +
+            "LIMIT :loadSize OFFSET (:page-1) * :loadSize"
+    )
     suspend fun getMealNtrIrdntListForMonth(
         firstDay: String,
         lastDay: String,
+        mealNtrIrdntSort: MealNtrIrdntSort,
         page: Int,
         loadSize: Int
     ): List<MealNtrIrdntEntity>

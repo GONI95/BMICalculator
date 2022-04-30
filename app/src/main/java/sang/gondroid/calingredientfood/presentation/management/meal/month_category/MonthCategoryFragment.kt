@@ -4,7 +4,6 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.GridLayoutManager
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -17,7 +16,7 @@ import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.util.MonthCategory
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BasePagingDataAdapter
 import sang.gondroid.calingredientfood.presentation.widget.decorator.GridSpacingDecoration
-import sang.gondroid.calingredientfood.presentation.widget.listener.AdapterListener
+import sang.gondroid.calingredientfood.presentation.widget.listener.MealNtrIrdntListener
 
 internal class MonthCategoryFragment :
     BaseFragment<FragmentMonthCategoryBinding, MonthCategoryViewModel>() {
@@ -38,7 +37,7 @@ internal class MonthCategoryFragment :
 
     private val mealNtrIrdntPagingDataAdapter by lazy {
         BasePagingDataAdapter<MealNtrIrdntModel>(
-            object : AdapterListener {
+            object : MealNtrIrdntListener {
                 override fun onClickItem(model: Model) {
                     DebugLog.d("$model")
                 }
@@ -58,8 +57,8 @@ internal class MonthCategoryFragment :
 
     @Suppress("UNCHECKED_CAST")
     override fun observeData() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.flow.collectLatest { pagingData ->
+        lifecycleScope.launch {
+            viewModel.mealNtrIrdntPagingDataFlow.collectLatest { pagingData ->
                 mealNtrIrdntPagingDataAdapter.submitData(pagingData as PagingData<Model>)
             }
         }

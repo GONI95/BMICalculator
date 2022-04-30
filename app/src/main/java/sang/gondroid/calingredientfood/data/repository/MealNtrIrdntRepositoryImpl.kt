@@ -19,6 +19,7 @@ import sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.repository.MealNtrIrdntRepository
 import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.util.MealNtrIrdntSort
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -86,12 +87,13 @@ class MealNtrIrdntRepositoryImpl(
      */
     override fun getMealNtrIrdntListForMonth(
         firstDay: String,
-        lastDay: String
+        lastDay: String,
+        mealNtrIrdntSort: MealNtrIrdntSort
     ): Flow<PagingData<MealNtrIrdntModel>> =
         Pager(
             config = PagingConfig(10),
             pagingSourceFactory = {
-                MealNtrIrdntPagingSource(mealNtrIrdntDAO, firstDay, lastDay)
+                MealNtrIrdntPagingSource(mealNtrIrdntDAO, firstDay, lastDay, mealNtrIrdntSort)
             }
         ).flow.map { pagingData ->
             pagingData.map { item ->

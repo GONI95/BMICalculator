@@ -5,6 +5,7 @@ import androidx.paging.PagingState
 import sang.gondroid.calingredientfood.data.db.MealNtrIrdntDAO
 import sang.gondroid.calingredientfood.data.dto.entity.MealNtrIrdntEntity
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
+import sang.gondroid.calingredientfood.presentation.util.MealNtrIrdntSort
 
 /**
  * Gon [22.04.26] : PagingData를 load하는 추상 클래스인 PagingSource를 상속받아 정의한 클래스
@@ -18,7 +19,8 @@ import sang.gondroid.calingredientfood.presentation.util.DebugLog
 class MealNtrIrdntPagingSource(
     private val mealNtrIrdntDAO: MealNtrIrdntDAO,
     private val firstDay: String,
-    private val lastDay: String
+    private val lastDay: String,
+    private val mealNtrIrdntSort: MealNtrIrdntSort
 ) : PagingSource<Int, MealNtrIrdntEntity>() {
 
     private companion object {
@@ -45,14 +47,11 @@ class MealNtrIrdntPagingSource(
      *                  params.loadSize : Load 시 가져올 데이터의 갯수를 밴환 (Int)
      */
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MealNtrIrdntEntity> {
-        DebugLog.i("load called")
+        DebugLog.i("load called : $mealNtrIrdntSort")
 
         val page = params.key ?: INIT_PAGE_INDEX
         val items = mealNtrIrdntDAO.getMealNtrIrdntListForMonth(
-            firstDay,
-            lastDay,
-            page,
-            params.loadSize
+            firstDay, lastDay, mealNtrIrdntSort, page, params.loadSize
         )
 
         return LoadResult.Page(
