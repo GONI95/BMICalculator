@@ -21,6 +21,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.FragmentMealBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
+import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntActivity
 import sang.gondroid.calingredientfood.presentation.util.Constants
@@ -65,8 +66,9 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
         BaseRecyclerViewAdapter<FoodNtrIrdntModel>(
             listOf(),
             object : CalculatorListener {
-                override fun onClickItem(model: FoodNtrIrdntModel) {
-                    FoodNtrIrdntBottomSheet.newInstance(model).show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
+                override fun onClickItem(model: Model) {
+                    FoodNtrIrdntBottomSheet.newInstance(model as FoodNtrIrdntModel)
+                        .show(requireActivity().supportFragmentManager, Constants.BOTTOM_SHEET_TAG)
                 }
 
                 override fun onClickRemoveButton(model: FoodNtrIrdntModel) {
@@ -81,29 +83,35 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
     }
 
     // Gon [22.03.16] : InsertFoodNtrIrdntActivity 실행 후 FoodNtrIrdntModel 반환받음
-    private val insertFoodNtrIrdntActivityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val foodNtrIrdntModel = result.data?.getParcelableExtra<FoodNtrIrdntModel>(Constants.FOOD_NTR_IRDNT_MODEL_KEY)
+    private val insertFoodNtrIrdntActivityResultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == RESULT_OK) {
+                val foodNtrIrdntModel =
+                    result.data?.getParcelableExtra<FoodNtrIrdntModel>(Constants.FOOD_NTR_IRDNT_MODEL_KEY)
 
-            foodNtrIrdntModel?.let { viewModel.addCalculatorItem(it) }
+                foodNtrIrdntModel?.let { viewModel.addCalculatorItem(it) }
+            }
         }
-    }
 
     // Gon [22.03.14] : Android 6.0(API 23) 마시멜로우 이상 버젼에선 Manifest에 Permission 추가와 위험 권한에 대해 승인을 받도록 구현이 필요
-    private val requestPermissionResultLauncher = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
-        permissions.forEach { actionMap ->
-            when (actionMap.key) {
-                Manifest.permission.WRITE_EXTERNAL_STORAGE -> {
-                    if (actionMap.value) {
-                        permissionStateList[0] = true
-                    } else {
-                        permissionStateList[0] = false
-                        NotificationSnackBar.make(requireView(), resources.getString(R.string.please_set_permissions)).show()
+    private val requestPermissionResultLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+            permissions.forEach { actionMap ->
+                when (actionMap.key) {
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE -> {
+                        if (actionMap.value) {
+                            permissionStateList[0] = true
+                        } else {
+                            permissionStateList[0] = false
+                            NotificationSnackBar.make(
+                                requireView(),
+                                resources.getString(R.string.please_set_permissions)
+                            ).show()
+                        }
                     }
                 }
             }
         }
-    }
 
     /**
      * Gon [22.03.14] : Android 9.0(API 28) 파이 이상 버젼에선 ImageDecoder를 사용해 Bitmap 객체로 변환
@@ -185,7 +193,10 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
             values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg")
             values.put(MediaStore.MediaColumns.RELATIVE_PATH, "Pictures/TakePicture")
 
-            imageUri = requireContext().contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
+            imageUri = requireContext().contentResolver.insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                values
+            )
         } else {
             val imagePath = File(Environment.getExternalStorageDirectory(), "TakePicture").apply {
                 if (!this.exists()) this.mkdirs()
@@ -245,5 +256,5 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
             viewModel.addCalculatorItem(model)
         }
 
-    override fun observeData() { }
+    override fun observeData() {}
 }

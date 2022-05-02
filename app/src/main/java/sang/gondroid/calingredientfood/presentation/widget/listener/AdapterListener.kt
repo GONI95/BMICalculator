@@ -1,6 +1,6 @@
 package sang.gondroid.calingredientfood.presentation.widget.listener
 
-import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
+import sang.gondroid.calingredientfood.domain.model.Model
 
 /**
  * Gon [22.01.20] : ViewHolder, RecyclerViewAdapter는 리스트를 표시하는 작업을 하고 Data의 상태를 제어하지 않고
@@ -9,5 +9,5 @@ import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
  *                  전체적으로 ItemView 클릭 시 호출하기위한 추상 메서드 onClickItem() 선언
  */
 interface AdapterListener {
-    fun onClickItem(model: FoodNtrIrdntModel)
+    fun onClickItem(model: Model)
 }

@@ -24,12 +24,9 @@ internal abstract class BaseActivity<VDB : ViewDataBinding, VM : BaseViewModel> 
 
         binding = getDataBinding()
         binding.lifecycleOwner = this
-        initState()
         initViews()
         observeData()
     }
-
-    open fun initState() = Unit
 
     open fun initViews() = Unit
 

@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="handler"
+            type="sang.gondroid.calingredientfood.presentation.management.meal.MealManagementActivity" />
+    </data>
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -88,11 +94,10 @@
 
                <com.google.android.material.chip.ChipGroup
                    android:id="@+id/chipGroup"
-                   setChipInitializeIconState="@{chipInitialize}"
+                   onCheckedChange="@{handler.changeMealNtrIrdntSort}"
                    android:layout_width="wrap_content"
                    android:layout_height="wrap_content"
                    android:paddingHorizontal="12dp"
-                   app:checkedChip="@id/chipInitialize"
                    app:chipSpacingHorizontal="4dp"
                    app:chipSpacingVertical="6dp"
                    app:layout_constraintBottom_toTopOf="@id/viewPager"
@@ -101,7 +106,7 @@
                    app:singleSelection="true">
 
                    <com.google.android.material.chip.Chip
-                       android:id="@+id/chipInitialize"
+                       android:id="@+id/initializeChip"
                        style="@style/Theme.CalIngredientFood.Chip"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -112,7 +117,7 @@
                        app:chipIconTint="@color/brown" />
 
                    <com.google.android.material.chip.Chip
-                       android:id="@+id/chipCalorie"
+                       android:id="@+id/calorieChip"
                        style="@style/Theme.CalIngredientFood.Chip"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -121,7 +126,7 @@
                        app:chipIconEnabled="true" />
 
                    <com.google.android.material.chip.Chip
-                       android:id="@+id/chipCarbohydrate"
+                       android:id="@+id/carbohydrateChip"
                        style="@style/Theme.CalIngredientFood.Chip"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -130,7 +135,7 @@
                        app:chipIconEnabled="true" />
 
                    <com.google.android.material.chip.Chip
-                       android:id="@+id/chipProtein"
+                       android:id="@+id/proteinChip"
                        style="@style/Theme.CalIngredientFood.Chip"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"
@@ -139,7 +144,7 @@
                        app:chipIconEnabled="true" />
 
                    <com.google.android.material.chip.Chip
-                       android:id="@+id/chipFat"
+                       android:id="@+id/fatChip"
                        style="@style/Theme.CalIngredientFood.Chip"
                        android:layout_width="wrap_content"
                        android:layout_height="wrap_content"

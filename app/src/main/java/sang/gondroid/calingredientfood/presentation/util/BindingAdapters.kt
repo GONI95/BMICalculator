@@ -442,14 +442,40 @@ internal object BindingAdapters {
         }
     }
 
-    @BindingAdapter("setChipInitializeIconState")
+    /**
+     * Gone [22.04.28] : Chip 설정 및 클릭된 Chip에 대한 MealNtrIrdntSort 상수를 인자로 가지는 고차함수를 호출하는 메서드
+     *                   ChangeListener이기 때문에 check()를 통한 초기값 설정에 대한 호출이 이루어지지 않아
+     *                   MonthCategoryViewModel에서 mealNtrIrdntSort 프로퍼티를 MealNtrIrdntSort.INITIALIZE로 초기화
+     */
+    @BindingAdapter("onCheckedChange")
     @JvmStatic
-    fun ChipGroup.setChipInitializeIconState(chipInitialize: Chip) {
+    fun ChipGroup.onCheckedChange(changeMealNtrIrdntSort: Function1<MealNtrIrdntSort, Unit>) {
+        check(R.id.initializeChip)
+
         setOnCheckedChangeListener { _, checkedId ->
-            if (checkedId != R.id.chipInitialize) {
-                chipInitialize.chipIcon = getDrawable(context, R.drawable.ic_undo)
-            } else {
-                chipInitialize.chipIcon = null
+            val initializeChip = findViewById<Chip>(R.id.initializeChip)
+
+            when (checkedId) {
+                R.id.initializeChip -> {
+                    initializeChip.chipIcon = null
+                    changeMealNtrIrdntSort(MealNtrIrdntSort.INITIALIZE)
+                }
+                R.id.calorieChip -> {
+                    initializeChip.chipIcon = getDrawable(context, R.drawable.ic_undo)
+                    changeMealNtrIrdntSort(MealNtrIrdntSort.CALORIE)
+                }
+                R.id.carbohydrateChip -> {
+                    initializeChip.chipIcon = getDrawable(context, R.drawable.ic_undo)
+                    changeMealNtrIrdntSort(MealNtrIrdntSort.CARBOHYDRATE)
+                }
+                R.id.proteinChip -> {
+                    initializeChip.chipIcon = getDrawable(context, R.drawable.ic_undo)
+                    changeMealNtrIrdntSort(MealNtrIrdntSort.PROTEIN)
+                }
+                R.id.fatChip -> {
+                    initializeChip.chipIcon = getDrawable(context, R.drawable.ic_undo)
+                    changeMealNtrIrdntSort(MealNtrIrdntSort.FAT)
+                }
             }
         }
     }

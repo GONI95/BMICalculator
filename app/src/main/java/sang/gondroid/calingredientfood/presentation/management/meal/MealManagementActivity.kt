@@ -7,11 +7,14 @@ import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.ActivityMealManagementBinding
 import sang.gondroid.calingredientfood.presentation.base.BaseActivity
 import sang.gondroid.calingredientfood.presentation.management.meal.month_category.MonthCategoryFragment
+import sang.gondroid.calingredientfood.presentation.util.MealNtrIrdntSort
 import sang.gondroid.calingredientfood.presentation.util.MonthCategory
 import sang.gondroid.calingredientfood.presentation.widget.adapter.FragmentViewPagerAdapter
 
 internal class MealManagementActivity :
     BaseActivity<ActivityMealManagementBinding, MealManagementViewModel>() {
+
+    val changeMealNtrIrdntSort: (MealNtrIrdntSort) -> Unit = this::changeMealNtrIrdntSort
 
     override val viewModel: MealManagementViewModel by inject()
 
@@ -21,9 +24,9 @@ internal class MealManagementActivity :
     override fun getDataBinding(): ActivityMealManagementBinding =
         DataBindingUtil.setContentView(this, R.layout.activity_meal_management)
 
-    override fun initState() {}
-
     override fun initViews() {
+        binding.handler = this
+
         initViewPager()
     }
 
@@ -31,7 +34,7 @@ internal class MealManagementActivity :
 
     private val fragmentList by lazy {
         monthCategories.map {
-            MonthCategoryFragment.newInstance(it)
+            MonthCategoryFragment.newInstance(it, viewModel.monthRangeMap.getValue(it))
         }
     }
 
@@ -47,6 +50,15 @@ internal class MealManagementActivity :
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = getString(monthCategories[position].stringId)
         }.attach()
+    }
+
+    /**
+     * Gon [22.04.28] : MealNtrIrdntSort 상수를 통해 각 MonthCategoryViewModel의 setMealNtrIrdntSort() 호출
+     */
+    private fun changeMealNtrIrdntSort(mealNtrIrdntSort: MealNtrIrdntSort) {
+        fragmentList.forEach {
+            it.viewModel.setMealNtrIrdntSort(mealNtrIrdntSort)
+        }
     }
 
     override fun observeData() {}

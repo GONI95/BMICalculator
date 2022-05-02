@@ -21,9 +21,7 @@ internal class InsertFoodNtrIrdntActivity : BaseActivity<ActivityInsertFoodNtrIr
     override fun getDataBinding(): ActivityInsertFoodNtrIrdntBinding =
         DataBindingUtil.setContentView(this, R.layout.activity_insert_food_ntr_irdnt)
 
-    override fun initState() {
-        super.initState()
-
+    override fun initViews() {
         binding.handler = this
         binding.viewModel = viewModel
     }
