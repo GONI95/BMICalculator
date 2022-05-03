@@ -2,10 +2,12 @@ package sang.gondroid.calingredientfood.data.data_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import kotlinx.coroutines.delay
 import sang.gondroid.calingredientfood.data.db.MealNtrIrdntDAO
 import sang.gondroid.calingredientfood.data.dto.entity.MealNtrIrdntEntity
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.util.MealNtrIrdntSort
+import java.lang.Exception
 
 /**
  * Gon [22.04.26] : PagingData를 load하는 추상 클래스인 PagingSource를 상속받아 정의한 클래스
@@ -49,17 +51,24 @@ class MealNtrIrdntPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MealNtrIrdntEntity> {
         DebugLog.i("load called : $mealNtrIrdntSort")
 
-        val page = params.key ?: INIT_PAGE_INDEX
-        val items = mealNtrIrdntDAO.getMealNtrIrdntListForMonth(
-            firstDay, lastDay, mealNtrIrdntSort, page, params.loadSize
-        )
+        return try {
+            delay(500)
 
-        return LoadResult.Page(
-            data = items,
-            prevKey = if (page == INIT_PAGE_INDEX) null else page - 1,
-            nextKey = if (items.isEmpty()) null else page + (params.loadSize / 10)
-        ).also {
-            DebugLog.d("page : $page, loadSize : ${params.loadSize}")
+            val page = params.key ?: INIT_PAGE_INDEX
+            val items = mealNtrIrdntDAO.getMealNtrIrdntListForMonth(
+                firstDay, lastDay, mealNtrIrdntSort, page, params.loadSize
+            )
+
+            LoadResult.Page(
+                data = items,
+                prevKey = if (page == INIT_PAGE_INDEX) null else page - 1,
+                nextKey = if (items.isEmpty()) null else page + (params.loadSize / 10)
+            ).also {
+                DebugLog.d("page : $page, loadSize : ${params.loadSize}")
+            }
+        } catch (e: Exception) {
+            DebugLog.d("Exception : $e")
+            LoadResult.Error(e)
         }
     }
 }

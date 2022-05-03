@@ -49,17 +49,22 @@ internal class MonthCategoryFragment :
      * Gon [22.04.27] : GridLayoutManager(context, 가로 item 수, 출력 방향, item의 첫, 끝 중 시작 위치)
      */
     override fun initViews() {
-        binding.mealNtrIrdntRecyclerView.adapter = mealNtrIrdntPagingDataAdapter
-        binding.mealNtrIrdntRecyclerView.layoutManager =
-            GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-        binding.mealNtrIrdntRecyclerView.addItemDecoration(GridSpacingDecoration(2, 30, true))
+        binding.basePagingDataAdapter = mealNtrIrdntPagingDataAdapter
+
+        with(binding.mealNtrIrdntRecyclerView) {
+            layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+            addItemDecoration(GridSpacingDecoration(2, 30, true))
+            adapter = mealNtrIrdntPagingDataAdapter
+        }
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun observeData() {
         lifecycleScope.launch {
             viewModel.mealNtrIrdntPagingDataFlow.collectLatest { pagingData ->
-                mealNtrIrdntPagingDataAdapter.submitData(pagingData as PagingData<Model>)
+                pagingData?.let {
+                    mealNtrIrdntPagingDataAdapter.submitData(pagingData as PagingData<Model>)
+                }
             }
         }
     }
