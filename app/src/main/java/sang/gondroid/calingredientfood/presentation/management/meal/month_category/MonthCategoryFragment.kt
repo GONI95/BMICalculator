@@ -38,6 +38,11 @@ internal class MonthCategoryFragment :
     private val mealNtrIrdntPagingDataAdapter by lazy {
         BasePagingDataAdapter<MealNtrIrdntModel>(
             object : MealNtrIrdntListener {
+                override fun onCheckedChanged(model: MealNtrIrdntModel, isChecked: Boolean) {
+                    model.checkState = isChecked
+                    DebugLog.d("${model.id}, ${model.checkState}")
+                }
+
                 override fun onClickItem(model: Model) {
                     DebugLog.d("$model")
                 }

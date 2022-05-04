@@ -18,6 +18,10 @@ class MealNtrIrdntViewHolder(
             binding.root.setOnClickListener {
                 adapterListener.onClickItem(model)
             }
+
+            binding.itemCheckBox.setOnCheckedChangeListener { _, isChecked ->
+                adapterListener.onCheckedChanged(model, isChecked)
+            }
         }
     }
 }

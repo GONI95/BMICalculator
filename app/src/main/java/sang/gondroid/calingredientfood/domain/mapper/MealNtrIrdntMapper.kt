@@ -26,7 +26,8 @@ class MealNtrIrdntMapper(
                 totalSalt,
                 totalCholesterol,
                 totalSaturatedFattyAcid,
-                totalTransFat
+                totalTransFat,
+                false
             )
         }
     }

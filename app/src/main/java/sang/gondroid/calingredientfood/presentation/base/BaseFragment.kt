@@ -49,11 +49,6 @@ internal abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel> 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
         observeData()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
         viewModel.fetchData()
     }
 

@@ -30,37 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:contentInsetStart="0dp"
-                app:layout_scrollFlags="scroll|enterAlways">
-
-                <soup.neumorphism.NeumorphCardView
-                    android:id="@+id/searchCardView"
-                    style="@style/Theme.CalIngredientFood.Neumorphism"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <Spinner
-                            android:id="@+id/search_mode_spinner"
-                            android:layout_width="wrap_content"
-                            android:layout_height="40dp"
-                            android:background="@drawable/bg_spinner_search_mode" />
-
-                        <EditText
-                            android:id="@+id/searchEditText"
-                            style="@style/Theme.CalIngredientFood.EditText"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="20dp" />
-
-                    </LinearLayout>
-
-                </soup.neumorphism.NeumorphCardView>
-
-            </androidx.appcompat.widget.Toolbar>
+                app:layout_scrollFlags="scroll|enterAlways"/>
         </com.google.android.material.appbar.AppBarLayout>
 
        <androidx.constraintlayout.widget.ConstraintLayout

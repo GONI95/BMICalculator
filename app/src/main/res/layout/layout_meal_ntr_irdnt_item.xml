@@ -21,6 +21,33 @@
             android:paddingHorizontal="5dp"
             android:paddingVertical="5dp">
 
+            <FrameLayout
+                android:id="@+id/frameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintBottom_toTopOf="@+id/createDateTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_food" />
+
+                <CheckBox
+                    android:id="@+id/itemCheckBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{item.checkState}"
+                    android:buttonTint="@color/blue"
+                    android:gravity="start"
+                    android:minWidth="40dp"
+                    android:minHeight="40dp" />
+            </FrameLayout>
+
             <TextView
                 android:id="@+id/createDateTextView"
                 android:layout_width="0dp"
@@ -32,9 +59,9 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/calorieTextView"
-                app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
-                app:layout_constraintStart_toStartOf="@+id/appCompatImageView"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatImageView"
+                app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+                app:layout_constraintStart_toStartOf="@+id/frameLayout"
+                app:layout_constraintTop_toBottomOf="@+id/frameLayout"
                 tools:text="2022-04-25" />
 
             <TextView
@@ -60,17 +87,6 @@
                 app:layout_constraintStart_toStartOf="@+id/createDateTextView"
                 app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
                 tools:text="탄.단.지" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_food"
-                app:layout_constraintBottom_toTopOf="@+id/createDateTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
