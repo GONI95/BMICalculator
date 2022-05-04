@@ -22,6 +22,7 @@ import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
+import androidx.paging.LoadState
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.components.XAxis
@@ -44,6 +45,8 @@ import kotlin.collections.ArrayList
 import com.github.mikephil.charting.components.Legend
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import sang.gondroid.calingredientfood.databinding.LayoutEmptyViewBinding
+import sang.gondroid.calingredientfood.presentation.widget.adapter.BasePagingDataAdapter
 import sang.gondroid.calingredientfood.presentation.widget.custom.LineChartMarkerView
 import sang.gondroid.calingredientfood.presentation.widget.custom.PieChartRenderer
 import java.text.NumberFormat
@@ -147,6 +150,43 @@ internal object BindingAdapters {
             }
             else -> {
                 View.INVISIBLE
+            }
+        }
+    }
+
+    @BindingAdapter("emptyViewVisibility", "progressBarVisibility")
+    @JvmStatic
+    fun RecyclerView.setPagingDataAdapter(
+        emptyView: LayoutEmptyViewBinding,
+        lottieAnimationView: LottieAnimationView
+    ) {
+        var refreshCount = 0
+        val basePagingDataAdapter = adapter as BasePagingDataAdapter<*>
+
+        basePagingDataAdapter.addLoadStateListener {
+
+            if (it.refresh is LoadState.NotLoading) {
+                suppressLayout(false)
+                lottieAnimationView.visibility = View.INVISIBLE
+
+                if (refreshCount == 0)
+                    scrollToPosition(0)
+
+                if (basePagingDataAdapter.itemCount != 0) {
+                    DebugLog.d("setPagingDataAdapter() : Loading 완료 (Not Empty) $refreshCount")
+                    refreshCount++
+                    emptyView.root.visibility = View.INVISIBLE
+                    visibility = View.VISIBLE
+                } else {
+                    DebugLog.d("setPagingDataAdapter() : Loading 완료 (Empty)")
+                    emptyView.root.visibility = View.VISIBLE
+                }
+            } else {
+                DebugLog.d("setPagingDataAdapter() : Loading 진행 중")
+                refreshCount = 0
+                lottieAnimationView.visibility = View.VISIBLE
+                lottieAnimationView.playAnimation()
+                suppressLayout(true)
             }
         }
     }

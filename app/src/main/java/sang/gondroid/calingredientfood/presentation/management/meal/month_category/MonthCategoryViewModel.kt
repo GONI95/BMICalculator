@@ -3,7 +3,9 @@ package sang.gondroid.calingredientfood.presentation.management.meal.month_categ
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,8 +24,8 @@ internal class MonthCategoryViewModel(
     private var mealNtrIrdntSort: MealNtrIrdntSort = MealNtrIrdntSort.INITIALIZE
 ) : BaseViewModel() {
 
-    private val _mealNtrIrdntPagingDataFlow = MutableStateFlow<PagingData<MealNtrIrdntModel>>(
-        PagingData.empty()
+    private val _mealNtrIrdntPagingDataFlow = MutableStateFlow<PagingData<MealNtrIrdntModel>?>(
+        null
     )
     val mealNtrIrdntPagingDataFlow = _mealNtrIrdntPagingDataFlow.asStateFlow()
 
@@ -35,7 +37,8 @@ internal class MonthCategoryViewModel(
          */
         getMealNtrIrdntListForMonthUseCase
             .invoke(monthRange.first, monthRange.second, mealNtrIrdntSort)
-            .cachedIn(viewModelScope)
+            .cachedIn(this)
+            .flowOn(Dispatchers.IO)
             .collectLatest {
                 _mealNtrIrdntPagingDataFlow.emit(it)
             }

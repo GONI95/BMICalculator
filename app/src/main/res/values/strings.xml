@@ -92,4 +92,8 @@
     <string name="october">10월</string>
     <string name="november">11월</string>
     <string name="december">12월</string>
+
+    <string name="empty_view_month_category_title">텅~ 비어있어요.</string>
+    <string name="empty_view_month_category_description">식단 페이지에서 추가해주세요!!</string>
+
 </resources>
