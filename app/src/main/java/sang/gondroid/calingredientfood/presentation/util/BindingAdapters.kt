@@ -170,7 +170,7 @@ internal object BindingAdapters {
                 lottieAnimationView.visibility = View.INVISIBLE
 
                 if (refreshCount == 0)
-                    scrollToPosition(0)
+                    smoothScrollToPosition(0)
 
                 if (basePagingDataAdapter.itemCount != 0) {
                     DebugLog.d("setPagingDataAdapter() : Loading 완료 (Not Empty) $refreshCount")

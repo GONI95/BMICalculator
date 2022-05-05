@@ -39,8 +39,9 @@ internal class MonthCategoryFragment :
         BasePagingDataAdapter<MealNtrIrdntModel>(
             object : MealNtrIrdntListener {
                 override fun onCheckedChanged(model: MealNtrIrdntModel, isChecked: Boolean) {
-                    model.checkState = isChecked
                     DebugLog.d("${model.id}, ${model.checkState}")
+
+                    viewModel.handlingCheckedMealNtrIrdntSet(model, isChecked)
                 }
 
                 override fun onClickItem(model: Model) {
@@ -55,6 +56,7 @@ internal class MonthCategoryFragment :
      */
     override fun initViews() {
         binding.basePagingDataAdapter = mealNtrIrdntPagingDataAdapter
+        binding.viewModel = viewModel
 
         with(binding.mealNtrIrdntRecyclerView) {
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)

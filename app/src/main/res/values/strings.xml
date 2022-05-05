@@ -95,5 +95,8 @@
 
     <string name="empty_view_month_category_title">텅~ 비어있어요.</string>
     <string name="empty_view_month_category_description">식단 페이지에서 추가해주세요!!</string>
-
+    <string name="delete">삭제</string>
+    <string name="delete_selection">선택삭제</string>
+    <string name="delete_all">전체삭제</string>
+    <string name="number_of_items">선택항목(%d)</string>
 </resources>

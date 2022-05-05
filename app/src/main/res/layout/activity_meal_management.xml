@@ -9,142 +9,116 @@
             type="sang.gondroid.calingredientfood.presentation.management.meal.MealManagementActivity" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/base_color"
         tools:context=".presentation.management.meal.MealManagementActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay"
-            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            style="@style/Theme.CalIngredientFood.TabLayout"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/filterScrollView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="fill"
+            app:tabIndicatorFullWidth="false"
+            app:tabMaxWidth="0dp"
+            app:tabMode="auto" />
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
+        <HorizontalScrollView
+            android:id="@+id/filterScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toTopOf="@+id/viewPager"
+            app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+            app:layout_constraintStart_toStartOf="@+id/tabLayout"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                onCheckedChange="@{handler.changeMealNtrIrdntSort}"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:contentInsetStart="0dp"
-                app:layout_scrollFlags="scroll|enterAlways"/>
-        </com.google.android.material.appbar.AppBarLayout>
+                android:paddingHorizontal="12dp"
+                app:chipSpacingHorizontal="4dp"
+                app:chipSpacingVertical="6dp"
+                app:layout_constraintBottom_toTopOf="@id/viewPager"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/initializeChip"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/initialize"
+                    android:textColor="@color/text_initialize_chip_state_color"
+                    app:chipBackgroundColor="@color/bg_initialize_chip_state_color"
+                    app:chipIconEnabled="true"
+                    app:chipIconTint="@color/brown" />
 
-           <com.google.android.material.tabs.TabLayout
-               android:id="@+id/tabLayout"
-               style="@style/Theme.CalIngredientFood.TabLayout"
-               android:layout_width="0dp"
-               android:layout_height="40dp"
-               app:layout_constraintBottom_toTopOf="@+id/filterScrollView"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:tabGravity="fill"
-               app:tabIndicatorFullWidth="false"
-               app:tabMaxWidth="0dp"
-               app:tabMode="auto" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/calorieChip"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_calorie"
+                    app:chipIcon="@drawable/ic_arrow_upward"
+                    app:chipIconEnabled="true" />
 
-           <HorizontalScrollView
-               android:id="@+id/filterScrollView"
-               android:layout_width="0dp"
-               android:layout_height="wrap_content"
-               android:scrollbars="none"
-               app:layout_constraintBottom_toTopOf="@+id/viewPager"
-               app:layout_constraintEnd_toEndOf="@+id/tabLayout"
-               app:layout_constraintStart_toStartOf="@+id/tabLayout"
-               app:layout_constraintTop_toBottomOf="@id/tabLayout">
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/carbohydrateChip"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_carbohydrate"
+                    app:chipIcon="@drawable/ic_arrow_upward"
+                    app:chipIconEnabled="true" />
 
-               <com.google.android.material.chip.ChipGroup
-                   android:id="@+id/chipGroup"
-                   onCheckedChange="@{handler.changeMealNtrIrdntSort}"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:paddingHorizontal="12dp"
-                   app:chipSpacingHorizontal="4dp"
-                   app:chipSpacingVertical="6dp"
-                   app:layout_constraintBottom_toTopOf="@id/viewPager"
-                   app:selectionRequired="true"
-                   app:singleLine="true"
-                   app:singleSelection="true">
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/proteinChip"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_protein"
+                    app:chipIcon="@drawable/ic_arrow_upward"
+                    app:chipIconEnabled="true" />
 
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/initializeChip"
-                       style="@style/Theme.CalIngredientFood.Chip"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/initialize"
-                       android:textColor="@color/text_initialize_chip_state_color"
-                       app:chipBackgroundColor="@color/bg_initialize_chip_state_color"
-                       app:chipIconEnabled="true"
-                       app:chipIconTint="@color/brown" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/fatChip"
+                    style="@style/Theme.CalIngredientFood.Chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/in_order_of_highest_fat"
+                    app:chipIcon="@drawable/ic_arrow_upward"
+                    app:chipIconEnabled="true" />
 
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/calorieChip"
-                       style="@style/Theme.CalIngredientFood.Chip"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/in_order_of_highest_calorie"
-                       app:chipIcon="@drawable/ic_arrow_upward"
-                       app:chipIconEnabled="true" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/carbohydrateChip"
-                       style="@style/Theme.CalIngredientFood.Chip"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/in_order_of_highest_carbohydrate"
-                       app:chipIcon="@drawable/ic_arrow_upward"
-                       app:chipIconEnabled="true" />
+        <View
+            android:id="@+id/view2"
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:background="@color/contrasting_color"
+            app:layout_constraintBottom_toTopOf="@+id/filterScrollView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
 
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/proteinChip"
-                       style="@style/Theme.CalIngredientFood.Chip"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/in_order_of_highest_protein"
-                       app:chipIcon="@drawable/ic_arrow_upward"
-                       app:chipIconEnabled="true" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+            app:layout_constraintStart_toStartOf="@+id/tabLayout"
+            app:layout_constraintTop_toBottomOf="@+id/filterScrollView" />
 
-                   <com.google.android.material.chip.Chip
-                       android:id="@+id/fatChip"
-                       style="@style/Theme.CalIngredientFood.Chip"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:text="@string/in_order_of_highest_fat"
-                       app:chipIcon="@drawable/ic_arrow_upward"
-                       app:chipIconEnabled="true" />
-
-               </com.google.android.material.chip.ChipGroup>
-           </HorizontalScrollView>
-
-           <View
-               android:id="@+id/view2"
-               android:layout_width="0dp"
-               android:layout_height="0.5dp"
-               android:background="@color/contrasting_color"
-               app:layout_constraintBottom_toTopOf="@+id/filterScrollView"
-               app:layout_constraintEnd_toEndOf="parent"
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toBottomOf="@id/tabLayout" />
-
-           <androidx.viewpager2.widget.ViewPager2
-               android:id="@+id/viewPager"
-               android:layout_width="0dp"
-               android:layout_height="0dp"
-               app:layout_constraintBottom_toBottomOf="parent"
-               app:layout_constraintEnd_toEndOf="@+id/tabLayout"
-               app:layout_constraintStart_toStartOf="@+id/tabLayout"
-               app:layout_constraintTop_toBottomOf="@+id/filterScrollView" />
-
-       </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

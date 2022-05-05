@@ -1,53 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
             name="basePagingDataAdapter"
             type="sang.gondroid.calingredientfood.presentation.widget.adapter.BasePagingDataAdapter" />
+
+        <variable
+            name="viewModel"
+            type="sang.gondroid.calingredientfood.presentation.management.meal.month_category.MonthCategoryViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mealNtrIrdntRecyclerView"
-            emptyViewVisibility="@{emptyView}"
-            progressBarVisibility="@{responseProgressBar}"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:theme="@style/AppTheme.AppBarOverlay.Light"
+            app:layout_constraintBottom_toTopOf="@+id/tabLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/responseProgressBar" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/responseProgressBar"
-            android:layout_width="0dp"
-            android:layout_height="3dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            app:layout_constraintBottom_toTopOf="@+id/mealNtrIrdntRecyclerView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/horizontal_progress_bar2"
-            app:lottie_speed="4" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                onMenuItemClick="@{viewModel.onMenuItemClick}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:menu="@menu/meal_management_menu">
 
-        <include
-            android:id="@+id/emptyView"
-            layout="@layout/layout_empty_view"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:description="@{@string/empty_view_month_category_description}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/mealNtrIrdntRecyclerView"
-            app:title="@{@string/empty_view_month_category_title}" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/number_of_items(viewModel.checkedMealNtrIrdntSize)}"
+                    android:textColor="@color/text_color"
+                    tools:text="@string/number_of_items" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mealNtrIrdntRecyclerView"
+                emptyViewVisibility="@{emptyView}"
+                progressBarVisibility="@{responseProgressBar}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/responseProgressBar" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/responseProgressBar"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@+id/mealNtrIrdntRecyclerView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/horizontal_progress_bar2"
+                app:lottie_speed="4" />
+
+            <include
+                android:id="@+id/emptyView"
+                layout="@layout/layout_empty_view"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:description="@{@string/empty_view_month_category_description}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/mealNtrIrdntRecyclerView"
+                app:title="@{@string/empty_view_month_category_title}" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

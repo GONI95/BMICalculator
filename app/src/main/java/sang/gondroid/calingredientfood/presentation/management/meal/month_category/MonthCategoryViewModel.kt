@@ -1,5 +1,7 @@
 package sang.gondroid.calingredientfood.presentation.management.meal.month_category
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
@@ -10,6 +12,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.use_case.GetMealNtrIrdntListForMonthUseCase
 import sang.gondroid.calingredientfood.presentation.base.BaseViewModel
@@ -28,6 +31,13 @@ internal class MonthCategoryViewModel(
         null
     )
     val mealNtrIrdntPagingDataFlow = _mealNtrIrdntPagingDataFlow.asStateFlow()
+
+    private val checkedMealNtrIrdntSet = mutableSetOf<Long>()
+    private val _checkedMealNtrIrdntSize = MutableLiveData(0)
+    val checkedMealNtrIrdntSize: LiveData<Int>
+        get() = _checkedMealNtrIrdntSize
+
+    val onMenuItemClick: (Int) -> Boolean = this::onMenuItemClick
 
     override fun fetchData(): Job = viewModelScope.launch {
         DebugLog.d("fetchData firstDay : ${monthRange.first}, lastDay : ${monthRange.second}, mealNtrIrdntSort : $mealNtrIrdntSort")
@@ -51,4 +61,30 @@ internal class MonthCategoryViewModel(
         this.mealNtrIrdntSort = mealNtrIrdntSort
         fetchData()
     }
+
+    fun handlingCheckedMealNtrIrdntSet(model: MealNtrIrdntModel, isChecked: Boolean) {
+        if (isChecked) {
+            checkedMealNtrIrdntSet.add(model.id)
+        } else {
+            checkedMealNtrIrdntSet.remove(model.id)
+        }
+
+        model.checkState = isChecked
+        _checkedMealNtrIrdntSize.value = checkedMealNtrIrdntSet.size
+    }
+
+    private fun onMenuItemClick(itemId: Int): Boolean =
+        when (itemId) {
+            R.id.delete_selection -> {
+                DebugLog.d("선택 삭제")
+                true
+            }
+            R.id.delete_all -> {
+                DebugLog.d("전체 삭제")
+                true
+            }
+            else -> {
+                false
+            }
+        }
 }
