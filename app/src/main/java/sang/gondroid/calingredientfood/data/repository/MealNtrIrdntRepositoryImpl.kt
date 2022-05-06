@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import sang.gondroid.calingredientfood.data.data_source.MealNtrIrdntPagingSource
 import sang.gondroid.calingredientfood.data.db.MealNtrIrdntDAO
@@ -91,13 +92,26 @@ class MealNtrIrdntRepositoryImpl(
         mealNtrIrdntSort: MealNtrIrdntSort
     ): Flow<PagingData<MealNtrIrdntModel>> =
         Pager(
-            config = PagingConfig(10),
+            PagingConfig(10),
             pagingSourceFactory = {
                 MealNtrIrdntPagingSource(mealNtrIrdntDAO, firstDay, lastDay, mealNtrIrdntSort)
             }
-        ).flow.map { pagingData ->
-            pagingData.map { item ->
-                mealNtrIrdntMapper.toModel(item, ViewType.MEAL_NTR_IRDNT)
+        )
+            .flow
+            .flowOn(ioDispatcher)
+            .map { pagingData ->
+                pagingData.map { item ->
+                    mealNtrIrdntMapper.toModel(item, ViewType.MEAL_NTR_IRDNT)
+                }
             }
+
+    override suspend fun deleteCheckedMealNtrIrdnt(checkedMealNtrIrdntIdSet: Set<Long>) =
+        withContext(ioDispatcher) {
+            mealNtrIrdntDAO.deleteCheckedMealNtrIrdnt(checkedMealNtrIrdntIdSet)
+        }
+
+    override suspend fun deleteAllMealNtrIrdnt() =
+        withContext(ioDispatcher) {
+            mealNtrIrdntDAO.deleteAllMealNtrIrdnt()
         }
 }
