@@ -18,8 +18,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="5dp"
-            android:paddingVertical="5dp">
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="8dp">
 
             <FrameLayout
                 android:id="@+id/frameLayout"
@@ -32,10 +32,10 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView"
+                    srcFromUri="@{item.mealImage}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_food" />
+                    android:scaleType="centerCrop" />
 
                 <CheckBox
                     android:id="@+id/itemCheckBox"
@@ -43,9 +43,9 @@
                     android:layout_height="wrap_content"
                     android:checked="@{item.checkState}"
                     android:buttonTint="@color/blue"
-                    android:gravity="start"
-                    android:minWidth="40dp"
-                    android:minHeight="40dp" />
+                    android:background="@color/white"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp" />
             </FrameLayout>
 
             <TextView
