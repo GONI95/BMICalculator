@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="item"
+            type="sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:background="@drawable/bg_round_design">
+
+        <ImageButton
+            android:id="@+id/dismissButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_cancel"
+            app:layout_constraintBottom_toTopOf="@+id/createDateTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/createDateTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="@{@string/date_desc_info(item.createdDate)}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/totalCalorieTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dismissButton"
+            tools:text="날짜 : 2022-01-01" />
+
+        <TextView
+            android:id="@+id/totalCalorieTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@{@string/calorie_desc_info(item.totalCalorie)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalCarbohydrateTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/createDateTextView"
+            tools:text="칼로리 : 10.00kcal" />
+
+        <TextView
+            android:id="@+id/totalCarbohydrateTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/carbohydrate_desc_info(item.totalCarbohydrate)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalProteinTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalCalorieTextView"
+            tools:text="탄수화물 : 10.00g" />
+
+        <TextView
+            android:id="@+id/totalProteinTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/protein_desc_info(item.totalProtein)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalFatTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalCarbohydrateTextView"
+            tools:text="단백질 : 10.00g" />
+
+        <TextView
+            android:id="@+id/totalFatTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/fat_desc_info(item.totalFat)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalSugarTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalProteinTextView"
+            tools:text="지방 : 10.00g" />
+
+        <TextView
+            android:id="@+id/totalSugarTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/sugar_desc_info(item.totalSugar)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalSaltTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalFatTextView"
+            tools:text="당류 : 10.00g" />
+
+        <TextView
+            android:id="@+id/totalSaltTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/salt_desc_info(item.totalSalt)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalCholesterolTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalSugarTextView"
+            tools:text="나트륨 : 10.00mg" />
+
+        <TextView
+            android:id="@+id/totalCholesterolTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/cholesterol_desc_info(item.totalCholesterol)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalSaturatedFattyAcidTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalSaltTextView"
+            tools:text="콜레스테롤 : 10.00mg" />
+
+        <TextView
+            android:id="@+id/totalSaturatedFattyAcidTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/saturated_fatty_acid_desc_info(item.totalSaturatedFattyAcid)}"
+            app:layout_constraintBottom_toTopOf="@+id/totalTransFatTextView"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalCholesterolTextView"
+            tools:text="포화지방산 : 10.00g" />
+
+        <TextView
+            android:id="@+id/totalTransFatTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/trans_fat_desc_info(item.totalTransFat)}"
+            app:layout_constraintBottom_toTopOf="@+id/foodNtrIrdntViewPager"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalSaturatedFattyAcidTextView"
+            tools:text="트랜스지방산 : 10.00g" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/foodNtrIrdntViewPager"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+            app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+            app:layout_constraintTop_toBottomOf="@+id/totalTransFatTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

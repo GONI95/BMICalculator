@@ -14,7 +14,16 @@
     <string name="please_enter_a_search_term">검색어를 입력해주세요.</string>
 
     <string name="add">추가</string>
+    <string name="date_desc_info">날짜 : %s</string>
     <string name="calorie_desc_info">칼로리 : %1$.2f(kcal)</string>
+    <string name="carbohydrate_desc_info">탄수화물 : %1$.2f(g)</string>
+    <string name="protein_desc_info">단백질 : %1$.2f(g)</string>
+    <string name="fat_desc_info">지방 : %1$.2f(g)</string>
+    <string name="sugar_desc_info">당류 : %1$.2f(g)</string>
+    <string name="salt_desc_info">나트륨 : %1$.2f(mg)</string>
+    <string name="cholesterol_desc_info">콜레스테롤 : %1$.2f(mg)</string>
+    <string name="saturated_fatty_acid_desc_info">포화지방산 : %1$.2f(g)</string>
+    <string name="trans_fat_desc_info">트랜스지방산 : %1$.2f(g)</string>
     <string name="three_major_ntr_desc_info">탄, 단, 지 : %1$.2f / %2$.2f / %3$.2f (g)</string>
     <string name="serving_weight_desc_info">%s회 제공량 : %s(g)</string>
     <string name="begin_year_desc_info">구축년도 : %s년</string>

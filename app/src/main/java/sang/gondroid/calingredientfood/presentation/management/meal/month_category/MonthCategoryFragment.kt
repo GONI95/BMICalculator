@@ -12,9 +12,11 @@ import sang.gondroid.calingredientfood.databinding.FragmentMonthCategoryBinding
 import sang.gondroid.calingredientfood.domain.model.MealNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
+import sang.gondroid.calingredientfood.presentation.util.Constants
 import sang.gondroid.calingredientfood.presentation.util.DebugLog
 import sang.gondroid.calingredientfood.presentation.util.MonthCategory
 import sang.gondroid.calingredientfood.presentation.widget.adapter.BasePagingDataAdapter
+import sang.gondroid.calingredientfood.presentation.widget.custom.dialog.MealNtrIrdntDialogFragment
 import sang.gondroid.calingredientfood.presentation.widget.decorator.GridSpacingDecoration
 import sang.gondroid.calingredientfood.presentation.widget.listener.MealNtrIrdntListener
 
@@ -46,6 +48,11 @@ internal class MonthCategoryFragment :
 
                 override fun onClickItem(model: Model) {
                     DebugLog.d("$model")
+
+                    MealNtrIrdntDialogFragment(model as MealNtrIrdntModel).show(
+                        requireActivity().supportFragmentManager,
+                        Constants.DIALOG_FRAGMENT_TAG
+                    )
                 }
             }
         )

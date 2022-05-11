@@ -68,6 +68,7 @@
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/activity_meal_management.xml" value="0.15" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/bottom_sheet_food_ntr_irdnt.xml" value="0.67" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/dialog_fragment_meal_ntr_irdnt.xml" value="0.18" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/dialog_layout_food_ntr_irdnt.xml" value="0.5" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/edit_text_food_ntr_irdnt.xml" value="0.22" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/edit_text_input_layout.xml" value="0.5" />
@@ -89,9 +90,10 @@
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/layout_empty_item.xml" value="0.16875" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/layout_food_ntr_irdnt_item.xml" value="0.33" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/layout_food_nutrition_ingredient_item.xml" value="0.5" />
-        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/layout_meal_ntr_irdnt_item.xml" value="0.33" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/layout_meal_ntr_irdnt_item.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/layout_search_mode_item.xml" value="0.22" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/line_chart_marker.xml" value="0.5" />
+        <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/number_counter_horizontal.xml" value="0.1078125" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/number_picker_horizontal.xml" value="0.5" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/layout/snack_bar_notification.xml" value="0.25" />
         <entry key="..\:/Users/Gon/AndroidProjects/CalIngredientFood/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.19947916666666668" />

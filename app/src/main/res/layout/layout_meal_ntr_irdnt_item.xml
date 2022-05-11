@@ -52,41 +52,69 @@
                 android:id="@+id/createDateTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="@{item.createdDate}"
+                android:text="@{@string/date_desc_info(item.createdDate)}"
                 android:textColor="@color/text_color"
-                android:textSize="16sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/calorieTextView"
+                app:layout_constraintBottom_toTopOf="@+id/totalCalorieTextView"
                 app:layout_constraintEnd_toEndOf="@+id/frameLayout"
                 app:layout_constraintStart_toStartOf="@+id/frameLayout"
                 app:layout_constraintTop_toBottomOf="@+id/frameLayout"
                 tools:text="2022-04-25" />
 
             <TextView
-                android:id="@+id/calorieTextView"
+                android:id="@+id/totalCalorieTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:text="@{@string/calorie_desc_info(item.totalCalorie)}"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@+id/threeMajorNtrTextView"
+                app:layout_constraintBottom_toTopOf="@+id/totalCarbohydrateTextView"
                 app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
                 app:layout_constraintStart_toStartOf="@+id/createDateTextView"
                 app:layout_constraintTop_toBottomOf="@+id/createDateTextView"
                 tools:text="칼로리" />
 
             <TextView
-                android:id="@+id/threeMajorNtrTextView"
+                android:id="@+id/totalCarbohydrateTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{@string/three_major_ntr_desc_info(item.totalCarbohydrate, item.totalProtein, item.totalFat)}"
+                android:layout_marginTop="5dp"
+                android:text="@{@string/carbohydrate_desc_info(item.totalCarbohydrate)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/totalProteinTextView"
+                app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+                app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+                app:layout_constraintTop_toBottomOf="@+id/totalCalorieTextView"
+                tools:text="탄수화물 : 10.00g" />
+
+            <TextView
+                android:id="@+id/totalProteinTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@{@string/protein_desc_info(item.totalProtein)}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/totalFatTextView"
+                app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
+                app:layout_constraintStart_toStartOf="@+id/createDateTextView"
+                app:layout_constraintTop_toBottomOf="@+id/totalCarbohydrateTextView"
+                tools:text="단백질 : 10.00g" />
+
+            <TextView
+                android:id="@+id/totalFatTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@{@string/fat_desc_info(item.totalFat)}"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/createDateTextView"
                 app:layout_constraintStart_toStartOf="@+id/createDateTextView"
-                app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
-                tools:text="탄.단.지" />
+                app:layout_constraintTop_toBottomOf="@+id/totalProteinTextView"
+                tools:text="지방 : 10.00g" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
