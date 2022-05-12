@@ -108,4 +108,7 @@
     <string name="delete_selection">선택삭제</string>
     <string name="delete_all">전체삭제</string>
     <string name="number_of_items">선택항목(%d)</string>
+
+    <string name="current_position">%s</string>
+    <string name="look">보기</string>
 </resources>

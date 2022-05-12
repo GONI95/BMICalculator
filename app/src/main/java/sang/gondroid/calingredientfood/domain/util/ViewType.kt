@@ -5,6 +5,7 @@ package sang.gondroid.calingredientfood.domain.util
  */
 enum class ViewType {
     FOOD_NTR_IRDNT,
+    FOOD_NTR_IRDNT_DETAIL,
     CALCULATOR,
     MEAL_NTR_IRDNT;
 }

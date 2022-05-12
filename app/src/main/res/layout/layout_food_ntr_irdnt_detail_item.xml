@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/descriptionKorTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{item.descriptionKOR}"
+            android:textColor="@color/text_color"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/companyTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="식품 명" />
+
+        <TextView
+            android:id="@+id/companyTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:text="@{item.company}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/servingWeightTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionKorTextView"
+            tools:text="업체 명" />
+
+        <TextView
+            android:id="@+id/servingWeightTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{@string/serving_weight_desc_info(item.servingCount, item.servingWeight * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/calorieTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/companyTextView"
+            tools:text="1회 제공량" />
+
+        <TextView
+            android:id="@+id/calorieTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/calorie_desc_info(item.calorie * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/threeMajorNtrTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/servingWeightTextView"
+            tools:text="칼로리" />
+
+        <TextView
+            android:id="@+id/threeMajorNtrTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/three_major_ntr_desc_info(item.carbohydrate * item.servingCount, item.protein * item.servingCount, item.fat * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/sugarTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/calorieTextView"
+            tools:text="탄.단.지" />
+
+        <TextView
+            android:id="@+id/sugarTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/sugar_desc_info(item.sugar * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/saltTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/threeMajorNtrTextView"
+            tools:text="당류" />
+
+        <TextView
+            android:id="@+id/saltTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/salt_desc_info(item.salt * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/cholesterolTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/sugarTextView"
+            tools:text="나트륨" />
+
+        <TextView
+            android:id="@+id/cholesterolTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/cholesterol_desc_info(item.cholesterol * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/saturatedFattyAcidTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/saltTextView"
+            tools:text="콜레스테롤" />
+
+        <TextView
+            android:id="@+id/saturatedFattyAcidTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@{@string/saturated_fatty_acid_desc_info(item.saturatedFattyAcid * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/transFatTextView"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/cholesterolTextView"
+            tools:text="포화지방산" />
+
+        <TextView
+            android:id="@+id/transFatTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="30dp"
+            android:text="@{@string/trans_fat_desc_info(item.transFat * item.servingCount)}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionKorTextView"
+            app:layout_constraintStart_toStartOf="@+id/descriptionKorTextView"
+            app:layout_constraintTop_toBottomOf="@+id/saturatedFattyAcidTextView"
+            tools:text="트랜스지방산" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

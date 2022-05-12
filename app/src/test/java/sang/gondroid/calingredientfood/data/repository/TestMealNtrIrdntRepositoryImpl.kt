@@ -16,7 +16,7 @@ class TestMealNtrIrdntRepositoryImpl(
 
     override fun getMealNtrIrdntList(): Flow<List<MealNtrIrdntModel>> = flow {
         val result = mealNtrIrdntList.map {
-            mealNtrIrdntMapper.toModel(it, ViewType.MEAL_NTR_IRDNT)
+            mealNtrIrdntMapper.toModel(it, ViewType.MEAL_NTR_IRDNT, ViewType.FOOD_NTR_IRDNT_DETAIL)
         }
 
         emit(result)
