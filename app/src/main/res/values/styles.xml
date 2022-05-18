@@ -52,7 +52,7 @@
       -->
     <style name="Theme.CalIngredientFood.Neumorphism.Small.Button" parent="Widget.Neumorph.Button">
         <item name="android:textColor">@color/light_text_color</item>
-        <item name="android:minHeight">48dp</item>
+        <item name="android:minHeight">0dp</item>
         <item name="android:minWidth">0dp</item>
         <item name="android:textSize">12sp</item>
         <item name="neumorph_shadowElevation">4dp</item>

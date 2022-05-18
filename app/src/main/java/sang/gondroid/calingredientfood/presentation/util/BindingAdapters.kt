@@ -1,9 +1,8 @@
 package sang.gondroid.calingredientfood.presentation.util
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -11,6 +10,7 @@ import android.widget.Spinner
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.ImageView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -18,8 +18,6 @@ import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.appbar.AppBarLayout
 import com.prolificinteractive.materialcalendarview.CalendarDay
 import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat.getColor
-import androidx.core.content.ContextCompat.getDrawable
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.paging.LoadState
@@ -51,6 +49,11 @@ import sang.gondroid.calingredientfood.presentation.widget.custom.LineChartMarke
 import sang.gondroid.calingredientfood.presentation.widget.custom.PieChartRenderer
 import java.text.NumberFormat
 import java.util.Calendar
+import android.graphics.Color
+import android.graphics.Typeface
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.content.ContextCompat.getDrawable
+import com.bumptech.glide.Glide
 
 internal object BindingAdapters {
 
@@ -170,7 +173,7 @@ internal object BindingAdapters {
                 lottieAnimationView.visibility = View.INVISIBLE
 
                 if (refreshCount == 0)
-                    scrollToPosition(0)
+                    smoothScrollToPosition(0)
 
                 if (basePagingDataAdapter.itemCount != 0) {
                     DebugLog.d("setPagingDataAdapter() : Loading 완료 (Not Empty) $refreshCount")
@@ -518,5 +521,18 @@ internal object BindingAdapters {
                 }
             }
         }
+    }
+
+    @BindingAdapter("srcFromUri")
+    @JvmStatic
+    fun AppCompatImageView.srcFromUri(uri: Uri?) {
+
+        Glide.with(context)
+            .load(uri)
+            .fallback(R.drawable.ic_food)
+            .error(R.drawable.ic_image_error)
+            .placeholder(R.drawable.ic_icon_image)
+            .fitCenter()
+            .into(this)
     }
 }

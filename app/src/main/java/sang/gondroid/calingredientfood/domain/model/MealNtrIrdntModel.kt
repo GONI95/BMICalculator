@@ -3,7 +3,7 @@ package sang.gondroid.calingredientfood.domain.model
 import android.net.Uri
 import sang.gondroid.calingredientfood.domain.util.ViewType
 
-class MealNtrIrdntModel(
+data class MealNtrIrdntModel(
     override val id: Long,
     override val type: ViewType,
     val mealImage: Uri?,
@@ -17,5 +17,6 @@ class MealNtrIrdntModel(
     val totalSalt: Double,
     val totalCholesterol: Double,
     val totalSaturatedFattyAcid: Double,
-    val totalTransFat: Double
+    val totalTransFat: Double,
+    var checkState: Boolean
 ) : Model(id, type)

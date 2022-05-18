@@ -17,4 +17,8 @@ interface MealNtrIrdntRepository {
         lastDay: String,
         mealNtrIrdntSort: MealNtrIrdntSort
     ): Flow<PagingData<MealNtrIrdntModel>>
+
+    suspend fun deleteCheckedMealNtrIrdnt(checkedMealNtrIrdntIdSet: Set<Long>)
+
+    suspend fun deleteAllMealNtrIrdnt()
 }

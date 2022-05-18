@@ -22,6 +22,8 @@ import sang.gondroid.calingredientfood.domain.use_case.GetCustomFoodNtrIrdntList
 import sang.gondroid.calingredientfood.domain.use_case.InsertMealNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.use_case.InsertCustomFoodNtrIrdntUseCase
 import sang.gondroid.calingredientfood.domain.use_case.GetLastSevenDaysMealNtrIrdntListUseCase
+import sang.gondroid.calingredientfood.domain.use_case.DeleteAllMealNtrIrdntUseCase
+import sang.gondroid.calingredientfood.domain.use_case.DeleteCheckedMealNtrIrdntUseCase
 import sang.gondroid.calingredientfood.presentation.search.SearchViewModel
 import sang.gondroid.calingredientfood.presentation.meal.MealViewModel
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntViewModel
@@ -39,7 +41,7 @@ internal val appModule = module {
     viewModel { InsertFoodNtrIrdntViewModel(get(), get()) }
     viewModel { ManagementViewModel(get(), get()) }
     viewModel { MealManagementViewModel() }
-    viewModel { MonthCategoryViewModel(it[0], it[1], get()) }
+    viewModel { MonthCategoryViewModel(it[0], it[1], get(), get(), get()) }
 
     /**
      * UseCase : Repository를 받아 비즈니스 로직을 처리하는 부분, Interface 구현체
@@ -51,6 +53,8 @@ internal val appModule = module {
     factory { GetMealNtrIrdntListUseCase(get()) }
     factory { GetLastSevenDaysMealNtrIrdntListUseCase(get()) }
     factory { GetMealNtrIrdntListForMonthUseCase(get()) }
+    factory { DeleteCheckedMealNtrIrdntUseCase(get()) }
+    factory { DeleteAllMealNtrIrdntUseCase(get()) }
 
     /**
      * Repository : Domain과 Data Layer 사이를 중재해주는 객체

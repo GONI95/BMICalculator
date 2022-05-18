@@ -40,4 +40,10 @@ interface MealNtrIrdntDAO {
         page: Int,
         loadSize: Int
     ): List<MealNtrIrdntEntity>
+
+    @Query("DELETE FROM mealNtrIrdntTable WHERE id IN (:checkedMealNtrIrdntIdSet)")
+    suspend fun deleteCheckedMealNtrIrdnt(checkedMealNtrIrdntIdSet: Set<Long>)
+
+    @Query("DELETE FROM mealNtrIrdntTable")
+    suspend fun deleteAllMealNtrIrdnt()
 }

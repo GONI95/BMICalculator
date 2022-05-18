@@ -1,5 +1,10 @@
 package sang.gondroid.calingredientfood.presentation.util
 
+import android.annotation.SuppressLint
+import android.content.Context
+import android.net.Uri
+import android.provider.DocumentsContract
+import android.provider.MediaStore
 import sang.gondroid.calingredientfood.domain.model.Model
 
 object Extensions {
@@ -13,4 +18,35 @@ object Extensions {
      *                  Generic을 구현하기 위해 Java 컴파일러는 Type erasure를 적용합니다
      */
     inline fun <reified T> List<Model>.checkType() = all { it is T }
+
+    @SuppressLint("Recycle")
+    fun Uri.getRealPathUri(context: Context): Uri {
+        var uri = this
+
+        path?.let { path ->
+            if (path.startsWith("/document")) {
+                val id = DocumentsContract.getDocumentId(uri).split(":")[1]
+                val columns = MediaStore.Files.FileColumns.DATA
+                val selection = MediaStore.Files.FileColumns._ID + " = " + id
+
+                val cursor = context.contentResolver.query(
+                    MediaStore.Files.getContentUri("external"),
+                    arrayOf(columns),
+                    selection,
+                    null,
+                    null
+                )
+
+                if (cursor != null && cursor.moveToFirst()) {
+                    val columnIndex = cursor.getColumnIndex(columns)
+                    val realPath = cursor.getString(columnIndex)
+                    uri = Uri.parse(realPath)
+
+                    cursor.close()
+                }
+            }
+        }
+
+        return uri
+    }
 }

@@ -130,7 +130,8 @@ internal class MealViewModel(
             totalSalt,
             totalCholesterol,
             totalSaturatedFattyAcid,
-            totalTransFat
+            totalTransFat,
+            false
         )
     }
 }

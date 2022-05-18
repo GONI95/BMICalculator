@@ -16,7 +16,11 @@ class MealNtrIrdntMapper(
                 mealImage,
                 createdDate,
                 foodNtrIrdntList.mapIndexed { index, foodNtrIrdntEntity ->
-                    foodNtrIrdntMapper.toModel(index, foodNtrIrdntEntity, viewType)
+                    foodNtrIrdntMapper.toModel(
+                        index,
+                        foodNtrIrdntEntity,
+                        ViewType.FOOD_NTR_IRDNT_DETAIL
+                    )
                 },
                 totalCalorie,
                 totalCarbohydrate,
@@ -26,7 +30,8 @@ class MealNtrIrdntMapper(
                 totalSalt,
                 totalCholesterol,
                 totalSaturatedFattyAcid,
-                totalTransFat
+                totalTransFat,
+                false
             )
         }
     }
