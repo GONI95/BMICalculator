@@ -53,7 +53,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
-import sang.gondroid.calingredientfood.presentation.util.Extensions.getRealPathUri
+import com.bumptech.glide.Glide
 
 internal object BindingAdapters {
 
@@ -527,11 +527,12 @@ internal object BindingAdapters {
     @JvmStatic
     fun AppCompatImageView.srcFromUri(uri: Uri?) {
 
-        if (uri != null) {
-            val newUri = uri.getRealPathUri(context)
-            setImageURI(newUri)
-        } else {
-            setImageDrawable(getDrawable(context, R.drawable.ic_icon_image))
-        }
+        Glide.with(context)
+            .load(uri)
+            .fallback(R.drawable.ic_food)
+            .error(R.drawable.ic_image_error)
+            .placeholder(R.drawable.ic_icon_image)
+            .fitCenter()
+            .into(this)
     }
 }
