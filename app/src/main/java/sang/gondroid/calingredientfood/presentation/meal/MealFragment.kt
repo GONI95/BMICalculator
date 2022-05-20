@@ -22,6 +22,7 @@ import sang.gondroid.calingredientfood.R
 import sang.gondroid.calingredientfood.databinding.FragmentMealBinding
 import sang.gondroid.calingredientfood.domain.model.FoodNtrIrdntModel
 import sang.gondroid.calingredientfood.domain.model.Model
+import sang.gondroid.calingredientfood.domain.util.ViewType
 import sang.gondroid.calingredientfood.presentation.base.BaseFragment
 import sang.gondroid.calingredientfood.presentation.insert.InsertFoodNtrIrdntActivity
 import sang.gondroid.calingredientfood.presentation.util.Constants
@@ -243,18 +244,20 @@ internal class MealFragment : BaseFragment<FragmentMealBinding, MealViewModel>()
     }
 
     /**
-     * Gon [22.03.03] : MainActivity에서 FragmentListener의 sendCalculatorItem()에 의해 호출됨
+     * Gon [22.05.19] : MainActivity에서 FragmentListener의 sendCalculatorItem()에 의해 호출됨
      *                  Fragment가 초기화 되지않은 상태에서 ViewModel을 호출할 수 없기 때문에 Lifecycle 상태가
-     *                  INITIALIZED인 경우 calculatorSet에 담아둠
+     *                  INITIALIZED인 경우 calculatorSet에 담아두었다가
      *                  STARTED로 변경가 호출된 경우부턴 viewModel.addCalculatorItem() 호출
      */
-    fun receiveCalculatorItem(model: FoodNtrIrdntModel): Boolean =
-        if (lifecycle.currentState == Lifecycle.State.INITIALIZED) {
-            calculatorSet.add(model)
-                .not()
+    fun receiveCalculatorItem(model: FoodNtrIrdntModel): Boolean {
+        val newModel = model.copy(type = ViewType.CALCULATOR)
+
+        return if (lifecycle.currentState == Lifecycle.State.INITIALIZED) {
+            calculatorSet.add(newModel).not()
         } else {
-            viewModel.addCalculatorItem(model)
+            viewModel.addCalculatorItem(newModel).not()
         }
+    }
 
     override fun observeData() {}
 }
